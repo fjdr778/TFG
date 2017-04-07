@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Diseño por Francisco Jose Diaz Romero.
+Todos los derechos reservados.
+-->
+<html>
+
+<!-- Cabecera del documento -->
+<head>
+<!-- Metadatos de la página web -->
+<meta charset="UTF-8"/>
+<meta name="author" content="Adrián Gil Gago"/>
+<meta name="description" content="Rutina_app Gestión de eventos"/>
+
+<!-- Título, fuentes tipográficas y otro contenido enlazado -->
+<title>Rutina_app - Panel de control</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+
+<!-- Ficheros de código Javascript -->
+<script src="js/lib/jquery-1.12.3.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/messages_es.js"></script>
+<script src="js/lib/utils.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/ownerAddController.js"></script>
+</head>
+
+<!-- Cuerpo del documento -->
+<body>
+<div id="header-wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Rutina_app</a></h1>
+		</div>
+	</div>
+</div>
+
+<!-- Cuerpo de la página web -->
+<div id="wrapper">
+	<div id="page-wrapper">
+		<div id="page">
+			<div id="wide-content">
+				<div>
+					<!-- Título de la página actual -->
+					<h2>Crear una cuenta en Rutina_app</h2>
+            		<!-- Breve explicación sobre la página actual -->
+            		<p>
+              			A continuación introduzca sus datos personales, que serán utilizados por Rutina_app España para identificarle
+              			como usuario. Registrarse en la aplicación es completamente gratuito. Por otra parte,
+              			es obligatorio rellenar todos los campos de manera correcta, si no, no podrá registrarse como usuario.
+            		</p><br/>
+            		<!-- Formulario en el que introducir los datos del propietario a añadir -->
+					<form id="register_form">
+						E-mail:
+							<input type="text" name="user_email" size="40"/><br/><br/>
+						Nombre:
+							<input type="text" name="user_name" size="35"/><br/><br/>
+						Fecha de nacimiento:
+							<input type="date" name="user_birthdate" size="10"/><br/><br/>
+						Número de teléfono (opcional):
+							<input type="text" name="user_phonenumber" size="35"/><br/><br/>
+						Contraseña:
+							<input type="password" placeholder="Contraseña" name="user_password" id="user_password" size="30"/>
+						&nbsp; &nbsp; &nbsp;
+						Confirmar contraseña:
+			 				<input type="password" placeholder="Confirmar contraseña" name="user_password_confirm" size="30"/><br/><br/><br/>
+						<!-- Botones de acción del formulario y de cancelación -->
+						<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
+						<p class="button-style" style="float:right"><a href="login.html">Cancelar</a></p><br/><br/><br/><br/>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Pie del documento -->
+<div id="footer" class="container">
+	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
+</div>
+</body>
+</html>

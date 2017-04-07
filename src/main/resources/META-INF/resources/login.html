@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Diseño por Francisco Jose Diaz Romero.
+Todos los derechos reservados.
+-->
+<html>
+
+<!-- Cabecera del documento -->
+<head>
+<!-- Metadatos de la página web -->
+<meta charset="UTF-8"/>
+<meta name="author" content="Francisco Jose Diaz Romero"/>
+<meta name="description" content="Rutina_app Gestión de Rutinas de entrenamiento"/>
+
+<!-- Título, fuentes tipográficas y otro contenido enlazado -->
+<title>Rutina_app - Panel de control</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+
+<!-- Ficheros de código Javascript -->
+<script src="js/lib/jquery-1.12.3.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/messages_es.js"></script>
+<script src="js/lib/utils.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/ownerLoginController.js"></script>
+</head>
+
+<!-- Cuerpo del documento -->
+<body>
+<!-- Cabecera de la página web -->
+<div id="header-wrapper">
+	<div id="header">
+		<!-- Logo superior izquierdo de Rutina_app -->
+		<div id="logo">
+			<h1><a href="#">Rutina_app</a></h1>
+		</div>
+	</div>
+</div>
+
+<!-- Cuerpo de la página web -->
+<div id="wrapper">
+	<div id="page-wrapper">
+		<div id="page">
+			<div id="wide-content">
+				<div>
+					<!-- Título de la página actual -->
+					<h2>Entrar en Rutina_app</h2><br/>
+					<!-- Breve explicación sobre la página actual -->
+            		<p>
+              			Le recomendamos que, si intenta acceder a la aplicación más de una vez y la aplicación
+              			le advierte de que sus datos son erróneos, cierre la pestaña del navegador 
+              			correspondiente a la página web, luego borre el historial del navegador, cookies 
+              			incluidas y vuelva a intentar entrar de nuevo. Además, se recomienda el uso de Google 
+              			Chrome por cuestiones de compatibilidad.
+            		</p><br/><br/>
+					<!-- Formulario en el que introducir los datos del usuario a autenticar -->
+					<form id="login_form">
+						E-mail:
+							<input type="text" name="user_email" size="30"/>
+						<br/><br/>
+						Contraseña:
+							<input type="password" placeholder="Contraseña" name="user_password" id="user_password" size="30"/>
+						<br/><br/>
+						Confirmar contraseña:
+							<input type="password" placeholder="Confirmar contraseña" name="user_password_confirm" size="30"/>
+						<br/><br/><br/><br/>
+						<!-- Botones de acción del formulario y de cancelación -->
+						<p onclick="submitForm()" class="button-style"><a href="#">Entrar</a></p>
+						<p class="button-style" style="float:right"><a href="ownerAdd.html">No tengo una cuenta</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Pie del documento -->
+<div id="footer" class="container">
+	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
+</div>
+</body>
+</html>l>
