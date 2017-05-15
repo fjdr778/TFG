@@ -25,15 +25,28 @@ Versión: 1.0
 <script src="js/lib/messages_es.js"></script>
 <script src="js/lib/utils.js"></script>
 <script src="js/lib/jquery.cookie.js"></script>
-<script src="js/ownerAddController.js"></script>
+<script src="js/ownerModifyController.js"></script>
 </head>
+
 
 <!-- Cuerpo del documento -->
 <body>
+<!-- Cabecera de la página web -->
 <div id="header-wrapper">
 	<div id="header">
+		<!-- Logo superior izquierdo de Rutina_app -->
 		<div id="logo">
 			<h1><a href="#">Rutina_app</a></h1>
+		</div>
+		<!-- Barra de navegación superior -->
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="index.html" accesskey="1">Mi perfil</a></li>
+				<li><a href="RutinaMain.html" accesskey="2">Mis Rutinas</a></li>
+				<li><a href="EjercicioMain.html" accesskey="2">Mis Ejercicios</a></li>
+				<li><a href="helpMain.html" accesskey="3">Ayuda</a></li>
+				<li onclick="closeSession()"><a href="#" accesskey="5">Cerrar sesión</a></li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -45,15 +58,16 @@ Versión: 1.0
 			<div id="wide-content">
 				<div>
 					<!-- Título de la página actual -->
-					<h2>Crear una cuenta en Rutina_app</h2>
-            		<!-- Breve explicación sobre la página actual -->
+					<h2>Modificar mi perfil</h2>
+					<!-- Breve descripción de la página web -->
             		<p>
-              			A continuación introduzca sus datos personales, que serán utilizados por Rutina_app España para identificarle
-              			como usuario. Registrarse en la aplicación es completamente gratuito. Por otra parte,
-              			es obligatorio rellenar todos los campos de manera correcta, si no, no podrá registrarse como usuario.
+              			A continuación introduzca los datos del evento que desea registrar. Recuerde que el hecho de
+              			introducir eventos es completamente gratuito, por lo que puede añadir todos los eventos que
+              			desee sin ningún coste. Por otra parte, es obligatorio rellenar todos los campos de manera
+              			correcta, si no, no se registrará el evento.
             		</p><br/>
-            		<!-- Formulario en el que introducir los datos del propietario a añadir -->
-					<form id="register_form">
+            		<!-- Formulario en el que introducir los datos del propietario a modificar -->
+					<form id="personal_form">
 						E-mail:
 							<input type="text" name="user_email" size="40"/><br/><br/>
 						Nombre:
@@ -63,13 +77,13 @@ Versión: 1.0
 						Número de teléfono (opcional):
 							<input type="text" name="user_phonenumber" size="35"/><br/><br/>
 						Contraseña:
-							<input type="password" placeholder="Contraseña" name="user_password" id="user_password" size="30"/>
+							<input type="password" placeholder="Contraseña" name="user_password" id="user_password"/>
 						&nbsp; &nbsp; &nbsp;
 						Confirmar contraseña:
-			 				<input type="password" placeholder="Confirmar contraseña" name="user_password_confirm" size="30"/><br/><br/><br/>
+			 				<input type="password" placeholder="Confirmar contraseña" name="user_password_confirm"/><br/><br/><br/>
 						<!-- Botones de acción del formulario y de cancelación -->
 						<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
-						<p class="button-style" style="float:right"><a href="login.html">Cancelar</a></p><br/><br/><br/><br/>
+						<p class="button-style" style="float:right"><a href="index.html">Cancelar</a></p><br/><br/><br/>
 					</form>
 				</div>
 			</div>

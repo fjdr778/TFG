@@ -1,5 +1,7 @@
 package src.rutina.app;
 
+import java.sql.Date;
+
 /*
  * Clase que almacena las cadenas MySQL de consulta a Base de Datos 
  * relacionadas con cada una de las implementaciones DAO de las rutinas y ejercicios.
@@ -27,10 +29,12 @@ public class SqlConstants {
     public static final String CREATE_USUARIO_ROLE =
 	    "INSERT INTO USUARIOS_ROLES (USUARIOS_Email,Role) VALUES (?,?)";
     
+    
+    
     public static final String UPDATE_USUARIO = 
 	    "UPDATE USUARIOS SET Password=? WHERE Email=?";
     public static final String UPDATE_USUARIO_INFO = 
-	    "UPDATE USUARIOS_INFO SET Name=?, Telefono=?, Fecha_Nacimiento=? WHERE USUARIOS_Email=?";
+	    "UPDATE USUARIOS_INFO SET Nombre=?, Telefono=?, Fecha_Nacimiento=? WHERE USUARIOS_Email=?";
     
     // No se actualiza el rol, operación que queda 
     // por implementar para futura interfaz de gestión
@@ -84,9 +88,47 @@ public class SqlConstants {
 	    "DELETE FROM RUTINA WHERE USUARIOS_Email=?";
 
 
-    
     /* EJERCICIOS */
     public static final String CREATE_EJERCICIO = 
+	    "INSERT INTO EJERCICIO (Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_USUARIOS_Email) VALUES (?,?,?,?,?,?,?,?)"; 
+    
+    public static final String UPDATE_EJERCICIO = 
+    	"UPDATE EJERCICIO SET Nombre=?, Titulo=?, Subtitulo=?,Descripcion=?,Estado_forma=?,Repeticiones=?,Rep_video=? WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+    
+    //Obtener rutinas de un usuario
+    public static final String GET_EJERCICIO = 
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+    public static final String GET_ALL_EJERCICIO = 
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
+  //Eliminar rutinas de un usuario
+    public static final String DELETE_EJERCICIO = 
+	    "DELETE FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+    public static final String DELETE_ALL_EJERCICIO = 
+	    "DELETE FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
+    
+    
+    /*ASOCICACION DE EJERCICIOS A RUTINAS*/
+    
+    public static final String CREATE_EJERCICIO_DE_RUTINA = 
+    		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id) VALUES (?,?)";
+    
+    public static final String GET_EJERCICIO_DE_RUTINA = 
+    		"SELECT RUTINA_rut_id,EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE EJERCICIO_ej_id=?";
+    
+    public static final String GET_EJERCICIOS_DE_RUTINA = 
+    		"SELECT RUTINA_rut_id,EJERCICIO_ej_id  FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?";
+    
+    public static final String GET_RUTINAS_DE_EJERCICIOS = 
+    		"SELECT EJERCICIO_rut_id  FROM EJERCICIO_has_RUTINA WHERE RUTINA_ej_id=?";
+    
+    public static final String DELETE_EJERCICIO_DE_RUTINA = 
+    		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
+    
+    public static final String DELETE_ALL_EJERCICIOS_DE_RUTINA =
+    		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?";
+    
+    /* EJERCICIOS  Esto se peude usar para la asignacion de ejercicios a rutinas*/
+  /*  public static final String CREATE_EJERCICIO = 
 	    "INSERT INTO EJERCICIO (Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_rut_id) VALUES (?,?,?,?,?,?,?,?)";
     
     public static final String UPDATE_EJERCICIO = 
@@ -101,5 +143,5 @@ public class SqlConstants {
 	    "DELETE FROM EJERCICIO WHERE RUTINA_rut_id=? AND ej_id=?";
     public static final String DELETE_ALL_EJERCICIOS = 
 	    "DELETE FROM EJERCICIO WHERE RUTINA_rut_id=?";
-
+*/
 }

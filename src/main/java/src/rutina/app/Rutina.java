@@ -6,7 +6,7 @@ public class Rutina {
 	private String rutinaNombre;
 	private String rutinaDescripcion;
 	private String rutinaInfo_Rutina;
-	
+	private boolean rutinaPub_Priv;
 	
 	
 	public Rutina(long rut_id,String rutinaNombre,String rutinaDescripcion, String rutinaInfo_Rutina,String ownerId) {
@@ -62,6 +62,14 @@ public class Rutina {
     public void setRutinaInfo_Rutina(String rutinaInfo_Rutina){
     	this.rutinaInfo_Rutina=rutinaInfo_Rutina;
     }
+
+	public boolean isRutinaPub_Priv() {
+		return rutinaPub_Priv;
+	}
+
+	public void setRutinaPub_Priv(boolean rutinaPub_Priv) {
+		this.rutinaPub_Priv = rutinaPub_Priv;
+	}
 
 	
 }

@@ -75,7 +75,7 @@ public class RutinaController {
     public void addRutina(@PathVariable("owner_id") String ownerId,
     		@RequestBody Rutina rutina) {
     	//System.out.println(rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina());
-    	this.rutinaDao.createRutina(rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),ownerId);
+    	this.rutinaDao.createRutina(rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
     }
 
    //Actualiza una rutina en la base de datos
@@ -84,7 +84,7 @@ public class RutinaController {
     public void updateRutina(@PathVariable("owner_id") String ownerId,
     		@PathVariable("rut_id") int rut_id,@RequestBody Rutina rutina) {
 
-	this.rutinaDao.updateRutina(rut_id, rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),ownerId);
+	this.rutinaDao.updateRutina(rut_id, rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
     }
 }
 

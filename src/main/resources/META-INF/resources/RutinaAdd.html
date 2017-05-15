@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+Diseño por Fco Jose Diaz Romero
+Todos los derechos reservados.
+
+Versión: 1.0
+-->
+<html>
+
+<!-- Cabecera del documento -->
+<head>
+<!-- Metadatos de la página web -->
+<meta charset="UTF-8"/>
+<meta name="author" content="Fco Jose Diaz Romero"/>
+<meta name="description" content="Rutina_app Gestion de Rutinas de Entrenamiento"/>
+
+<!-- Título, fuentes tipográficas y otro contenido enlazado -->
+<title>Rutina_app - Panel de control</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+
+<!-- Ficheros de código Javascript -->
+<script src="js/lib/jquery-1.12.3.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/messages_es.js"></script>
+<script src="js/lib/utils.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/RutinaAddController.js"></script>
+</head>
+
+
+<!-- Cuerpo del documento -->
+<body>
+<!-- Cabecera de la página web -->
+<div id="header-wrapper">
+	<div id="header">
+		<!-- Logo superior izquierdo de 4Even -->
+		<div id="logo">
+			<h1><a href="#">Rutina_app</a></h1>
+		</div>
+		<!-- Barra de navegación superior -->
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="index.html" accesskey="1">Mi perfil</a></li>
+				<li><a href="RutinaMain.html" accesskey="2">Mis Rutinas</a></li>
+				<li><a href="EjercicioMain.html" accesskey="2">Mis Ejercicios</a></li>
+				<li><a href="helpMain.html" accesskey="3">Ayuda</a></li>
+				<li onclick="closeSession()"><a href="#" accesskey="5">Cerrar sesión</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- Cuerpo de la página web -->
+<div id="wrapper">
+	<div id="page-wrapper">
+		<div id="page">
+			<div id="wide-content">
+				<div>
+					<!-- Título de la página actual -->
+					<h2>Añadir Rutinas</h2>
+            		<!-- Breve explicación sobre la página actual -->
+            		<p>
+              			A continuación introduzca los datos del local que desea registrar. Recuerde que el hecho de
+              			introducir locales es completamente gratuito, por lo que puede añadir todos los locales que
+              			desee sin ningún coste. Por otra parte, es obligatorio rellenar todos los campos de manera
+              			correcta, si no, no se completará el registro del local.
+            		</p><br/>
+            		<!-- Formulario en el que introducir los datos del local a añadir -->
+            		<form id="rutina_form">
+                		Nombre de la Rutina: 
+                			<input type="text" name="rutina_name" size="30"/>						
+						Descripción del local:<br/>
+							<textarea rows="10" cols="75" style="resize:none" placeholder="Escribe aquí la descripción de la rutina" name="rutina_description"></textarea><br/><br/><br/>
+						Informacion de la Rutina:
+							<input type="text" name="rutina_info" size="30"/><br/><br/><br/>
+						Visibilidad:
+                			<select name="rutina_type">
+                    			<option value="true">Privada</option>
+                    			<option value="false">Publica</option>
+                			</select><br/><br/>
+						<!-- Botones de acción del formulario y de cancelación -->
+						<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
+						<p class="button-style" style="float:right"><a href="RutinaMain.html">Cancelar</a></p><br/><br/><br/><br/>
+            		</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Pie del documento -->
+<div id="footer" class="container">
+	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
+</div>
+
+</body>
+</html>

@@ -62,7 +62,7 @@ function sendOwnerData() {
 	var owner_Passw = $('[name="user_password"]').val();
 	
 	// Obtenemos la cookie de usuario
-	var cookie = JSON.parse($.cookie('Rutinaappusers'));
+	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	var data = 'username=' + owner_Id + '&password=' + owner_Passw;
 	
 	$.ajax({
@@ -75,12 +75,12 @@ function sendOwnerData() {
 	}).done(function(data, textStatus, jqXHR) {
 		// No se informa de nada: 
 		// La autenticación del usuario es autodescriptiva		
-		// Almacenamos en la cookie Rutinaappusers la información del usuario
+		// Almacenamos en la cookie RutinaUser la información del usuario
 		var cookie = JSON.stringify({method: '', url: '/', csrf: jqXHR.getResponseHeader('X-CSRF-TOKEN'), userid: owner_Id});
-		$.cookie('Rutinaappusers', cookie);
+		$.cookie('RutinaUsuario', cookie);
 		
 		// Obtenemos la cookie nueva
-		var cookie = JSON.parse($.cookie('Rutinaappusers'));
+		var cookie = JSON.parse($.cookie('RutinaUsuario'));
 		
 		// Redireccionamos
 		window.location = cookie.url;

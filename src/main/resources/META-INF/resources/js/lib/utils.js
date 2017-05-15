@@ -3,7 +3,7 @@
  * Librería de manejo utilidades varias de la página web: incluye una función
  * de cierre de sesión y otra que extrae los parámetros de una URL dada.
  * 
- * Diseño por Adrián Gil Gago
+ * Diseño por Fco Jose Diaz Romero
  * Todos los derechos reservados.
  * Versión: 1.0
  *
@@ -12,7 +12,7 @@
 
 /* Función que cierra la sesión de usuario */
 function closeSession() {
-	var cookie = JSON.parse($.cookie('4EvenUser'));
+	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	$.ajax({
 		data: {},
 		headers: {'X-CSRF-TOKEN': cookie.csrf},

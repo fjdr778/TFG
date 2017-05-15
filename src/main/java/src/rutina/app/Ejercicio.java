@@ -12,102 +12,104 @@ package src.rutina.app;
  */
 
 public class Ejercicio {
-	private long ej_id, rut_id;
-	private String Nombre;
-    private String Titulo;
-    private String Subtitulo;
-    private String Descripcion;
-    private String Estado_Forma;
-    private int Repeticiones;
-    private int Rep_Video;
+	private long ej_id;
+	private String ownerId;
+	private String ejercicioNombre;
+    private String ejercicioTitulo;
+    private String ejercicioSubtitulo;
+    private String ejercicioDescripcion;
+    private String ejercicioEstado_Forma;
+    private int ejercicioRepeticiones;
+    private int ejercicioRep_Video;
 
     
 
-	public Ejercicio(long ej_id, String Nombre, String Titulo, String Subtitulo,String Descripcion,
-    		String Estado_Forma,int Repeticiones,int Rep_Video) {
+	public Ejercicio(long ej_id, String ejercicioNombre, String ejercicioTitulo, String ejercicioSubtitulo,String ejercicioDescripcion,
+    		String ejercicioEstado_Forma,int ejercicioRepeticiones,int ejercicioRep_Video,String ownerId) {
 	this.ej_id=ej_id;
-	this.Nombre=Nombre;
-	this.Titulo=Titulo;
-	this.Subtitulo=Subtitulo;
-	this.Descripcion=Descripcion;
-	this.Estado_Forma=Estado_Forma;
-	this.Repeticiones=Repeticiones;
-	this.Rep_Video=Rep_Video;
+	this.ejercicioNombre=ejercicioNombre;
+	this.ejercicioTitulo=ejercicioTitulo;
+	this.ejercicioSubtitulo=ejercicioSubtitulo;
+	this.ejercicioDescripcion=ejercicioDescripcion;
+	this.ejercicioEstado_Forma=ejercicioEstado_Forma;
+	this.ejercicioRepeticiones=ejercicioRepeticiones;
+	this.ejercicioRep_Video=ejercicioRep_Video;
+	this.ownerId=ownerId;
     }
     
     public Ejercicio(){
     }
     
-    public long getId() {
+    public long getEj_id() {
 		return ej_id;
 	}
 
-	public void setId(long ej_id) {
+	public void setEj_id(long ej_id) {
 		this.ej_id = ej_id;
 	}
     
-    public String getNombre(){
-    	return Nombre;
+    public String getEjercicioNombre(){
+    	return ejercicioNombre;
     }
     
-    public void setNombre(String Nombre){
-    	this.Nombre=Nombre;
+    public void setEjercicioNombre(String ejercicioNombre){
+    	this.ejercicioNombre=ejercicioNombre;
     }
     
-    public String getTitulo(){	
-    	return Titulo;
+    public String getEjercicioTitulo(){	
+    	return ejercicioTitulo;
     }
     
-    public void setTitulo(String Titulo){	
-    	this.Titulo=Titulo;
+    public void setEjercicioTitulo(String ejercicioTitulo){	
+    	this.ejercicioTitulo=ejercicioTitulo;
     }
     
-    public String getSubtitulo(){
-    	return Subtitulo;
+    public String getEjercicioSubtitulo(){
+    	return ejercicioSubtitulo;
     }
     
-    public void setSubtitulo(String Subtitulo){	
-    	this.Subtitulo=Subtitulo;
+    public void setEjercicioSubtitulo(String ejercicioSubtitulo){	
+    	this.ejercicioSubtitulo=ejercicioSubtitulo;
     }
     
-    public String getDescripcion(){
-    	return Descripcion;
+    public String getEjercicioDescripcion(){
+    	return ejercicioDescripcion;
     }
     
-    public void setDescripcion(String Descripcion){	
-    	this.Descripcion=Descripcion;
+    public void setEjercicioDescripcion(String ejercicioDescripcion){	
+    	this.ejercicioDescripcion=ejercicioDescripcion;
     }
     
-    public String getEstado_Forma(){
-    	return Estado_Forma;
+    public String getEjercicioEstado_Forma(){
+    	return ejercicioEstado_Forma;
     }
     
-    public void setEstado_Forma(String Estado_Forma){	
-    	this.Estado_Forma=Estado_Forma;
+    public void setEjercicioEstado_Forma(String ejercicioEstado_Forma){	
+    	this.ejercicioEstado_Forma=ejercicioEstado_Forma;
     }
     
-    public int getRepeticiones(){
-    	return Repeticiones;
+    public int getEjercicioRepeticiones(){
+    	return ejercicioRepeticiones;
     }
     
-    public void setRepeticiones(int Repeticiones){	
-    	this.Repeticiones=Repeticiones;
+    public void setEjercicioRepeticiones(int ejercicioRepeticiones){	
+    	this.ejercicioRepeticiones=ejercicioRepeticiones;
     }
     
-    public int getRep_Video(){
-    	return Rep_Video;
+    public int getEjercicioRep_Video(){
+    	return ejercicioRep_Video;
     }
     
-    public void setRep_Video(int Rep_Video){	
-    	this.Rep_Video=Rep_Video;
+    public void setEjercicioRep_Video(int ejercicioRep_Video){	
+    	this.ejercicioRep_Video=ejercicioRep_Video;
     }
 
-	public long getrut_id() {
-		return rut_id;
+	public String getOwnerId() {
+		return ownerId;
 	}
 
-	public void setrut_id(long rut_id) {
-		this.rut_id = rut_id;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 }
 

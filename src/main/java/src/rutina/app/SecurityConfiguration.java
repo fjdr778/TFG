@@ -40,6 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
+	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder builder) throws Exception {
 	    builder.jdbcAuthentication().dataSource(dataSource)
@@ -54,12 +56,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    	http.authorizeRequests().antMatchers("/RutinaRegister/**").permitAll();
 	    	http.authorizeRequests().antMatchers("/index.html", "/login.html", "/ownerAdd.html").permitAll();
 	    	http.authorizeRequests().antMatchers("/*.html").authenticated();
-		http.authorizeRequests().antMatchers("/Rutina_app/**").authenticated();
-		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
-		http.formLogin().successHandler(authenticationSuccessHandler);
-		http.formLogin().failureHandler(authenticationFailureHandler);
-		http.logout().logoutSuccessUrl("/");
+	    	http.authorizeRequests().antMatchers("/Rutina_app/**").authenticated();
+	    	
+	    	http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+	    	
+	    	http.formLogin().successHandler(authenticationSuccessHandler);
+	    	http.formLogin().failureHandler(authenticationFailureHandler);
+	    	http.logout().logoutSuccessUrl("/");
 		
+	    	http.csrf().disable();
 		// CSRF tokens handling
 		http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
 	}

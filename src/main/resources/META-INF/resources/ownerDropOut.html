@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Diseño por Fco Jose Diaz Romero
+Todos los derechos reservados.
+
+Versión: 1.0
+-->
+<html>
+
+<!-- Cabecera del documento -->
+<head>
+<!-- Metadatos de la página web -->
+<meta charset="UTF-8"/>
+<meta name="author" content="Fco Jose Diaz Romero"/>
+<meta name="description" content="Rutina_app Gestion de Rutinas de Entrenamiento"/>
+
+<!-- Título, fuentes tipográficas y otro contenido enlazado -->
+<title>Rutina_app - Panel de control</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+
+<!-- Ficheros de código Javascript -->
+<script src="js/lib/jquery-1.12.3.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/messages_es.js"></script>
+<script src="js/lib/utils.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/ownerDropOutController.js"></script>
+</head>
+
+<!-- Cuerpo del documento -->
+<body>
+<div id="header-wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Rutina_app</a></h1>
+		</div>
+	</div>
+</div>
+
+<!-- Cuerpo de la página web -->
+<div id="wrapper">
+	<div id="page-wrapper">
+		<div id="page">
+			<div id="wide-content">
+				<div>
+					<!-- Título de la página actual -->
+					<h2>Darse de baja</h2>
+					<!-- Breve explicación sobre la página actual -->
+          			<p>
+            			Si se da de baja en el servicio, dejará de disfrutar de todas las facilidades que le da Rutina_app para la
+            			Gestion de Rutinas de Entrenamiento, debido a que se borrarán todos los datos relacionados con su cuenta personal. 
+            			Podrá darse de alta posteriormente de nuevo, pero deberá registrar de nuevo sus datos.
+          			</p><br/>
+          			<!-- Botones de acción del formulario y de cancelación -->
+          			<p class="button-style" onclick="deleteUserData()"><a href="#">¡Quiero darme de baja!</a></p>
+					<p class="button-style" style="float:right"><a href="helpMain.html">Cancelar</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Pie del documento -->
+<div id="footer" class="container">
+	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
+</div>
+</body>
+</html>

@@ -26,7 +26,7 @@ public class RutinaDaoImpl implements RutinaDao {
     JdbcTemplate jdbcTemplate;
 
     @Override
-	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,String ownerId) {
+	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
     	
     	jdbcTemplate.update(SqlConstants.CREATE_RUTINA,
     	new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina, ownerId });
@@ -35,10 +35,10 @@ public class RutinaDaoImpl implements RutinaDao {
     
     @Override
     public void updateRutina(int rut_id, String rutinaNombre, String rutinaDescripcion,
-    	    String rutinaInfo_Rutina,String ownerId) {
+    	    String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
     	jdbcTemplate.update(SqlConstants.UPDATE_RUTINA,
     		new Object[] { rut_id,rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,
-    			ownerId});
+    				ownerId});
         }
 
 

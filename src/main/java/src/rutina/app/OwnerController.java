@@ -1,5 +1,6 @@
 package src.rutina.app;
 
+import java.sql.Date;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -74,8 +75,8 @@ public class OwnerController {
 		owner.getOwnerPhoneNumber(), owner.getOwnerBirthDate(),
 		owner.getOwnerPassw());
     }
-
-    // Modifica un propietario
+    
+     //Modifica un propietario
     @RequestMapping(value = UriConstants.USUARIO, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOwner(@PathVariable("owner_id") String ownerId,

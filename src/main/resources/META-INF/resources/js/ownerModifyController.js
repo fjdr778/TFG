@@ -1,6 +1,6 @@
 
 /*
- * Controlador de la página ownerAdd.html
+ * Controlador de la página ownerModify.html
  * 
  * 
  * Diseño por Adrián Gil Gago
@@ -12,8 +12,10 @@
 
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
+	// Obtenemos los datos del local de la base de datos
+	getOwnerData();
 	// Inicializamos el plugin de validación
-	$('#register_form').validate({
+	$('#personal_form').validate({
 		// Establecemos las reglas de validación para
 		// cada uno de los campos del formulario
 		rules : {
@@ -55,7 +57,7 @@ $(document).ready(function() {
 
 /* Evento que lanza el envío del formulario */
 function submitForm() {
-	$("#register_form").submit();
+	$("#personal_form").submit();
 }
 
 
@@ -68,7 +70,7 @@ function sendOwnerData() {
 	var owner_BirthDate = $('[name="user_birthdate"]').val();
 	var owner_PhoneNumber = $('[name="user_phonenumber"]').val();
 	var owner_Passw = $('[name="user_password"]').val();
-
+	
 	// JSON formado con los datos extraídos del formulario
 	var owner_json = {
 		ownerId : owner_Id,
@@ -81,20 +83,47 @@ function sendOwnerData() {
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	
-	// Añadimos el evento a la base de datos
+	// Añadimos la información del propietario a la BBDD
 	$.ajax({
-		url : "/RutinaRegister/",
+		url : "/Rutina_app/" + cookie.userid,
+		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
 		data : JSON.stringify(owner_json),
 		contentType : "application/json",
-		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		timeout: 1000
 	}).done(function(data, textStatus, jqXHR) {
-		alert("Se ha dado de alta con éxito. Bienvenido a Rutina_app España.");
-		window.location.href = "login.html";
+		// Reinicializamos el campo userid de la cookie, por si
+		// el usuario lo ha modificado
+		cookie.userid = owner_Id;
+		// Informamos de la operación y redirigimos
+		alert("Modificación realizada con éxito");
+		window.location.href = "index.html";
 	}).fail(function(jqXHR, textStatus, errorThrown) {
-		alert("Ha habido un problema en el envío de sus datos.\n " +
-				"Le recomendamos que lo intente de nuevo.");
-		window.location.href = "ownerAdd.html";
+		alert("Se ha producido un error.");
+	});	
+}
+
+
+function getOwnerData() {
+	
+	// Obtenemos la cookie de usuario
+	var cookie = JSON.parse($.cookie('RutinaUsuario'));
+	
+	// Obtenemos los datos del propietario de la BBDD
+	$.ajax({
+		url : "/Rutina_app/" + cookie.userid,
+		headers: {'X-CSRF-TOKEN': cookie.csrf},
+		type : "GET",
+		dataType : "json",
+	// Imprimimos los datos del propietario en el modelo
+	// No imprimimos la contraseña
+	}).done(function (data, textStatus, jqXHR) {
+		$('[name="user_email"]').val(data[0].ownerId);
+		$('[name="user_name"]').val(data[0].ownerName);
+		$('[name="user_birthdate"]').val(data[0].ownerBirthDate);
+		$('[name="user_phonenumber"]').val(data[0].ownerPhoneNumber);
+	// Avisamos al usuario de que ha surgido un error
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		alert("Se ha producido un error.");
 	});
 }
