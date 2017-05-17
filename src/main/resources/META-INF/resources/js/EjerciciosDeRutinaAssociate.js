@@ -20,9 +20,9 @@ function getAllEjerciciosData() {
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+	var rut_id = getUrlParameter('rut_Id');
 	$.ajax({
-		url : "/Rutina_app/ejercicios/" + cookie.userid + "/",
+		url : "/Rutina_app/rutinas/noasociaciones/" + rut_id + "/",
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
@@ -39,14 +39,25 @@ function getAllEjerciciosData() {
    en una tabla */
 function printAllEjerciciosData(jsonEjerciciosArray) {
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
-	var container = $(".print-ejercicios")[0];
+	var container = $(".print-ejerciciosderutina")[0];
 	var rut_id = getUrlParameter('rut_Id');
 
+	//compruebo si el json obtenido esta vacio:
+	if (jsonEjerciciosArray.length == 0)
+		{
+			$(".print-ejerciciosderutina").hide();
+			$("#text-info").show();
+			$('#crea').show();
+		}
+	else
+		{
+			$(".print-ejerciciosderutina").show();
+			$("#text-info").hide();
+			$('#crea').hide();
 	// Iteramos para cada una de los ejercicios e imprimimos sus campos
 	for (var i = 0; i < jsonEjerciciosArray.length; i++) {
 		var obj = jsonEjerciciosArray[i];
 		var summedEjerciciosInfo = "<tr>" + "<td>"
-	
 		+ obj.ejercicioNombre
 		+ "</td>"
 		
@@ -81,6 +92,7 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 		+ "</td>" + "</tr>"
 		container.innerHTML += summedEjerciciosInfo;
 	}
+		}
 }
 
 

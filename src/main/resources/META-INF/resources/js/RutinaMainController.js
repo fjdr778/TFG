@@ -42,6 +42,17 @@ function getAllRutinasData() {
 function printAllRutinasData(jsonRutinasArray) {
 	// Obtenemos el contenedor donde imprimiremos los locales
 	var container = $(".print-rutinas")[0];
+	
+	//compruebo si el json obtenido esta vacio:
+	if (jsonRutinasArray.length == 0)
+		{
+			$(".print-rutinas").hide();
+			$("#text-info").show();
+		}
+	else
+		{
+			$(".print-rutinas").show();
+			$("#text-info").hide();
 	// Iteramos para cada una de las rutinas e imprimimos sus campos
 	for (var i = 0; i < jsonRutinasArray.length; i++) {
 		var obj = jsonRutinasArray[i];
@@ -74,6 +85,7 @@ function printAllRutinasData(jsonRutinasArray) {
 		console.log(obj.rutinaInfo_Rutina);
 		console.log(obj.ownerId);
 	}
+		}
 }
 
 

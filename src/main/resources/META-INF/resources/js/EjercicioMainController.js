@@ -40,6 +40,18 @@ function getAllEjerciciosData() {
 function printAllEjerciciosData(jsonEjerciciosArray) {
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $(".print-ejercicios")[0];
+	
+	//compruebo si el json obtenido esta vacio:
+	if (jsonEjerciciosArray.length == 0)
+		{
+			$(".print-ejercicios").hide();
+			$("#text-info").show();
+		}
+	else
+		{
+			$(".print-ejercicios").show();
+			$("#text-info").hide();
+	
 	// Iteramos para cada una de los ejercicios e imprimimos sus campos
 	for (var i = 0; i < jsonEjerciciosArray.length; i++) {
 		var obj = jsonEjerciciosArray[i];
@@ -74,6 +86,7 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 		console.log(obj.ejercicioTitulo);
 		container.innerHTML += summedEjerciciosInfo;
 	}
+		}
 }
 
 

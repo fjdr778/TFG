@@ -71,7 +71,11 @@ public class EjercicioDaoImpl implements EjercicioDao {
     			new Object[] { rut_id}, new EjercicioRowMapper());  	
     }
     
-    
+    public List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id){
+    	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_NO_DE_RUTINA,
+    			new Object[] { rut_id}, new EjercicioRowMapper());
+    	
+    }
     
     
     

@@ -38,7 +38,7 @@ public abstract interface EjercicioDao {
     public abstract List<Ejercicio> getAllEjercicio(String ownerId);
     
     public abstract List<Ejercicio> getAllEjerciciosdeRutina(int rut_id);
-    
+    public abstract List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id);
     
     
     public abstract void deleteEjercicio(String ownerId, int ej_id);

@@ -29,4 +29,5 @@ public class UriConstants {
     /*ASOCIACION DE EJERCICIOS A RUTINAS*/
     public static final String RUTINAS_EJERCICIOS = "/Rutina_app/rutinas/asociaciones/{rut_id:.+}/{ej_id:.+}";
     public static final String ALL_RUTINAS_EJERCICIOS = "/Rutina_app/rutinas/asociaciones/{rut_id:.+}//";
+    public static final String ALL_RUTINAS_NO_EJERCICIOS= "/Rutina_app/rutinas/noasociaciones/{rut_id:.+}//";
 }

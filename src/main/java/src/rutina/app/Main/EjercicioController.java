@@ -56,6 +56,8 @@ public class EjercicioController {
     }
 
     
+    
+    
  // Obtiene todos los ejercicios de la base de datos asociados a una rutina
     @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.GET)
     public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
@@ -64,9 +66,14 @@ public class EjercicioController {
 	return this.ejercicioDao.getAllEjerciciosdeRutina(rut_id);
     }
     
+ //Obtiene todos los ejercicios asociados a una rutina que no esten asociados a dicha rutina
     
-    
-    
+    @RequestMapping(value = UriConstants.ALL_RUTINAS_NO_EJERCICIOS, method = RequestMethod.GET)
+    public @ResponseBody List<Ejercicio> getAllEjerciciosNoDeRutina(
+	    @PathVariable("rut_id") int rut_id) {
+
+	return this.ejercicioDao.getAllEjerciciosNoDeRutina(rut_id);
+    }
     
     // Eliminar un ejercicio de la base de datos
     @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.DELETE)
