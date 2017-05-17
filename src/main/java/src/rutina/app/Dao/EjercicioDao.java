@@ -1,6 +1,9 @@
-package src.rutina.app;
+package src.rutina.app.Dao;
 
 import java.util.List;
+
+import src.rutina.app.Objects.Ejercicio;
+
 import java.sql.Time;
 import java.sql.Date;
 
@@ -28,8 +31,18 @@ public abstract interface EjercicioDao {
     	    String ejercicioSubtitulo,String ejercicioDescripcion, String ejercicioEstado_Forma, 
     	    int ejercicioRepeticiones,int ejercicioRep_Video, String ownerId);
     
+    
+    public abstract void AsociateEjercicioDeRutina(int ej_id,int rut_id);
+    
     public abstract List<Ejercicio> getEjercicio(String ownerId, int ej_id);
     public abstract List<Ejercicio> getAllEjercicio(String ownerId);
+    
+    public abstract List<Ejercicio> getAllEjerciciosdeRutina(int rut_id);
+    
+    
+    
     public abstract void deleteEjercicio(String ownerId, int ej_id);
     public abstract void deleteAllEjercicio(String ownerId);
+    
+    public abstract void deleteEjercicioDeRutina(int rut_id,int ej_id);
 }

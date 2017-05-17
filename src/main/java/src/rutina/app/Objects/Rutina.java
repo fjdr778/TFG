@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Objects;
 
 public class Rutina {
 	private long rut_id;

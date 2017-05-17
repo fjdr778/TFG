@@ -1,10 +1,15 @@
-package src.rutina.app;
+package src.rutina.app.DaoImpl;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import src.rutina.app.Constants.SqlConstants;
+import src.rutina.app.Dao.RutinaDao;
+import src.rutina.app.Objects.Rutina;
+import src.rutina.app.RowMappers.RutinaRowMapper;
 
 
 

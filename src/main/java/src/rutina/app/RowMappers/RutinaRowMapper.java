@@ -1,8 +1,10 @@
-package src.rutina.app;
+package src.rutina.app.RowMappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+
+import src.rutina.app.Objects.Rutina;
 
 /*
  * Clase que representa un mapeador de Rutinas. Obtiene y crea una Rutina

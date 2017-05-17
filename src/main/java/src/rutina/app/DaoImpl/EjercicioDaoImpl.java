@@ -1,10 +1,15 @@
-package src.rutina.app;
+package src.rutina.app.DaoImpl;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import src.rutina.app.Constants.SqlConstants;
+import src.rutina.app.Dao.EjercicioDao;
+import src.rutina.app.Objects.Ejercicio;
+import src.rutina.app.RowMappers.EjercicioRowMapper;
 
 /*
  * Clase que implementa la interfaz DAO de eventos. Realiza las operaciones
@@ -41,6 +46,13 @@ public class EjercicioDaoImpl implements EjercicioDao {
 	    	    ejercicioRepeticiones,ejercicioRep_Video,ownerId,ej_id });
 
     }
+    
+    
+    public void AsociateEjercicioDeRutina(int ej_id,int rut_id){
+    	jdbcTemplate.update(SqlConstants.ASOCIATE_EJERCICIO_DE_RUTINA,
+    			new Object[] { ej_id,rut_id});
+    	
+    }
 
     public List<Ejercicio> getEjercicio(String ownerId, int ej_id) {
 	return jdbcTemplate.query(SqlConstants.GET_EJERCICIO,
@@ -52,6 +64,17 @@ public class EjercicioDaoImpl implements EjercicioDao {
 	return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO,
 		new Object[] { ownerId}, new EjercicioRowMapper());
     }
+    
+    
+    public List<Ejercicio> getAllEjerciciosdeRutina(int rut_id){  	
+    	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA,
+    			new Object[] { rut_id}, new EjercicioRowMapper());  	
+    }
+    
+    
+    
+    
+    
 
     public void deleteEjercicio(String ownerId, int ej_id) {
 	jdbcTemplate.update(SqlConstants.DELETE_EJERCICIO,
@@ -68,6 +91,12 @@ public class EjercicioDaoImpl implements EjercicioDao {
 	this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public void deleteEjercicioDeRutina(int rut_id, int ej_id) {
+    	jdbcTemplate.update(SqlConstants.DELETE_EJERCICIO_DE_RUTINA,
+    		new Object[] { rut_id, ej_id });
+        }
+    
+    
     public EjercicioDaoImpl() {
     }
 }

@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Constants;
 
 /*
  * Clase que almacena los URIs accesibles del servicio REST.

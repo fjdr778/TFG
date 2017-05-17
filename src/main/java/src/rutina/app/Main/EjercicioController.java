@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Main;
 
 import java.util.List;
 
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import src.rutina.app.Constants.UriConstants;
+import src.rutina.app.DaoImpl.EjercicioDaoImpl;
+import src.rutina.app.Objects.Ejercicio;
 
 /*
  * Clase que representa un controlador REST de Ejercicios. Mapea las operaciones
@@ -51,10 +55,23 @@ public class EjercicioController {
 	return this.ejercicioDao.getAllEjercicio(ownerId);
     }
 
-    // Eliminar un ejericio de la base de datos
+    
+ // Obtiene todos los ejercicios de la base de datos asociados a una rutina
+    @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.GET)
+    public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
+	    @PathVariable("rut_id") int rut_id) {
+
+	return this.ejercicioDao.getAllEjerciciosdeRutina(rut_id);
+    }
+    
+    
+    
+    
+    
+    // Eliminar un ejercicio de la base de datos
     @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEvent(@PathVariable("owner_id") String ownerId,
+    public void deleteEjercicio(@PathVariable("owner_id") String ownerId,
 	    @PathVariable("ej_id") int ej_id) {
 
 	this.ejercicioDao.deleteEjercicio(ownerId,ej_id);
@@ -63,12 +80,22 @@ public class EjercicioController {
     // Eliminar todos los ejericios de la base de datos
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllEvents(@PathVariable("owner_id") String ownerId) {
+    public void deleteAllEjericios(@PathVariable("owner_id") String ownerId) {
 
 	this.ejercicioDao.deleteAllEjercicio(ownerId);
     }
 
-    // Añade un ejercicio en la base de datos
+    
+    //Eliminar ejercicio asociado a rutina
+    @RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteEjercicioDeRutina(@PathVariable("rut_id") int rut_id,
+	    @PathVariable("ej_id") int ej_id) {
+
+	this.ejercicioDao.deleteEjercicioDeRutina(rut_id,ej_id);
+    }
+    
+    // Añade un ejerciio en la base de datos
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.POST)
     //@ResponseStatus(HttpStatus.NO_CONTENT)
     public void addEvent(@PathVariable("owner_id") String ownerId, @RequestBody Ejercicio ejercicio) {
@@ -90,4 +117,18 @@ public class EjercicioController {
 			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),
 			ejercicio.getEjercicioRep_Video(), ownerId);
     }
+    
+    
+    // Asocia un ejercicio con una rutina
+    @RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.POST)
+    public void asociateEjercicio(@PathVariable("rut_id") int rut_id,
+    		@PathVariable("ej_id") int ej_id) {
+
+	this.ejercicioDao.AsociateEjercicioDeRutina(ej_id,rut_id);
+    }
+    
+    
+    
+    
+    
 }

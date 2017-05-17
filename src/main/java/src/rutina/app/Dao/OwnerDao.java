@@ -1,7 +1,9 @@
-package src.rutina.app;
+package src.rutina.app.Dao;
 
 import java.sql.Date;
 import java.util.List;
+
+import src.rutina.app.Objects.Owner;
 
 /*
  * Clase que representa la interfaz DAO de propietarios. Abstrae las 

@@ -1,9 +1,10 @@
-package src.rutina.app;
+package src.rutina.app.RowMappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
+
+import src.rutina.app.Objects.Ejercicio;
 
 /*
  * Clase que representa un mapeador de eventos. Obtiene y crea un evento
@@ -16,15 +17,17 @@ import org.springframework.jdbc.core.RowMapper;
  */
 
 
-public class EjerciciosDeRutinaRowMapper implements RowMapper<EjerciciosDeRutina> {
+public class EjercicioRowMapper implements RowMapper<Ejercicio> {
     
-    public EjerciciosDeRutina mapRow(ResultSet resultSet, int arg) throws SQLException {
+    public Ejercicio mapRow(ResultSet resultSet, int arg1) throws SQLException {
 	// Aquí se hace dentro de cada getX(index) con  el index el número de 
 	// la columna empezando por la izquierda de la tabla de ejercicios
 	// dentro de la base de datos
-	EjerciciosDeRutina ejercicioderutina = new EjerciciosDeRutina(resultSet.getInt(1),resultSet.getInt(2));
+	Ejercicio ejercicio = new Ejercicio(resultSet.getInt(1), resultSet.getString(2),
+		resultSet.getString(3), resultSet.getString(4),
+		resultSet.getString(5), resultSet.getString(6),
+		resultSet.getInt(7), resultSet.getInt(8),"");
 
-	return ejercicioderutina;
+	return ejercicio;
     }
 }
-

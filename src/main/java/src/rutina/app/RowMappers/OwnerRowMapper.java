@@ -1,8 +1,10 @@
-package src.rutina.app;
+package src.rutina.app.RowMappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+
+import src.rutina.app.Objects.Owner;
 
 /*
  * Clase que representa un mapeador de propietarios. Obtiene y crea un 

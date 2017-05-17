@@ -1,12 +1,12 @@
-package src.rutina.app;
+package src.rutina.app.Objects;
 
 public class EjerciciosDeRutina {
 	private int ej_id;
 	private int rut_id;
 	
-	public EjerciciosDeRutina(int ej_id,int rut_id){
-		this.ej_id=ej_id;
+	public EjerciciosDeRutina(int rut_id,int ej_id){		
 		this.rut_id=rut_id;
+		this.ej_id=ej_id;
 		
 	}
 	

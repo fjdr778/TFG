@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Main;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

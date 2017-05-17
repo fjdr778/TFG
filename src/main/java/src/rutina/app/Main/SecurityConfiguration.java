@@ -1,6 +1,9 @@
-package src.rutina.app;
+package src.rutina.app.Main;
 
 import com.allanditzel.springframework.security.web.csrf.CsrfTokenResponseHeaderBindingFilter;
+
+import src.rutina.app.Constants.SqlConstants;
+
 
 import javax.sql.DataSource;
 
@@ -10,7 +13,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.csrf.CsrfFilter;
 
 /*

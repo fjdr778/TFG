@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Constants;
 
 import java.sql.Date;
 
@@ -109,20 +109,37 @@ public class SqlConstants {
     
     /*ASOCICACION DE EJERCICIOS A RUTINAS*/
     
-    public static final String CREATE_EJERCICIO_DE_RUTINA = 
+    public static final String ASOCIATE_EJERCICIO_DE_RUTINA = 
     		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id) VALUES (?,?)";
     
     public static final String GET_EJERCICIO_DE_RUTINA = 
-    		"SELECT RUTINA_rut_id,EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE EJERCICIO_ej_id=?";
+        		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO,EJERCICIO_has_RUTINA"
+    		+ "WHERE EJERCICIO.ej_id=EJERCICIO_has_RUTINA.EJERCICIO_ej_id";
     
+    
+    //Va a devolver un objeto tipo ejercicio. Array de Ejercicios
     public static final String GET_EJERCICIOS_DE_RUTINA = 
-    		"SELECT RUTINA_rut_id,EJERCICIO_ej_id  FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?";
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM "
+    		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? "
+    		+ "AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id;";
+    
+    public static final String DELETE_EJERCICIO_DE_RUTINA = 
+    		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public static final String GET_RUTINAS_DE_EJERCICIOS = 
     		"SELECT EJERCICIO_rut_id  FROM EJERCICIO_has_RUTINA WHERE RUTINA_ej_id=?";
     
-    public static final String DELETE_EJERCICIO_DE_RUTINA = 
-    		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
+
     
     public static final String DELETE_ALL_EJERCICIOS_DE_RUTINA =
     		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?";

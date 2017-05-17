@@ -59,9 +59,9 @@ function printAllRutinasData(jsonRutinasArray) {
 		+ obj.rut_id
 		+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
 		
-		+ "<a href='EjerciciosDeRutina.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
+		+ "<a href='EjerciciosDeRutinaMain.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
 		+ obj.rut_id
-		+ "'><input type='button' class='mod-buttons' value='VER EJERCICIOS' /></a>"
+		+ "'><input type='button' class='mod-buttons' value='EJERCICIOS ASOCIADOS' /></a>"
 		
 		+ "<a onclick='deleteRutinaData("
 		+ obj.rut_id
@@ -72,6 +72,7 @@ function printAllRutinasData(jsonRutinasArray) {
 		/*Arreglar la informacion de rutinas y ademas si es publica o privada*/
 		console.log(obj.rutinaNombre);
 		console.log(obj.rutinaInfo_Rutina);
+		console.log(obj.ownerId);
 	}
 }
 

@@ -25,7 +25,7 @@ Versión: 1.0
 <script src="js/lib/messages_es.js"></script>
 <script src="js/lib/utils.js"></script>
 <script src="js/lib/jquery.cookie.js"></script>
-<script src="js/EjerciciosDeRutinaController.js"></script>
+<script src="js/EjerciciosDeRutinaAssociate.js"></script>
 </head>
 
 
@@ -39,6 +39,15 @@ Versión: 1.0
 			<h1><a href="#">Rutina_app</a></h1>
 		</div>
 		<!-- Barra de navegación superior -->
+		<div id="menu">
+			<ul>
+				<li><a href="index.html" accesskey="1">Mi Perfil</a></li>
+				<li><a href="RutinaMain.html" accesskey="2">Mis Rutinas</a></li>
+				<li><a class="current_page_item" href="EjercicioMain.html" accesskey="3">Mis Ejercicios</a></li>
+				<li><a href="helpMain.html" accesskey="4">Ayuda</a></li>
+				<li onclick="closeSession()"><a href="#" accesskey="5">Cerrar sesión</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -49,16 +58,17 @@ Versión: 1.0
 			<div id="narrow-content">
 				<div>
 					<!-- Título de la página actual -->
-					<h2 class="print-title">Ejercicios Asociados a Rutinas </h2>
+					<h2 class="print-title">Asociacion de Ejercicios </h2>
 					<!-- Breve explicación sobre la página actual -->
 					<p>
-						Estos son los Ejercicios que tiene Asociados en la aplciacion, con un resumen de sus datos. En el caso de
-						que quiera asociar nuevos ejercicios, o modificar los ya existentes, deberá hacer uso de las opciones
+						Estos son los Ejercicios disponibles para asociar a una rutina, con un resumen de sus datos. En el caso de
+						que quiera añadir nuevos ejercicios, o modificar los ya existentes, deberá hacer uso de las opciones
 						de debajo de la lista.
 					</p><br/>
 					<!-- Esqueleto de la tabla sobre la que se imprimirán los eventos -->
 					<table class="print-ejercicios">
 						<tr>
+							
 							<th>Nombre</th>
 							<th>Titulo</th>
                 			<th>Subtitulo</th>
@@ -66,12 +76,9 @@ Versión: 1.0
 							<th>Estado de Forma</th>
                 			<th>Repeticiones</th>
                 			<th>Repeticiones del Video</th>
-							<th style="text-align:center">Gestionar Ejercicios</th>
+                			<th>Accion</th>
 						</tr>
 					</table><br/><br/>
-					<!-- Botones de acción y de cancelación -->
-					
-					<p class="button-style"><a href="EjercicioAdd.html">Añadir un Ejercicio</a></p>
 				</div>
 			</div>
 		</div>

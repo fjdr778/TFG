@@ -2,17 +2,15 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
-	<bean id="ownerDao" class="src.rutina.app.OwnerDaoImpl" >
+	<bean id="ownerDao" class="src.rutina.app.DaoImpl.OwnerDaoImpl" >
    		<property name="dataSource" ref="dataSource"></property>
    </bean>
-	<bean id="rutinaDao" class="src.rutina.app.RutinaDaoImpl" >
+	<bean id="rutinaDao" class="src.rutina.app.DaoImpl.RutinaDaoImpl" >
    		<property name="dataSource" ref="dataSource"></property>
    </bean>
-   <bean id="ejercicioDao" class="src.rutina.app.EjercicioDaoImpl" >
+   <bean id="ejercicioDao" class="src.rutina.app.DaoImpl.EjercicioDaoImpl" >
    		<property name="dataSource" ref="dataSource"></property>
    </bean>
-     <bean id="ejerciciosderutinaDao" class="src.rutina.app.EjerciciosDeRutinaDaoImpl" >
-   		<property name="dataSource" ref="dataSource"></property>
-   </bean>
+
 </beans>
 

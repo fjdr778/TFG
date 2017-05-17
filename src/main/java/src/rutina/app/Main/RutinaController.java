@@ -1,4 +1,4 @@
-package src.rutina.app;
+package src.rutina.app.Main;
 
 import java.util.List;
 
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import src.rutina.app.Constants.UriConstants;
+import src.rutina.app.DaoImpl.RutinaDaoImpl;
+import src.rutina.app.Objects.Rutina;
 
 /*
  * Clase que representa un controlador REST de Rutinas. Mapea las operaciones

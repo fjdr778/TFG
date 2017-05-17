@@ -1,8 +1,10 @@
-package src.rutina.app;
+package src.rutina.app.Dao;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
+
+import src.rutina.app.Objects.Rutina;
 
 
 /*
