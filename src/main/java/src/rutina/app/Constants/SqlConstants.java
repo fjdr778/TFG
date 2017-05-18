@@ -129,22 +129,10 @@ public class SqlConstants {
     public static final String GET_EJERCICIOS_NO_DE_RUTINA =
     		"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video from EJERCICIO WHERE EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)";
 
-    		
-		
     
     public static final String DELETE_EJERCICIO_DE_RUTINA = 
     		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static final String GET_RUTINAS_DE_EJERCICIOS = 
     		"SELECT EJERCICIO_rut_id  FROM EJERCICIO_has_RUTINA WHERE RUTINA_ej_id=?";
     
@@ -153,21 +141,24 @@ public class SqlConstants {
     public static final String DELETE_ALL_EJERCICIOS_DE_RUTINA =
     		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?";
     
-    /* EJERCICIOS  Esto se peude usar para la asignacion de ejercicios a rutinas*/
-  /*  public static final String CREATE_EJERCICIO = 
-	    "INSERT INTO EJERCICIO (Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_rut_id) VALUES (?,?,?,?,?,?,?,?)";
+  
+    /* VIDEOS */  
     
-    public static final String UPDATE_EJERCICIO = 
-	    "UPDATE EJERICIO SET Nombre=?, Titulo=?, Subtitulo=?, Descripcion=?, Estado_forma=?, Repeticiones=?, Rep_video=? RUTINA_rut_id=? WHERE ej_id=? AND RUTINA_rut_id=?";
+    public static final String CREATE_VIDEO =
+    		"INSERT VIDEOS (Nombre,URL,VIDEOS_EJERCICIOS_ej_id,USUARIOS_Email) VALUES (?,?,?,?)";
     
-    public static final String GET_EJERCICIO = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_rut_id FROM EJERCICIO WHERE ej_id=? AND RUTINA_rut_id=?";
-    public static final String GET_ALL_EJERCICIOS = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_rut_id FROM EJERCICIO WHERE RUTINA_rut_id=?";
+    public static final String UPDATE_VIDEO =
+    	"UPDATE VIDEOS SET Nombre=?,URL=?,VIDEOS_EJERCICIOS_ej_id=?,USUARIOS_Email=? WHERE VIDEOS_EJERCICIOS_ej_id=? AND USUARIOS_Email=?";
+    public static final String GET_VIDEO =
+    		"SELECT Nombre,URL,VIDEOS_EJERCICIOS_ej_id,USUARIOS_Email  FROM VIDEOS WHERE VIDEOS_EJERCICIOS_ej_id =? AND USUARIOS_Email=?";
     
-    public static final String DELETE_EJERCICIO = 
-	    "DELETE FROM EJERCICIO WHERE RUTINA_rut_id=? AND ej_id=?";
-    public static final String DELETE_ALL_EJERCICIOS = 
-	    "DELETE FROM EJERCICIO WHERE RUTINA_rut_id=?";
-*/
+    public static final String GET_ALL_VIDEOS = 
+    		"SELECT Nombre,URL,VIDEOS_EJERCICIOS_ej_id,USUARIOS_Email  FROM VIDEOS WHERE USUARIOS_Email=?";
+    
+    public static final String DELETE_VIDEO =
+    		"DELETE FROM VIDEOS WHERE VIDEOS_EJERCICIOS_ej_id =? AND USUARIOS_Email=?";
+    
+    public static final String DELETE_ALL_VIDEOS =
+    		"DELETE FROM VIDEOS WHERE USUARIOS_Email=?";
+    		
 }

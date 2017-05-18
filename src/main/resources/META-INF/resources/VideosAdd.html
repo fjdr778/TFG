@@ -25,7 +25,7 @@ Versión: 1.0
 <script src="js/lib/messages_es.js"></script>
 <script src="js/lib/utils.js"></script>
 <script src="js/lib/jquery.cookie.js"></script>
-<script src="js/EjerciciosDeRutinaAssociate.js"></script>
+<script src="js/VideoDeEjercicioAddController.js"></script>
 </head>
 
 
@@ -48,16 +48,14 @@ Versión: 1.0
 			<div id="narrow-content">
 				<div>
 					<!-- Título de la página actual -->
-					<h2 class="print-title">Asociacion de Ejercicios </h2>
+					<h2 class="print-title">Asociacion de video a Ejercicio </h2>
 					<!-- Breve explicación sobre la página actual -->
 					<p>
-						Estos son los Ejercicios disponibles para asociar a una rutina, con un resumen de sus datos. En el caso de
-						que quiera añadir nuevos ejercicios, o modificar los ya existentes, deberá hacer uso de las opciones
-						de debajo de la lista.
+						En esta vista, se permite la subida de un video por cada ejercicio que tengamos creado en nuestro servicio web.
 					</p><br/>
 					
 					<h3 id="text-info" style="text-align:center">
-						No hay Mas Ejercicios disponibles para asociar a la rutina seleccionada.
+						Aqui, se realizara el upload del fichero.
 					</h3><br/>
 					
 					
@@ -66,17 +64,12 @@ Versión: 1.0
 						<tr>
 							
 							<th>Nombre</th>
-							<th>Titulo</th>
-                			<th>Subtitulo</th>
-                			<th>Descripcion</th>
-							<th>Estado de Forma</th>
-                			<th>Repeticiones</th>
-                			<th>Repeticiones del Video</th>
-                			<th>Accion</th>
+							<th>URL (se debe obtener en la subida y guardarlo en la BBDD)</th>
+                			
 						</tr>
 					</table><br/><br/>
-					<p id=crea class="button-style"><a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a></p>
-					<p class='button-style' id="botbotbot" style="float:right"><a href="javascript:window.history.back();">&laquo; Volver atrás</a></p>
+					<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
+						<p class="button-style" style="float:right"><a href="EjercicioMain.html">&laquo; Volver atrás</a></p><br/><br/><br/><br/>
 				</div>
 			</div>
 		</div>

@@ -11,6 +11,7 @@
 
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
+	//accionboton();
 	getAllEjerciciosData();
 });
 
@@ -34,6 +35,19 @@ function getAllEjerciciosData() {
 		alert("Se ha producido un error");
 	});
 }
+
+/*function accionboton()
+{
+
+	var rut_id = getUrlParameter('rut_Id');
+
+	var cadena = "EjerciciosDeRutinaMain.html?rut_Id=" + rut_id;
+	var boton = "<a style='float:right' href="+cadena+"><< Volver Atras</a>";
+
+	var container = $("#botbotbot");
+
+	container.prepend(boton);
+}*/
 
 /* Función que imprime un resumen de todos los ejercicios de un propietario 
    en una tabla */

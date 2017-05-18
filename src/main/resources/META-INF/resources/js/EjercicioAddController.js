@@ -99,7 +99,7 @@ function sendEjercicioData() {
 		contentType : "application/json",
 	// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
-		alert("Rutina añadida con éxito");
+		alert("Ejercicio añadido con éxito");
 		window.location.href = "EjercicioMain.html";
 
 	// Avisamos al usuario de que ha surgido un error
