@@ -60,8 +60,24 @@ public class VideosController{
 	    public void deleteVideo(
 	    		@PathVariable("owner_id") String ownerId,
 	    		@PathVariable("ej_id") int ej_id) {
+	    	
+	    	try{
 
-	    	this.videosDao.deleteVideo(ej_id,ownerId);
+	    		
+	    		File file = new File("/var/rutina_app/uploads/" + ownerId + "_" + ej_id +  ".mp4");
+
+	    		if(file.delete()){
+	    			System.out.println(file.getName() + " is deleted!");
+	    	    	this.videosDao.deleteVideo(ej_id,ownerId);
+	    		}else{
+	    			System.out.println("Delete operation is failed.");
+	    		}
+
+	    	}catch(Exception e){
+
+	    		e.printStackTrace();
+
+	    	}
 	    }
 
 
@@ -99,13 +115,6 @@ public class VideosController{
 	    	  
 	        //Esto serviria para obtener el nombre original del fichero a subir
 	    	  String realfilename = uploadfile.getOriginalFilename();
-	    	  
-	    	  	    	   
-	    
-	    	  
-	    	  
-	    	//Obtengo la fecha y hora actual para usarla ne el nombre dle video a guardar.  
-	    	  
 	    	  
 	        
 	        //Modificar el nombre del fichero compuesto por el nombre de usuario y un id unico del video
