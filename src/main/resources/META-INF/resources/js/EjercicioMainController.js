@@ -20,7 +20,7 @@ function getAllEjerciciosData() {
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	var user= cookie.userid;
+	
 
 	$.ajax({
 		url : "/Rutina_app/ejercicios/" + cookie.userid + "/",
@@ -29,7 +29,7 @@ function getAllEjerciciosData() {
 		dataType : "json",
 	// En caso de éxito: imprimimos un resumen de los ejercicios
 	}).done(function (data, textStatus, jqXHR) {
-		printAllEjerciciosData(data,user);
+		printAllEjerciciosData(data);
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error");
@@ -38,7 +38,7 @@ function getAllEjerciciosData() {
 
 /* Función que imprime un resumen de todos los ejercicios de un propietario 
    en una tabla */
-function printAllEjerciciosData(jsonEjerciciosArray,usuario) {
+function printAllEjerciciosData(jsonEjerciciosArray) {
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $(".print-ejercicios")[0];
 
@@ -79,9 +79,7 @@ function printAllEjerciciosData(jsonEjerciciosArray,usuario) {
 		+ "<a href='EjercicioModify.html?ej_id="
 		+ obj.ej_id
 		+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"	
-		+ "<a href='VideosAdd.html?owner_id=" 
-		+ usuario
-		+ "&ej_id="
+		+ "<a href='VideosAdd.html?ej_id=" 
 		+ obj.ej_id
 		+ "'><input type='button' class='mod-buttons' value='AÑADIR VIDEO' /></a>"	
 		+ "<a onclick='deleteEjercicioData("

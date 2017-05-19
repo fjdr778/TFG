@@ -60,15 +60,12 @@ Versión: 1.0
 					
 					
 					<!-- Esqueleto de la tabla sobre la que se imprimirán los eventos -->
-					<table class="print-ejerciciosderutina">
-						<tr>
-							
-							<th>Nombre</th>
-							<th>URL (se debe obtener en la subida y guardarlo en la BBDD)</th>
-                			
-						</tr>
-					</table><br/><br/>
-					<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
+					
+					<form method="POST" enctype="multipart/form-data" id="upload-file-form">
+						 <label for="upload-file-input">Upload your Video:</label>
+    					<input type="file" name="uploadfile" id="upload-file-input"/><br/><br/>
+    					<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
+						</form>					
 						<p class="button-style" style="float:right"><a href="EjercicioMain.html">&laquo; Volver atrás</a></p><br/><br/><br/><br/>
 				</div>
 			</div>
