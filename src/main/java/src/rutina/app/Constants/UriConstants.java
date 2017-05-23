@@ -20,6 +20,7 @@ public class UriConstants {
     
     /* RUTINAS*/
     public static final String RUTINAS = "/Rutina_app/rutinas/{owner_id:.+}/{rut_id:.+}";
+    public static final String RUTINAS_DOWNLOAD = "/Rutina_app/downloads/{owner_id:.+}/{rut_id:.+}";
     public static final String ALL_RUTINAS = "/Rutina_app/rutinas/{owner_id:.+}//";
 
     /* EJERCICIOS */

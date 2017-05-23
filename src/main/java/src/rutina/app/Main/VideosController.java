@@ -145,41 +145,7 @@ public class VideosController{
 	      
 	    } // method uploadFile
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+	       
 	    
 	   //Actualiza una rutina en la base de datos
 	    //Testear!!!

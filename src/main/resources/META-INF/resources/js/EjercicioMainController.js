@@ -148,14 +148,14 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ "<td>"
 			+ "<a href='EjercicioModify.html?ej_id="
 			+ obj.ej_id
-			+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"	
-			+ "<a href='javascript:void(0);' onclick='window.open('/var/rutina_app/uploads/" +
-			+ cookie.userid 
+			+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
+			
+			+ "<video width='320' height='240' controls><source src='file:///var/rutina_app/uploads/"
+			+ cookie.userid
 			+ "_"
 			+ obj.ej_id
-			+ ".mp4"
-			+ ", 'popup', 'left=390, top=200, width=425, height=344, toolbar=0, resizable=1')" 
-			+ "'><input type='button' class='mod-buttons' value='VER VIDEO' /></a>"	
+			+ ".mp4' type='video/mp4'></video>"	
+			+ "<input type='button' class='mod-buttons' value='VER VIDEO' /></a>"	
 			+ "<a onclick='deleteVideoData("
 			+ obj.ej_id
 			+ ")'><input type='button' class='del-buttons' value='ELIMINAR VIDEO' /></a>"
@@ -188,7 +188,7 @@ function deleteEjercicioData(ej_id) {
 		window.location.href = "EjercicioMain.html";
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
-		alert("Se ha producido un error.");
+		alert("Error: Ejercicio asociado a alguna rutina.");
 	});
 }
 
