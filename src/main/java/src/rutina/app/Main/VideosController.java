@@ -62,9 +62,9 @@ public class VideosController{
 	    		@PathVariable("ej_id") int ej_id) {
 	    	
 	    	try{
-
 	    		
-	    		File file = new File("/var/rutina_app/uploads/" + ownerId + "_" + ej_id +  ".mp4");
+	    		
+	    		File file = new File("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + ownerId + "_" + ej_id +  ".mp4");
 
 	    		if(file.delete()){
 	    			System.out.println(file.getName() + " is deleted!");

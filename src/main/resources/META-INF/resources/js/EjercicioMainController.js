@@ -150,7 +150,7 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ obj.ej_id
 			+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
 			
-			+ "<video width='320' height='240' controls><source src='file:///var/rutina_app/uploads/"
+			+ "<video width='320' height='240' controls><source src='http://localhost:8080/rutina_app/uploads/"
 			+ cookie.userid
 			+ "_"
 			+ obj.ej_id

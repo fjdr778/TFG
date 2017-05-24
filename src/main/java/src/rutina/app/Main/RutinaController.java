@@ -176,9 +176,12 @@ public class RutinaController {
 
 		System.out.println(strWtr.toString());
 
+		
+
+		
 		FileWriter file;
 		try {
-			file = new FileWriter("/var/rutina_app/json/rutina_" + rut_id + ".json");
+			file = new FileWriter("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
 			file.write(strWtr.toString());
 			file.close();
 			System.out.println("Successfully Copied JSON Object to File...");
@@ -189,11 +192,11 @@ public class RutinaController {
 		
 		/* GENERACION DEL .ZIP */
 		try {
-			FileOutputStream fos = new FileOutputStream("/var/rutina_app/zip/rutina_" + rut_id + ".zip");
+			FileOutputStream fos = new FileOutputStream("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/rutina_" + rut_id + ".zip");
 			ZipOutputStream zos = new ZipOutputStream(fos);
 
 			// Json:
-			String json = "/var/rutina_app/json/rutina_" + rut_id + ".json";
+			String json = "/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json";
 			// addToZipFile(json, zos);
 
 			File file1 = new File(json);
@@ -241,7 +244,7 @@ public class RutinaController {
 
 	}
     
-    @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.GET)
+   /* @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.GET)
     public void getFile(
     		@PathVariable("owner_id") String ownerId, @PathVariable("rut_id") int rut_id, 
         HttpServletResponse response) throws IOException {
@@ -261,7 +264,7 @@ public class RutinaController {
             response.flushBuffer();
             
             
-    }
+    }*/
     
 }
 

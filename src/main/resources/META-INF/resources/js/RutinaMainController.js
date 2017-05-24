@@ -70,13 +70,15 @@ function printAllRutinasData(jsonRutinasArray) {
 		+ "<a href='RutinaModify.html?rut_id="
 		+ obj.rut_id
 		+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
-		+ "<a href='file:///var/rutina_app/zip/favicon1.png' download><input type='button' class='mod-buttons' value='descarga' /></a>"
 		+ "<a href='EjerciciosDeRutinaMain.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
 		+ obj.rut_id
 		+ "'><input type='button' class='mod-buttons' value='EJERCICIOS ASOCIADOS' /></a>"
 		+ "<a onclick='downloadRutinaData("
 		+ obj.rut_id
-		+ ")' download><input type='button' class='del-buttons' value='DESCARGAR RUTINA .zip' /></a>"
+		+ ")' download><input type='button' class='del-buttons' value='GENERAR RUTINA .zip' /></a>"
+		+ "<a href='http://localhost:8080/rutina_app/zip/rutina_"
+		+ obj.rut_id
+		+".zip' download><input type='button' class='mod-buttons' value='descarga' /></a>"
 		+ "<a onclick='deleteRutinaData("
 		+ obj.rut_id
 		+ ")'><input type='button' class='del-buttons' value='ELIMINAR' /></a>"
