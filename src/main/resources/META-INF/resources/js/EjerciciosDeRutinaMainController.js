@@ -111,7 +111,7 @@ function accionboton()
 	var rut_id = getUrlParameter('rut_Id');
 
 	var cadena = "EjerciciosDeRutinaAsociate.html?rut_Id=" + rut_id;
-	var boton = "<a href="+cadena+">Asociar Ejercicios</a>";
+	var boton = "<a href="+cadena+"><font color='white'>Asociar Ejercicios</font></a>";
 
 	var container = $("#botbotbot");
 

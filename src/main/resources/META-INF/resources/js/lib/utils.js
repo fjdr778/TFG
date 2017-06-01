@@ -22,7 +22,7 @@ function closeSession() {
 
 	}).done(function(data, textStatus, jqXHR) {
 		alert("Ha cerrado su sesión con éxito. Esperamos verle de nuevo.");
-		window.location = '/';
+		window.location = '/login.html';
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		alert("Ha habido un error en el cierre de su sesión.");

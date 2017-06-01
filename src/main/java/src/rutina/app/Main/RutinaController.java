@@ -115,13 +115,13 @@ public class RutinaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateRutina(@PathVariable("owner_id") String ownerId,
     		@PathVariable("rut_id") int rut_id,@RequestBody Rutina rutina) {
-
+    	System.out.println(rut_id+rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina());
 	this.rutinaDao.updateRutina(rut_id, rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
     }
     
     
     //Actualiza una rutina en la base de datos
-    @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.POST)
+    @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
 	public void downloadRutina(@PathVariable("owner_id") String ownerId, @PathVariable("rut_id") int rut_id) {
 

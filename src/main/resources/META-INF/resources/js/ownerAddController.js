@@ -1,22 +1,6 @@
-
-/*
- * Controlador de la página ownerAdd.html
- * 
- * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
- *
- */
-
-
-/* Funciones a ejecutar en la carga de la página */
-$(document).ready(function() {
-	// Inicializamos el plugin de validación
-	$('#register_form').validate({
-		// Establecemos las reglas de validación para
-		// cada uno de los campos del formulario
-		rules : {
+$(function () {
+    $('#register_form').validate({
+        rules: {
 			user_email : {
 				required : true,
 				email : true
@@ -41,21 +25,59 @@ $(document).ready(function() {
 				required : true,
 				equalTo : "#user_password",
 				minlength : 5
+			},
+			terms: {
+				required: true
 			}
-		},
-		// Establecemos la función que se ejecutará en caso
+        },
+        highlight: function (input) {
+            console.log(input);
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.input-group').append(error);
+            $(element).parents('.form-group').append(error);
+        },
+     // Establecemos la función que se ejecutará en caso
 		// de envío del formulario.
 		submitHandler : function(form) {
+			console.log("hola");
 			sendOwnerData();
+			
 		}
-	});
-
+    });
 });
+
+/*
+ * Controlador de la página ownerAdd.html
+ * 
+ * 
+ * Diseño por Adrián Gil Gago
+ * Todos los derechos reservados.
+ * Versión: 1.0
+ *
+ */
+
 
 
 /* Evento que lanza el envío del formulario */
 function submitForm() {
-	$("#register_form").submit();
+	
+	var statSend = false;
+	function checkSubmit() {
+	    if (!statSend) {
+	        statSend = true;
+	        $("#register_form").submit();
+	        return true;
+	    } else {
+	        alert("El formulario ya se esta enviando...");
+	        return false;
+	    }
+	}
+	
 }
 
 

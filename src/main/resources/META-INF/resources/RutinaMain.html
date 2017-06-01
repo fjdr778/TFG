@@ -1,96 +1,230 @@
 <!DOCTYPE html>
-<!--
-Diseño por Fco Jose Diaz Romero
-Todos los derechos reservados.
-
-Versión: 1.0
--->
 <html>
 
-<!-- Cabecera del documento -->
 <head>
-<!-- Metadatos de la página web -->
-<meta charset="UTF-8"/>
-<meta name="author" content="Fco Jose Diaz Romero"/>
-<meta name="description" content="Rutina_app Gestion de Rutinas de Entrenamiento"/>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</title>
+    <!-- Favicon-->
+	<link rel="icon" type="image/png" href="/favicon/favicon.png" />
 
-<!-- Título, fuentes tipográficas y otro contenido enlazado -->
-<title>Rutina_app - Panel de control</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-<!-- Ficheros de código Javascript -->
-<script src="js/lib/jquery-1.12.3.min.js"></script>
-<script src="js/lib/jquery.validate.min.js"></script>
-<script src="js/lib/messages_es.js"></script>
-<script src="js/lib/utils.js"></script>
-<script src="js/lib/jquery.fileDownload.js"></script>
-<script src="js/lib/jquery.cookie.js"></script>
-<script src="js/RutinaMainController.js"></script>
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style1.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
+<body class="theme-light-blue">
+   
+    <!-- superposicion de barras laterales -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Barra superior -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</a>
+            </div>
+           </div> 
+    </nav>
+    <!-- #Barra superior  -->
+    <section>
+        <!-- Barra Lateral Izquierda -->
+        <aside id="leftsidebar" class="sidebar">      
+        <div class="user-info">
+                <div class="image">
+                	<img class="ima1" src="favicon/retra-logo.png" width="70" height="60" alt="User" />	
+                </div>
+        </div>     
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    
+                    <li>
+                        <a href="index.html">
+                            <i class="material-icons">home</i>
+                            <span>Pagina Principal</span>
+                        </a>
+                    </li>
+                     <li class="active">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">assignment</i>
+                            <span>Rutinas</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="active">
+                                <a href="RutinaMain.html">Mis Rutinas Disponibles</a>
+                            </li>
+                            <li>
+                                <a href="RutinaAdd.html">Crear Nueva Rutina</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">assignment</i>
+                            <span>Ejercicios</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="EjercicioMain.html">Mis Ejercicios Disponibles</a>
+                            </li>
+                            <li>
+                                <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
+                            </li>                   
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">build</i>
+                            <span>Ajustes</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="ownerModify.html">Modificar Datos de Usuario</a>
+                            </li>
+                            <li>
+                                <a href="ownerDropOut.html">Darme de Baja</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="helpMain.html">
+                            <i class="material-icons">help</i>
+                            <span>Ayuda</span>
+                        </a>
+                    </li>
+                    
+                    <li onclick="closeSession()">
+                        <a href="login.html">
+                            <i class="material-icons">pan_tool</i>
+                            <span>Cerrar Sesion</span>
+                        </a>
+                    </li>
+                                                                                                                              
+                </ul>
+            </div>
+            <!-- #Menu -->
+            
+            <!-- Pie de pagina -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">Rutina_app. All Rights Reserved</a>.
+                </div>
+                
+                <div class="version">
+                    <b>Version: </b> 2.0.0
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        
+    </section>
 
-<!-- Cuerpo del documento -->
-<body>
-<!-- Cabecera de la página web -->
-<div id="header-wrapper">
-	<div id="header">
-		<!-- Logo superior izquierdo de 4Even -->
-		<div id="logo">
-			<h1><a href="#">Rutina_app</a></h1>
-		</div>
-		<!-- Barra de navegación superior -->
-		<div id="menu">
-			<ul>
-				<li><a href="index.html" accesskey="1">Mi perfil</a></li>
-				<li class="current_page_item"><a href="RutinaMain.html" accesskey="2">Mis Rutinas</a></li>
-				<li><a href="EjercicioMain.html" accesskey="2">Mis Ejercicios</a></li>
-				<li><a href="helpMain.html" accesskey="3">Ayuda</a></li>
-				<li onclick="closeSession()"><a href="#" accesskey="5">Cerrar sesión</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
 
-<!-- Cuerpo de la página web -->
-<div id="wrapper">
-	<div id="page-wrapper">
-		<div id="page">
-			<div id="narrow-content">
-				<div>
-					<!-- Título de la página actual -->
-					<h2>Mis Rutinas</h2>			
-					
-					<!-- Breve explicación sobre la página actual -->
-					<p>
-						Estos son los Rutinas que tiene registrados el usuario, con un resumen de sus datos. En el caso de
-						que quiera añadir nuevas rutinas, o modificar los ya existentes, deberá hacer uso de las opciones
-						de debajo de la lista.
-					</p><br/>
-						<h3 id="text-info" style="text-align:center">
-						No hay Rutinas Disponibles.
-					</h3><br/>
-					<!-- Esqueleto de la tabla sobre la que se imprimirán los locales -->
-					<table class="print-rutinas">
-						<tr>
-							<th>Nombre</th>
-							<th>Descripcion</th>
-							<th>Informacion Adicional</th>
-							<th>Gestionar Rutina</th>
-						</tr>
-					</table><br/><br/><br/><br/>
-					<!-- Botones de acción y de cancelación -->
-					<p class="button-style"><a href="RutinaAdd.html">Añadir una Rutina</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Pie del documento -->
-<div id="footer" class="container">
-	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
-</div>
+
+    <!-- En esta seccion añadimos las cosas de cada vista -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <!-- Hover Rows -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Mis Rutinas Disponibles
+                                <small >Estos son los Rutinas que tiene registrados el usuario, con un resumen de sus datos. En el caso de que quiera añadir nuevas rutinas, 
+                                o modificar los ya existentes, deberá hacer uso de las opciones de debajo de la lista</small>
+                            </h2>
+                           <h3 id="text-info" style="text-align:center">
+								No hay Rutinas Disponibles.
+							</h3><br/>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Esqueleto de la tabla sobre la que se imprimirán las rutinas -->
+                       
+                        <div class="body table-responsive">
+                            <table class="print-rutinas table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+										<th>Descripcion</th>
+										<th>Informacion Adicional</th>
+										<th>Gestionar Rutina</th>
+                                    </tr>
+                                </thead>                               
+                            </table><br/><br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Hover Rows -->
+            </div>
+        </div>
+    </section>
+
+  <!-- Ficheros de código Javascript -->
+	<script src="js/lib/jquery-1.12.3.min.js"></script>
+	<script src="js/lib/jquery.validate.min.js"></script>
+	<script src="js/lib/messages_es.js"></script>
+	<script src="js/lib/utils.js"></script>
+	<script src="js/lib/jquery.cookie.js"></script>
+	<script src="js/RutinaMainController.js"></script>
+
+
+
+
+
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
+
 </body>
+
 </html>

@@ -104,19 +104,22 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ obj.ejercicioEstado_Forma
 			+ "</td>"
 			+ "<td>"
+			+ obj.ejercicioRepeticiones
+			+ "</td>"
+			+ "<td>"
 			+ obj.ejercicioRep_Video
 			+ "</td>"
 			+ "<td>"
 			+ "<td>"
 			+ "<a href='EjercicioModify.html?ej_id="
 			+ obj.ej_id
-			+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"	
+			+ "'><i class='material-icons'>create</i></a>"	
 			+ "<a href='VideosAdd.html?ej_id=" 
 			+ obj.ej_id
-			+ "'><input type='button' class='mod-buttons' value='AÑADIR VIDEO' /></a>"	
+			+ "'><i class='material-icons'>file_upload</i></a>"	
 			+ "<a onclick='deleteEjercicioData("
 			+ obj.ej_id
-			+ ")'><input type='button' class='del-buttons' value='ELIMINAR' /></a>"
+			+ ")'><i class='material-icons'>delete</i></a>"
 			+ "</td>" + "</tr>"
 		
 
@@ -148,17 +151,17 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ "<td>"
 			+ "<a href='EjercicioModify.html?ej_id="
 			+ obj.ej_id
-			+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
+			+ "'><i class='material-icons'>create</i></a>"
 			
 			+ "<video width='320' height='240' controls><source src='http://localhost:8080/rutina_app/uploads/"
 			+ cookie.userid
 			+ "_"
 			+ obj.ej_id
 			+ ".mp4' type='video/mp4'></video>"	
-			+ "<input type='button' class='mod-buttons' value='VER VIDEO' /></a>"	
+			+ "<i class='material-icons'>video_library</i></a>"	
 			+ "<a onclick='deleteVideoData("
 			+ obj.ej_id
-			+ ")'><input type='button' class='del-buttons' value='ELIMINAR VIDEO' /></a>"
+			+ ")'><i class='material-icons'>delete</i></a>"
 			+ "</td>" + "</tr>"
 		
 

@@ -1,84 +1,125 @@
-<!DOCTYPE html>
-<!--
-Diseño por Fco Jose Diaz Romero
-Todos los derechos reservados.
-
-Versión: 1.0
--->
+﻿<!DOCTYPE html>
 <html>
 
-<!-- Cabecera del documento -->
 <head>
-<!-- Metadatos de la página web -->
-<meta charset="UTF-8"/>
-<meta name="author" content="Fco Jose Diaz Romero"/>
-<meta name="description" content="Rutina_app Gestion de Rutinas de Entrenamiento"/>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign Up | RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</title>
+    <!-- Favicon-->
+	<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+	
+    <!-- Google Fonts: Iconos de usuario y contraseña -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-<!-- Título, fuentes tipográficas y otro contenido enlazado -->
-<title>Rutina_app - Panel de control</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-<!-- Ficheros de código Javascript -->
-<script src="js/lib/jquery-1.12.3.min.js"></script>
-<script src="js/lib/jquery.validate.min.js"></script>
-<script src="js/lib/messages_es.js"></script>
-<script src="js/lib/utils.js"></script>
-<script src="js/lib/jquery.cookie.js"></script>
-<script src="js/ownerAddController.js"></script>
+    <!-- Waves Effect Css Este y el sigueint eno tienen efecto aparente-->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css Hoja de estilos general-->
+    <link href="css/style1.css" rel="stylesheet">
 </head>
 
-<!-- Cuerpo del documento -->
-<body>
-<div id="header-wrapper">
-	<div id="header">
-		<div id="logo">
-			<h1><a href="#">Rutina_app</a></h1>
-		</div>
-	</div>
-</div>
+<body class="signup-page">
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Rutina<b>App</b></a>
+            <small>A continuación introduzca sus datos personales, que serán utilizados por Rutina_app España para identificarle
+              			como usuario. Registrarse en la aplicación es completamente gratuito.</small>
+        </div>
+        <div class="card">
+            <div class="body">  
+            
+                <form id="register_form">
+                    <div class="msg">Registro de Nuevo Usuario</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="user_name" placeholder="Name Surname" size="35" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="user_email" placeholder="Email Address" size="40" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">date_range</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="date" class="form-control" name="user_birthdate" placeholder="Fecha de Nacimiento" size="10" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">phone</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="user_phonenumber" placeholder="Numero de Telefono" size="35" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Contraseña" size="30" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="user_password_confirm" placeholder="Confirmar contraseña" size="30" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                        <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
+                    </div>
 
-<!-- Cuerpo de la página web -->
-<div id="wrapper">
-	<div id="page-wrapper">
-		<div id="page">
-			<div id="wide-content">
-				<div>
-					<!-- Título de la página actual -->
-					<h2>Crear una cuenta en Rutina_app</h2>
-            		<!-- Breve explicación sobre la página actual -->
-            		<p>
-              			A continuación introduzca sus datos personales, que serán utilizados por Rutina_app España para identificarle
-              			como usuario. Registrarse en la aplicación es completamente gratuito. Por otra parte,
-              			es obligatorio rellenar todos los campos de manera correcta, si no, no podrá registrarse como usuario.
-            		</p><br/>
-            		<!-- Formulario en el que introducir los datos del propietario a añadir -->
-					<form id="register_form">
-						E-mail:
-							<input type="text" name="user_email" size="40"/><br/><br/>
-						Nombre:
-							<input type="text" name="user_name" size="35"/><br/><br/>
-						Fecha de nacimiento:
-							<input type="date" name="user_birthdate" size="10"/><br/><br/>
-						Número de teléfono (opcional):
-							<input type="text" name="user_phonenumber" size="35"/><br/><br/>
-						Contraseña:
-							<input type="password" placeholder="Contraseña" name="user_password" id="user_password" size="30"/>
-						&nbsp; &nbsp; &nbsp;
-						Confirmar contraseña:
-			 				<input type="password" placeholder="Confirmar contraseña" name="user_password_confirm" size="30"/><br/><br/><br/>
-						<!-- Botones de acción del formulario y de cancelación -->
-						<p onclick="submitForm()" class="button-style" style="float:left"><a href="#">Confirmar</a></p>
-						<p class="button-style" style="float:right"><a href="login.html">Cancelar</a></p><br/><br/><br/><br/>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Pie del documento -->
-<div id="footer" class="container">
-	<p>&copy; Rutina_app España. Todos los derechos reservados.</p>
-</div>
+                    <button onclick="submitForm()" class="btn btn-block btn-lg bg-pink waves-effect">Confirmar</button>
+
+                    <div class="m-t-25 m-b--5 align-center">
+                        <a href="login.html">You already have a membership?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    
+    <script src="js/lib/jquery-1.12.3.min.js"></script>
+	<script src="js/lib/jquery.validate.min.js"></script>
+	<script src="js/lib/messages_es.js"></script>
+	<script src="js/lib/utils.js"></script>
+	<script src="js/lib/jquery.cookie.js"></script>
+	<script src="js/ownerAddController.js"></script>
 </body>
+
 </html>

@@ -44,7 +44,7 @@ function getOwnerData() {
 			$.cookie('RutinaUsuario', cookie);
 			window.location = '/login.html';
 		} else {
-			alert("Ha habido un error en la obtención de datos de usuario.");
+			alert("Ha habido un error en la obtención de datos de usuario11.");
 		}
 	});
 }

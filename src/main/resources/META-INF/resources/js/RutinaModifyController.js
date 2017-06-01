@@ -57,12 +57,12 @@ function sendRutinaData() {
 	
 	// Obtenemos los parámetros de la URL
 	var rut_id = getUrlParameter('rut_id');
-
+	
 	// Obtenemos los datos del evento del formulario
 	var rutina_name = $('[name="rutina_name"]').val();
 	var rutina_description = $('[name="rutina_description"]').val();
 	var rutina_info = $('[name="rutina_info"]').val();
-	
+		
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
 		ownerId : cookie.userid,

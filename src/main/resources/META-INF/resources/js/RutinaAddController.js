@@ -30,9 +30,11 @@ $(document).ready(function() {
 				required : true
 			}
 		},
+		
 		// Establecemos la función que se ejecutará en caso
 		// de envío del formulario.
 		submitHandler : function(form) {
+
 			sendRutinaData();
 		}
 	});
@@ -42,6 +44,7 @@ $(document).ready(function() {
 
 /* Evento que lanza el envío del formulario */
 function submitForm() {
+
 	$("#rutina_form").submit();
 }
 

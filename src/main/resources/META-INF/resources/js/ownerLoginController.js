@@ -25,11 +25,11 @@ $(document).ready(function() {
 				required : true,
 				minlength : 5
 			},
-			user_password_confirm : {
+			/*user_password_confirm : {
 				required : true,
 				equalTo : "#user_password",
 				minlength : 5
-			}
+			}*/
 		},
 		// Establecemos la función que se ejecutará en caso
 		// de envío del formulario.
@@ -83,7 +83,8 @@ function sendOwnerData() {
 		var cookie = JSON.parse($.cookie('RutinaUsuario'));
 		
 		// Redireccionamos
-		window.location = cookie.url;
+
+		window.location.href = "index.html";
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		// Informamos de que ha fallado la autenticación

@@ -37,10 +37,5 @@ public class UriConstants {
     public static final String ALL_RUTINAS_NO_EJERCICIOS= "/Rutina_app/rutinas/noasociaciones/{rut_id:.+}//";
     
     
-
-    
-    
-    
-    
     
 }

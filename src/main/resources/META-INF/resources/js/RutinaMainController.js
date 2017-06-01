@@ -69,19 +69,19 @@ function printAllRutinasData(jsonRutinasArray) {
 		+ "<td>"
 		+ "<a href='RutinaModify.html?rut_id="
 		+ obj.rut_id
-		+ "'><input type='button' class='mod-buttons' value='MODIFICAR' /></a>"
+		+ "'><i class='material-icons'>create</i></a>"
 		+ "<a href='EjerciciosDeRutinaMain.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
 		+ obj.rut_id
-		+ "'><input type='button' class='mod-buttons' value='EJERCICIOS ASOCIADOS' /></a>"
+		+ "'><i class='material-icons'>assignment</i></a>"
 		+ "<a onclick='downloadRutinaData("
-		+ obj.rut_id
-		+ ")' download><input type='button' class='del-buttons' value='GENERAR RUTINA .zip' /></a>"
+		+ obj.rut_id	
+		+ ")' download><i class='material-icons'>note_add</i></a>"
 		+ "<a href='http://localhost:8080/rutina_app/zip/rutina_"
 		+ obj.rut_id
-		+".zip' download><input type='button' class='mod-buttons' value='descarga' /></a>"
+		+".zip' download><i class='material-icons'>file_download</i></a>"
 		+ "<a onclick='deleteRutinaData("
 		+ obj.rut_id
-		+ ")'><input type='button' class='del-buttons' value='ELIMINAR' /></a>"
+		+ ")'><i class='material-icons'>delete</i></a>"
 		+ "</td>" + "</tr>"
 		
 		container.innerHTML += summedRutinaInfo;
