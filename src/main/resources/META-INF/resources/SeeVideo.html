@@ -25,22 +25,39 @@
     <link href="css/style1.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />   
-
- 
-      
-      <!-- Ficheros de código Javascript -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    
+       <link rel="stylesheet" type="text/css" href="css/videopopup.css" media="screen" />
+       
+    <!-- Ficheros de código Javascript -->
 	<script src="js/lib/jquery-1.12.3.min.js"></script>
 	<script src="js/lib/jquery.validate.min.js"></script>
 	<script src="js/lib/messages_es.js"></script>
 	<script src="js/lib/utils.js"></script>
 	<script src="js/lib/jquery.cookie.js"></script>
-	<script src="js/EjercicioMainController.js"></script>
+	<script src="js/seeVideoController.js"></script>
 
 </head>
 
 <body class="theme-light-blue">
-   
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- fin de la carga de la pagina -->
+    
     <!-- superposicion de barras laterales -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
@@ -88,18 +105,18 @@
                         </ul>
                     </li>
                     
-                    <li class="active">
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">assignment</i>
                             <span>Ejercicios</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="active">
+                            <li>
                                 <a href="EjercicioMain.html">Mis Ejercicios Disponibles</a>
                             </li>
                             <li>
                                 <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
-                            </li>                   
+                            </li>                
                         </ul>
                     </li>
                     <li>
@@ -109,14 +126,14 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="ownerModify.html">Modificar Datos de Usuario</a>
+                                <a href="ownerModify.html">Modiciar Datos de Usuario</a>
                             </li>
                             <li>
                                 <a href="ownerDropOut.html">Darme de Baja</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="helpMain.html">
                             <i class="material-icons">help</i>
                             <span>Ayuda</span>
@@ -137,7 +154,7 @@
             <!-- Pie de pagina -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">Rutina_app. All Rights Reserved</a>.
+                    &copy; 2017 <a href="javascript:void(0);">© Rutina_app España. Todos los derechos reservados.</a>.
                 </div>
                 
                 <div class="version">
@@ -152,67 +169,52 @@
 
 
 
-    <!-- En esta seccion añadimos las cosas de cada vista -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <!-- Hover Rows -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Mis Ejercicios Disponibles
-                                <small >Estos son los Ejercicios que tiene registrados el usuario, con un resumen de sus datos. En el caso de que quiera añadir nuevos ejercicios, 
-                                o modificar los ya existentes, deberá hacer uso de las opciones de debajo de la lista</small>
-                            </h2>
-                            <h3 id="text-info" style="text-align:center">
-						No hay Ejercicios Disponibles.
-					</h3><br/>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Esqueleto de la tabla sobre la que se imprimirán las rutinas -->
-                       
-                        <div class="body table-responsive">
-                            <table class="print-ejercicios table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-										<th>Titulo</th>
-                						<th>Subtitulo</th>
-                						<th>Descripcion</th>
-										<th>Estado de Forma</th>
-                						<th>Repeticiones</th>
-                						<th>Repeticiones del Video</th>
-										<th style="text-align:center">Gestionar Ejercicios</th>
-                                    </tr>
-                                </thead>                               
-                            </table><br/><br/><br/><br/>
-                            
-                            
-                        </div>                       
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Hover Rows -->
-            </div>
-        </div>
-    </section>
+	<!-- En esta seccion añadimos las cosas de cada vista -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="block-header">
+
+				<!-- Hover Rows -->
+				<div class="row clearfix">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="card">
+							<div class="header">
+								<h2>
+									Reproduccion de Video <small>El siguiente video, es el
+										video asociado al ejercicio seleccionado</small>
+								</h2>
+								<ul class="header-dropdown m-r--5">
+									<li class="dropdown"><a href="javascript:void(0);"
+										class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false"> <i
+											class="material-icons">more_vert</i>
+									</a>
+										<ul class="dropdown-menu pull-right">
+											<li><a href="javascript:window.history.back();">&laquo;Volver atrás</a></li>
+										</ul></li>
+								</ul>
+							</div>
+
+							<!-- Esqueleto de la tabla sobre la que se imprimirán las rutinas -->
+									
+									<div class="video" id="videCont">
+										
+									</div>							
+							
+						</div>
+					</div>
+				</div>
+				<!-- #END# Hover Rows -->
+			</div>
+		</div>
+	</section>
 
 
-    <!-- Bootstrap Core Js -->
+
+
+
+
+	<!-- Bootstrap Core Js -->
     <script src="plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
@@ -229,7 +231,6 @@
 
     <!-- Demo Js -->
     <script src="js/demo.js"></script>
-
 </body>
 
 </html>

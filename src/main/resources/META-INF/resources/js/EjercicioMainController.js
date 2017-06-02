@@ -145,6 +145,9 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ obj.ejercicioEstado_Forma
 			+ "</td>"
 			+ "<td>"
+			+ obj.ejercicioRepeticiones
+			+ "</td>"
+			+ "<td>"
 			+ obj.ejercicioRep_Video
 			+ "</td>"
 			+ "<td>"
@@ -153,12 +156,11 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 			+ obj.ej_id
 			+ "'><i class='material-icons'>create</i></a>"
 			
-			+ "<video width='320' height='240' controls><source src='http://localhost:8080/rutina_app/uploads/"
+			+ "<a href='SeeVideo.html?user_id="
 			+ cookie.userid
-			+ "_"
+			+ "&ej_id="
 			+ obj.ej_id
-			+ ".mp4' type='video/mp4'></video>"	
-			+ "<i class='material-icons'>video_library</i></a>"	
+			+ "'><i class='material-icons'>video_library</i></a>"	
 			+ "<a onclick='deleteVideoData("
 			+ obj.ej_id
 			+ ")'><i class='material-icons'>delete</i></a>"
@@ -171,8 +173,6 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 	}
   }
 }
-
-
 
 /* Función que elimina los datos de la rutina de la base de datos */
 function deleteEjercicioData(ej_id) {

@@ -44,14 +44,14 @@ public class OwnerController {
     public @ResponseBody List<Owner> getOwner(
 	    @PathVariable("owner_id") String ownerId) {
 
-	return ownerDao.getOwner(ownerId);
+	return this.ownerDao.getOwner(ownerId);
     }
 
     // Obtiene todos los propietarios
     @RequestMapping(value = UriConstants.ALL_USUARIOS, method = RequestMethod.GET)
     public @ResponseBody List<Owner> getAllOwners() {
 
-	return ownerDao.getAllOwners();
+	return this.ownerDao.getAllOwners();
     }
 
     // Elimina un propietario

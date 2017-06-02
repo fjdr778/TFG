@@ -104,26 +104,50 @@ function sendOwnerData() {
 }
 
 
+
+/* Función que obtiene los datos del ejercicio de la base de datos */
 function getOwnerData() {
 	
-	// Obtenemos la cookie de usuario
+	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
-	// Obtenemos los datos del propietario de la BBDD
+	console.log(cookie.userid);
+
+	// Obtenemos la información del evento de la base de datos
 	$.ajax({
-		url : "/Rutina_app/" + cookie.userid,
+		url : "/Rutina_app/",
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
-	// Imprimimos los datos del propietario en el modelo
-	// No imprimimos la contraseña
+		cache : false,
 	}).done(function (data, textStatus, jqXHR) {
-		$('[name="user_email"]').val(data[0].ownerId);
-		$('[name="user_name"]').val(data[0].ownerName);
-		$('[name="user_birthdate"]').val(data[0].ownerBirthDate);
-		$('[name="user_phonenumber"]').val(data[0].ownerPhoneNumber);
+		
+		muestrausuario(data);
+		
+		
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error.");
 	});
 }
+
+
+/* Función que imprime un resumen de todos los ejercicios de un propietario 
+   en una tabla */
+function muestrausuario(jsonOwnerArray) {
+	
+	// Iteramos para cada una de los ejercicios e imprimimos sus campos
+	for (var i = 0; i < jsonOwnerArray.length; i++) {
+		var obj = jsonOwnerArray[i];
+
+
+		var cookie = JSON.parse($.cookie('RutinaUsuario'));
+		   if(obj.ownerId==cookie.userid){
+			$('[name="user_email"]').val(obj.ownerId);
+			$('[name="user_name"]').val(obj.ownerName);
+			$('[name="user_birthdate"]').val(obj.ownerBirthDate);
+			$('[name="user_phonenumber"]').val(obj.ownerPhoneNumber);
+			}
+			
+		}
+}
+ 

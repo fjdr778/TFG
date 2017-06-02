@@ -121,7 +121,7 @@ public class RutinaController {
     
     
     //Actualiza una rutina en la base de datos
-    @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.PUT)
+    @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
 	public void downloadRutina(@PathVariable("owner_id") String ownerId, @PathVariable("rut_id") int rut_id) {
 

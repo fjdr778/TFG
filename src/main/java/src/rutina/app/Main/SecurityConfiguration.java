@@ -56,9 +56,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    	// Las reglas van de más específicas a menos específicas
 	    	// antMatchers() indica el patrón sobre el que se aplicará la regla
 	    	http.authorizeRequests().antMatchers("/RutinaRegister/**").permitAll();
+	    	//http.authorizeRequests().antMatchers("/Rutina_app/**").permitAll();
 	    	http.authorizeRequests().antMatchers("/index.html","/login.html","/ownerAdd.html").permitAll();
-	    	//http.authorizeRequests().antMatchers("/index.html").authenticated();
+	    	http.authorizeRequests().antMatchers("/index.html").authenticated();
 	    	http.authorizeRequests().antMatchers("/*.html").authenticated();
+	    	
 	    	http.authorizeRequests().antMatchers("/Rutina_app/**").authenticated();
 	    	
 	    	http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);

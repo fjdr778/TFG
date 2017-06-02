@@ -28,6 +28,7 @@ public class OwnerDaoImpl implements OwnerDao {
 
     JdbcTemplate jdbcTemplate;
 
+    @Override
     public void createOwner(String ownerId, String ownerName,
 	    String ownerPhoneNumber, Date ownerBirthDate, 
 	    String ownerPassw) {
@@ -44,6 +45,7 @@ public class OwnerDaoImpl implements OwnerDao {
 		new Object[] { ownerId, "ROLE_USER" });
     }
     
+    @Override
     public void updateOwner(String ownerId, String ownerName,
 	    String ownerPhoneNumber, Date ownerBirthDate, 
 	    String ownerPassw) {
@@ -55,16 +57,19 @@ public class OwnerDaoImpl implements OwnerDao {
 	// No actualizamos el rol del usuario, ya que es cosa del administrador
     }
 
+    @Override
     public List<Owner> getOwner(String ownerId) {
 	return jdbcTemplate.query(SqlConstants.GET_USUARIO_INFO,
 		new Object[] { ownerId }, new OwnerRowMapper());
     }
 
+    @Override
     public List<Owner> getAllOwners() {
 	return jdbcTemplate.query(SqlConstants.GET_ALL_USUARIOS_INFO,
 		new OwnerRowMapper());
     }
 
+    @Override
     public void deleteOwner(String ownerId) {
 	jdbcTemplate.update(SqlConstants.DELETE_USUARIO_ALL_EJERCICIOS,
 		new Object[] { ownerId });
@@ -78,6 +83,7 @@ public class OwnerDaoImpl implements OwnerDao {
 		new Object[] { ownerId });
     }
 
+    @Override
     public void deleteAllOwners() {
 	jdbcTemplate.update(SqlConstants.DELETE_ALL_USUARIOS_ALL_EJERCICIOS);
 	jdbcTemplate.update(SqlConstants.DELETE_ALL_USUARIOS_ALL_RUTINAS);
