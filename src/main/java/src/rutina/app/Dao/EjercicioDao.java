@@ -2,6 +2,8 @@ package src.rutina.app.Dao;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import src.rutina.app.Objects.Ejercicio;
 
 import java.sql.Time;
@@ -25,19 +27,19 @@ public abstract interface EjercicioDao {
 	
     public abstract void createEjercicio(String ejercicioNombre, String ejercicioTitulo,
 	    String ejercicioSubtitulo,String ejercicioDescripcion, String ejercicioEstado_Forma, 
-	    int ejercicioRepeticiones,int ejercicioRep_Video, String ownerId);
+	    int ejercicioRepeticiones, boolean ejercicio_Pub_Priv, String ownerId);
     
     public abstract void updateEjercicio(int ej_id, String ejercicioNombre, String ejercicioTitulo,
     	    String ejercicioSubtitulo,String ejercicioDescripcion, String ejercicioEstado_Forma, 
-    	    int ejercicioRepeticiones,int ejercicioRep_Video, String ownerId);
+    	    int ejercicioRepeticiones,boolean ejercicio_Pub_Priv, String ownerId);
     
     
     public abstract void AsociateEjercicioDeRutina(int ej_id,int rut_id);
     
     public abstract List<Ejercicio> getEjercicio(String ownerId, int ej_id);
-    public abstract List<Ejercicio> getAllEjercicio(String ownerId);
+    public abstract List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv);
     
-    public abstract List<Ejercicio> getAllEjerciciosdeRutina(int rut_id);
+    public abstract List<Ejercicio> getAllEjerciciosDeRutina(int rut_id);
     public abstract List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id);
     
     

@@ -63,6 +63,20 @@ function printAllEjerciciosDeRutinaData(jsonEjerciciosArray,rut_id) {
 			
 			for (var i = 0; i < jsonEjerciciosArray.length; i++) {
 				var obj = jsonEjerciciosArray[i];
+				
+				var visibilidad;
+				console.log(obj.ejercicioPub_Priv);
+				if(obj.ejercicioPub_Priv==true)
+				{
+					visibilidad="Publica";
+				}
+				else
+				{
+					visibilidad="Privada";
+				}
+				
+				
+				
 				var summedEjerciciosInfo = "<tr>" + "<td>"
 				+ obj.ejercicioNombre
 				+ "</td>"
@@ -79,7 +93,10 @@ function printAllEjerciciosDeRutinaData(jsonEjerciciosArray,rut_id) {
 				+ obj.ejercicioEstado_Forma
 				+ "</td>"
 				+ "<td>"
-				+ obj.ejercicioRep_Video
+				+ obj.ejercicioRepeticiones
+				+ "</td>"
+				+ "<td>"
+				+ visibilidad
 				+ "</td>"
 				+ "<td>"
 				+ "<td>"					

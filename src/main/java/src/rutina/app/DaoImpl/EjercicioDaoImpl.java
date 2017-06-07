@@ -30,20 +30,20 @@ public class EjercicioDaoImpl implements EjercicioDao {
 
     public void createEjercicio(String ejercicioNombre, String ejercicioTitulo,
     	    String ejercicioSubtitulo,String ejercicioDescripcion, String ejercicioEstado_Forma, 
-    	    int ejercicioRepeticiones,int ejercicioRep_Video, String ownerId) {
+    	    int ejercicioRepeticiones, boolean ejercicio_Pub_Priv,String ownerId) {
 	jdbcTemplate.update(SqlConstants.CREATE_EJERCICIO,
 		new Object[] { ejercicioNombre, ejercicioTitulo,
 	    	    ejercicioSubtitulo,ejercicioDescripcion,ejercicioEstado_Forma, 
-	    	    ejercicioRepeticiones,ejercicioRep_Video,ownerId });
+	    	    ejercicioRepeticiones,ejercicio_Pub_Priv,ownerId });
     }
 
     public void updateEjercicio(int ej_id, String ejercicioNombre, String ejercicioTitulo,
     	    String ejercicioSubtitulo,String ejercicioDescripcion, String ejercicioEstado_Forma, 
-    	    int ejercicioRepeticiones,int ejercicioRep_Video, String ownerId) {
+    	    int ejercicioRepeticiones,boolean ejercicio_Pub_Priv, String ownerId) {
 	jdbcTemplate.update(SqlConstants.UPDATE_EJERCICIO,
 		new Object[] { ejercicioNombre, ejercicioTitulo,
 	    	    ejercicioSubtitulo,ejercicioDescripcion,ejercicioEstado_Forma, 
-	    	    ejercicioRepeticiones,ejercicioRep_Video,ownerId,ej_id });
+	    	    ejercicioRepeticiones, ejercicio_Pub_Priv,ownerId,ej_id });
 
     }
     
@@ -60,15 +60,27 @@ public class EjercicioDaoImpl implements EjercicioDao {
 		new EjercicioRowMapper());
     }
 
-    public List<Ejercicio> getAllEjercicio(String ownerId) {
-	return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO,
-		new Object[] { ownerId}, new EjercicioRowMapper());
+    public List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv) {
+    	
+    	if(ejercicioPub_Priv==false)
+    	{
+    		//System.out.println(ejercicioPub_Priv);
+    			return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO,
+    				new Object[] { ownerId}, new EjercicioRowMapper());
+    	}
+    	else
+    	{
+    		//System.out.println(ejercicioPub_Priv);
+    		return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO1,
+    				new Object[] { ejercicioPub_Priv}, new EjercicioRowMapper());
+    	}
+    		
     }
     
     
-    public List<Ejercicio> getAllEjerciciosdeRutina(int rut_id){  	
+    public List<Ejercicio> getAllEjerciciosDeRutina(int rut_id){  	
     	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA,
-    			new Object[] { rut_id}, new EjercicioRowMapper());  	
+    			new Object[] {rut_id}, new EjercicioRowMapper());  	
     }
     
     public List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id){

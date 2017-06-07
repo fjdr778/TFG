@@ -41,7 +41,7 @@ $(document).ready(function() {
 			ejercicio_repeticiones: {
 				required : true
 			},
-			ejercicio_repvideo:{
+			ejercicio_Pub_Priv: {
 				required : true
 			}
 		},
@@ -74,9 +74,9 @@ function sendEjercicioData() {
 	var ejercicio_descripcion = $('[name="ejercicio_descripcion"]').val();
 	var ejercicio_estadoforma = $('[name="ejercicio_estadoforma"]').val();
 	var ejercicio_repeticiones = $('[name="ejercicio_repeticiones"]').val();
-	var ejercicio_repvideo = $('[name="ejercicio_repvideo"]').val();
+	var ejercicio_Pub_Priv = $('[name="ejercicio_Pub_Priv"]').val();
 
-	
+	console.log(ejercicio_Pub_Priv);
 	
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
@@ -87,12 +87,12 @@ function sendEjercicioData() {
 		ejercicioDescripcion : ejercicio_descripcion,
 		ejercicioEstado_Forma : ejercicio_estadoforma,
 		ejercicioRepeticiones: ejercicio_repeticiones,
-        ejercicioRep_Video: ejercicio_repvideo
+		ejercicioPub_Priv: ejercicio_Pub_Priv
 	};
 	
 	// Añadimos el ejercicio a la base de datos
 	$.ajax({
-		url : "/Rutina_app/ejercicios/" + cookie.userid + "/",
+		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + "?ejercicio_Pub_Priv=" + ejercicio_Pub_Priv,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
 		data : JSON.stringify(rutina_json),

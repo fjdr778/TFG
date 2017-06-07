@@ -9,13 +9,13 @@ public class Rutina {
 	private boolean rutinaPub_Priv;
 	
 	
-	public Rutina(long rut_id,String rutinaNombre,String rutinaDescripcion, String rutinaInfo_Rutina,String ownerId) {
+	public Rutina(long rut_id,String rutinaNombre,String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
 		this.ownerId=ownerId;
 		this.rut_id=rut_id;
 		this.rutinaNombre=rutinaNombre;
 		this.rutinaDescripcion=rutinaDescripcion;
 		this.rutinaInfo_Rutina=rutinaInfo_Rutina;	
-		
+		this.rutinaPub_Priv=rutinaPub_Priv;
 	}
 	
 	public Rutina(){
@@ -64,10 +64,11 @@ public class Rutina {
     }
 
 	public boolean isRutinaPub_Priv() {
-		return rutinaPub_Priv;
+		return this.rutinaPub_Priv;
 	}
 
 	public void setRutinaPub_Priv(boolean rutinaPub_Priv) {
+		System.out.println(rutinaPub_Priv);
 		this.rutinaPub_Priv = rutinaPub_Priv;
 	}
 

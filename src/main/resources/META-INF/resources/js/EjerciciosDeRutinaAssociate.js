@@ -71,32 +71,40 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 	// Iteramos para cada una de los ejercicios e imprimimos sus campos
 	for (var i = 0; i < jsonEjerciciosArray.length; i++) {
 		var obj = jsonEjerciciosArray[i];
+		
+		var visibilidad;
+		console.log(obj.ejercicioPub_Priv);
+		if(obj.ejercicioPub_Priv==true)
+		{
+			visibilidad="Publica";
+		}
+		else
+		{
+			visibilidad="Privada";
+		}
+		console.log(visibilidad);
+		
 		var summedEjerciciosInfo = "<tr>" + "<td>"
 		+ obj.ejercicioNombre
-		+ "</td>"
-		
+		+ "</td>"		
 		+ "<td>"
 		+ obj.ejercicioTitulo
-		+ "</td>"
-		
+		+ "</td>"		
 		+ "<td>"
 		+ obj.ejercicioSubtitulo
-		+ "</td>"
-		
+		+ "</td>"		
 		+ "<td>"
 		+ obj.ejercicioDescripcion
 		+ "</td>"
-		
 		+ "<td>"
 		+ obj.ejercicioEstado_Forma
-		+ "</td>"
-		
+		+ "</td>"	
 		+ "<td>"
-		+ obj.ejercicioRep_Video
+		+ obj.ejercicioRepeticiones
 		+ "</td>"
-		
 		+ "<td>"
-		
+		+ visibilidad
+		+ "</td>"		
 		+ "<td>"
 		+ "<a onclick='AsociateEjercicioData("
 		+ rut_id

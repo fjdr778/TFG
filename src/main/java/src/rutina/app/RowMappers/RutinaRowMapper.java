@@ -22,8 +22,10 @@ public class RutinaRowMapper implements RowMapper<Rutina> {
 	// Aquí se hace dentro de cada getX(index) con  el index el número de 
 	// la columna empezando por la izquierda de la tabla de eventos 
 	// dentro de la base de datos
+    	/*System.out.println(resultSet.getInt(1)+ resultSet.getString(2)+
+    			resultSet.getString(3)+resultSet.getString(4)+resultSet.getBoolean(5));*/
 	Rutina rutina = new Rutina(resultSet.getInt(1), resultSet.getString(2),
-		resultSet.getString(3),resultSet.getString(4),"");
+		resultSet.getString(3),resultSet.getString(4),resultSet.getBoolean(5),"");
 
 	return rutina;
     }

@@ -17,6 +17,16 @@
 
     <!-- Waves Effect Css -->
     <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    
+     <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    
 
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
@@ -227,8 +237,18 @@
                                         </div>
                                     </div>
                                 </div>  
-                       
-                                                              
+                       			<div class="row clearfix">
+                       				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label>Visibilidad:</label>
+                                    </div>
+                                	<div class="col-sm-6">
+                                    	<select name="rutina_Pub_Priv" class="form-control show-tick">
+                                        	<option value="">-- Seleccione una Opcion --</option>
+                                        	<option value="false">Privada</option>
+                                        	<option value="true">Publica</option>                                        
+                                    	</select>
+                                </div>
+                                  </div>                            
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button onclick="submitForm()" type="button" class="btn btn-primary m-t-15 waves-effect" style="float:left">Confirmar</button>
@@ -266,6 +286,17 @@
 
     <!-- Slimscroll Plugin Js -->
     <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+
+	<!-- Autosize Plugin Js -->
+    <script src="plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
+    
+     <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    
 
     <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>

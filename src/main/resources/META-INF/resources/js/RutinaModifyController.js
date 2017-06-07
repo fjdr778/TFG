@@ -31,6 +31,9 @@ $(document).ready(function() {
 			},			
 			rutina_info: {
 				required : true
+			},
+			rutina_Pub_Priv: {
+				required : true
 			}
 		},
 		// Establecemos la función que se ejecutará en caso
@@ -62,19 +65,22 @@ function sendRutinaData() {
 	var rutina_name = $('[name="rutina_name"]').val();
 	var rutina_description = $('[name="rutina_description"]').val();
 	var rutina_info = $('[name="rutina_info"]').val();
-		
+	var rutina_Pub_Priv = $('[name="rutina_Pub_Priv"]').val();
+	
+	console.log(rutina_Pub_Priv);
+	
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
 		ownerId : cookie.userid,
 		rutinaNombre : rutina_name,
 		rutinaDescripcion : rutina_description,
 		rutinaInfo_Rutina : rutina_info,
+		rutinaPub_Priv : rutina_Pub_Priv,
 	};
 	
 	// Actualizamos la información de la Rutina en la base de datos
 	$.ajax({
-		url : "/Rutina_app/rutinas/" + cookie.userid + "/"
-				+ rut_id,
+		url : "/Rutina_app/rutinas/" + cookie.userid + "/" + rut_id,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
 		data : JSON.stringify(rutina_json),
@@ -111,6 +117,7 @@ function getRutinaData() {
 		$('[name="rutina_name"]').val(data[0].rutinaNombre);
 		$('[name="rutina_description"]').val(data[0].rutinaDescripcion);
 		$('[name="rutina_info"]').val(data[0].rutinaInfo_Rutina);
+		$('[name="rutina_Pub_Priv"]').val(data[0].rutinaPub_Priv);
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error.");

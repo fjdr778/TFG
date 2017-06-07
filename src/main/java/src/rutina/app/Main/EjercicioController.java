@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,9 +51,9 @@ public class EjercicioController {
     // Obtiene todos los ejercicios de la base de datos para un usuario
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.GET)
     public @ResponseBody List<Ejercicio> getAllEjercicio(
-	    @PathVariable("owner_id") String ownerId) {
-
-	return this.ejercicioDao.getAllEjercicio(ownerId);
+	    @PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv) {
+    	System.out.println(ejercicio_Pub_Priv);
+	return this.ejercicioDao.getAllEjercicio(ownerId,ejercicio_Pub_Priv);
     }
 
     
@@ -63,7 +64,7 @@ public class EjercicioController {
     public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
 	    @PathVariable("rut_id") int rut_id) {
 
-	return this.ejercicioDao.getAllEjerciciosdeRutina(rut_id);
+	return this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
     }
     
  //Obtiene todos los ejercicios asociados a una rutina que no esten asociados a dicha rutina
@@ -105,24 +106,31 @@ public class EjercicioController {
     // Añade un ejerciio en la base de datos
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.POST)
     //@ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addEvent(@PathVariable("owner_id") String ownerId, @RequestBody Ejercicio ejercicio) {
-
+    public void addEvent(@PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+    		@RequestBody Ejercicio ejercicio) {
+    	ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
+    	
+    	
+    	/*System.out.println("Controlador: "+ejercicio.getEjercicioNombre()+ ejercicio.getEjercicioTitulo()+
+			ejercicio.getEjercicioSubtitulo()+ ejercicio.getEjercicioDescripcion()+
+			ejercicio.getEjercicioEstado_Forma()+ ejercicio.getEjercicioRepeticiones()+ejercicio.isEjercicioPub_Priv()+ownerId);*/
+    	
+    	
 	this.ejercicioDao.createEjercicio(ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
 			ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
-			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),
-			ejercicio.getEjercicioRep_Video(), ownerId);
+			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(),ownerId);
     }
 
     // Actualiza un ejercicio en la base de datos
     @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateEvent(@PathVariable("owner_id") String ownerId,
-	    @PathVariable("ej_id") int ej_id, @RequestBody Ejercicio ejercicio) {
-
+	    @PathVariable("ej_id") int ej_id, @RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+	    @RequestBody Ejercicio ejercicio) {
+    	ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
 	this.ejercicioDao.updateEjercicio(ej_id,ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
 			ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
-			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),
-			ejercicio.getEjercicioRep_Video(), ownerId);
+			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(), ownerId);
     }
     
     

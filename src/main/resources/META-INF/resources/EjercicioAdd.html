@@ -20,6 +20,16 @@
 
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+    
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    
 
     <!-- Custom Css -->
     <link href="css/style1.css" rel="stylesheet">
@@ -270,19 +280,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>     
+                                </div>   
+                                        
                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Repeticiones del Video:</label>
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label>Visibilidad:</label>
                                     </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="number" name="ejercicio_repvideo" class="form-control" placeholder="Estado de forma del usuario">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                                          
+                                <div class="col-sm-6">
+                                    <select name="ejercicio_Pub_Priv" class="form-control show-tick">
+                                        <option value="">-- Seleccione una Opcion --</option>
+                                        <option value="false">Privada</option>
+                                        <option value="true">Publica</option>                                        
+                                    </select>
+                                </div>
+                            	</div>      
+                                                                                                    
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button onclick="submitForm()" type="button" class="btn btn-primary m-t-15 waves-effect" style="float:left">Confirmar</button>
@@ -290,6 +302,7 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -309,13 +322,23 @@
     <!-- Bootstrap Core Js -->
     <script src="plugins/bootstrap/js/bootstrap.js"></script>
 
-    <!-- Select Plugin Js -->
+	 <!-- Select Plugin Js -->
     <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
-    <!-- Slimscroll Plugin Js -->
+	
+	 <!-- Slimscroll Plugin Js -->
     <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
+	<!-- Autosize Plugin Js -->
+    <script src="plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
+    
+     <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    
+    
+       <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>
 
     <!-- Custom Js -->

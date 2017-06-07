@@ -32,18 +32,19 @@ public class RutinaDaoImpl implements RutinaDao {
 
     @Override
 	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
-    	
+    	//System.out.println(rutinaNombre+rutinaDescripcion+rutinaInfo_Rutina+rutinaPub_Priv);
     	jdbcTemplate.update(SqlConstants.CREATE_RUTINA,
-    	new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina, ownerId });
+    	new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina,rutinaPub_Priv, ownerId });
 		
 	}
     
     @Override
     public void updateRutina(int rut_id, String rutinaNombre, String rutinaDescripcion,
     	    String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
+    	
+    	System.out.println("DaoImplUpdate:"+ rut_id+rutinaNombre+rutinaDescripcion+rutinaInfo_Rutina+rutinaPub_Priv+ownerId);
     	jdbcTemplate.update(SqlConstants.UPDATE_RUTINA,
-    		new Object[] { rut_id,rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,
-    				ownerId});
+    		new Object[] { rut_id,rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,rutinaPub_Priv,ownerId});
         }
 
 
@@ -57,13 +58,50 @@ public class RutinaDaoImpl implements RutinaDao {
     
     
     @Override
-	public List<Rutina> getAllRutinas(String ownerId) {	
-		return jdbcTemplate.query(SqlConstants.GET_ALL_RUTINAS,
-				new Object[] {ownerId},
-				new RutinaRowMapper()) ;
+	public List<Rutina> getAllRutinas(String ownerId,boolean rutinaPub_Priv,String rutina_busqueda) {	
+    	
+    	if(rutinaPub_Priv==false)
+    	{
+    		if(rutina_busqueda=="")
+    		{
+    			System.out.println("Privado");	  		
+    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=?",
+    					new Object[] {ownerId},
+    					new RutinaRowMapper()) ;
+    		}
+    		else
+    		{
+    			System.out.println("Privado");	  		
+    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND Descripcion LIKE '%" + rutina_busqueda +
+    					"%' OR Nombre LIKE '%" + rutina_busqueda +"%' ",
+    					new Object[] {ownerId},
+    					new RutinaRowMapper()) ;
+    		}   		 		
+    	}
+    	else
+    	{  		
+    		if(rutina_busqueda=="")
+    		{	
+    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=?",
+        				new Object[] {rutinaPub_Priv},
+        				new RutinaRowMapper()) ;
+    		}
+    		else
+    		{
+    		System.out.println("Publico");	  
+
+    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=? AND Descripcion LIKE '%" + rutina_busqueda + 
+    				"%' OR Nombre LIKE '%" + rutina_busqueda +"%' ",
+    				new Object[] {rutinaPub_Priv},
+    				new RutinaRowMapper()) ;	
+    		}
+    		
+    		
+    	}
 	}
-    @
-    Override
+    
+    
+    @Override
     public void deleteRutina(String ownerId,int rut_id) {
 	jdbcTemplate.update(SqlConstants.DELETE_RUTINA,
 		new Object[] { ownerId,rut_id });

@@ -44,7 +44,7 @@ $(document).ready(function() {
 			ejercicio_repeticiones: {
 				required : true
 			},
-			ejercicio_repvideo:{
+			ejercicio_Pub_Priv: {
 				required : true
 			}
 		},
@@ -80,7 +80,7 @@ function sendEjercicioData() {
 	var ejercicio_descripcion = $('[name="ejercicio_descripcion"]').val();
 	var ejercicio_estadoforma = $('[name="ejercicio_estadoforma"]').val();
 	var ejercicio_repeticiones = $('[name="ejercicio_repeticiones"]').val();
-	var ejercicio_repvideo = $('[name="ejercicio_repvideo"]').val();
+	var ejercicio_Pub_Priv = $('[name="ejercicio_Pub_Priv"]').val();
 	
 	// JSON formado con los datos del formulario extraídos
 	var ejercicio_json = {
@@ -91,12 +91,12 @@ function sendEjercicioData() {
 		ejercicioDescripcion : ejercicio_descripcion,
 		ejercicioEstado_Forma : ejercicio_estadoforma,
 		ejercicioRepeticiones: ejercicio_repeticiones,
-        ejercicioRep_Video: ejercicio_repvideo
+		ejercicioPub_Priv: ejercicio_Pub_Priv
 	};
 	
 	// Actualizamos la información de la Rutina en la base de datos
 	$.ajax({
-		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + ej_id,
+		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + ej_id + "?ejercicio_Pub_Priv=" + ejercicio_Pub_Priv,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
 		data : JSON.stringify(ejercicio_json),
@@ -138,7 +138,7 @@ function getEjercicioData() {
 		$('[name="ejercicio_descripcion"]').val(data[0].ejercicioDescripcion);
 		$('[name="ejercicio_estadoforma"]').val(data[0].ejercicioEstado_Forma);
 		$('[name="ejercicio_repeticiones"]').val(data[0].ejercicioRepeticiones);
-		$('[name="ejercicio_repvideo"]').val(data[0].ejercicioRep_Video);
+		$('[name="ejercicio_Pub_Priv"]').val(data[0].ejercicioPub_Priv);
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(ej_id);

@@ -73,16 +73,23 @@ public class SqlConstants {
     
     /* RUTINAS */
     public static final String CREATE_RUTINA = 
-	    "INSERT INTO RUTINA (Nombre,Descripcion,Info_Rutina,USUARIOS_Email) VALUES (?,?,?,?)"; 
+	    "INSERT INTO RUTINA (Nombre,Descripcion,Info_Rutina,Pub_priv,USUARIOS_Email) VALUES (?,?,?,?,?)"; 
     
     public static final String UPDATE_RUTINA = 
-    	"UPDATE RUTINA SET Nombre=?,Descripcion=?, Info_Rutina=? WHERE USUARIOS_Email=? AND rut_id=?";
+    	"UPDATE RUTINA SET Nombre=?,Descripcion=?,Info_Rutina=?,Pub_priv=? WHERE rut_id=? AND USUARIOS_Email=? ";
     
     //Obtener rutinas de un usuario
     public static final String GET_RUTINA = 
-	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina FROM RUTINA WHERE USUARIOS_Email=? AND rut_id=?";
-    public static final String GET_ALL_RUTINAS = 
-	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina FROM RUTINA WHERE USUARIOS_Email=?";
+	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND rut_id=?";
+    
+   //Los dos siguientes estan impoementados directamente en RutinaDaoImpl!! 
+    
+   /* public static final String GET_ALL_RUTINAS = 
+	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND Descripcion LIKE '%dfg%'";
+    
+    public static final String GET_ALL_RUTINAS1 = 
+    	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=? AND Descripcion LIKE '%%'";
+   */
   //Eliminar rutinas de un usuario
     public static final String DELETE_RUTINA = 
 	    "DELETE FROM RUTINA WHERE USUARIOS_Email=? AND rut_id=?";
@@ -92,16 +99,21 @@ public class SqlConstants {
 
     /* EJERCICIOS */
     public static final String CREATE_EJERCICIO = 
-	    "INSERT INTO EJERCICIO (Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video,RUTINA_USUARIOS_Email) VALUES (?,?,?,?,?,?,?,?)"; 
+	    "INSERT INTO EJERCICIO (Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email) VALUES (?,?,?,?,?,?,?,?)"; 
     
     public static final String UPDATE_EJERCICIO = 
-    	"UPDATE EJERCICIO SET Nombre=?, Titulo=?, Subtitulo=?,Descripcion=?,Estado_forma=?,Repeticiones=?,Rep_video=? WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+    	"UPDATE EJERCICIO SET Nombre=?, Titulo=?, Subtitulo=?,Descripcion=?,Estado_forma=?,Repeticiones=?,Pub_priv=? WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
     
     //Obtener rutinas de un usuario
     public static final String GET_EJERCICIO = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+    
     public static final String GET_ALL_EJERCICIO = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
+    
+    public static final String GET_ALL_EJERCICIO1 =
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE Pub_priv=?";
+    
   //Eliminar rutinas de un usuario
     public static final String DELETE_EJERCICIO = 
 	    "DELETE FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
@@ -115,19 +127,19 @@ public class SqlConstants {
     		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id) VALUES (?,?)";
     
     public static final String GET_EJERCICIO_DE_RUTINA = 
-        		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM EJERCICIO,EJERCICIO_has_RUTINA"
+        		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO,EJERCICIO_has_RUTINA"
     		+ "WHERE EJERCICIO.ej_id=EJERCICIO_has_RUTINA.EJERCICIO_ej_id";
     
     
     //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina
     public static final String GET_EJERCICIOS_DE_RUTINA = 
-    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video FROM "
-    		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? "
-    		+ "AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id;";
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM "
+    		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id";
     
   //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios que noe stna asociados a dicha rutina.
     public static final String GET_EJERCICIOS_NO_DE_RUTINA =
-    		"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Rep_video from EJERCICIO WHERE EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)";
+    		"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
+    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)";
 
     
     public static final String DELETE_EJERCICIO_DE_RUTINA = 

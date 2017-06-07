@@ -28,6 +28,9 @@ $(document).ready(function() {
 			},			
 			rutina_info: {
 				required : true
+			},
+			rutina_Pub_Priv: {
+				required : true
 			}
 		},
 		
@@ -59,13 +62,20 @@ function sendRutinaData() {
 	var rutina_name = $('[name="rutina_name"]').val();
 	var rutina_description = $('[name="rutina_description"]').val();
 	var rutina_info = $('[name="rutina_info"]').val();
-
+	var rutina_Pub_Priv = $('[name="rutina_Pub_Priv"]').val();
+	
+	console.log (rutina_name);
+	console.log (rutina_description);
+	console.log (rutina_info);
+	console.log (rutina_Pub_Priv);
+	
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
 		ownerId : cookie.userid,
 		rutinaNombre : rutina_name,
 		rutinaDescripcion : rutina_description,
 		rutinaInfo_Rutina : rutina_info,
+		rutinaPub_Priv : rutina_Pub_Priv
 	};
 	
 	// Añadimos el local a la base de datos

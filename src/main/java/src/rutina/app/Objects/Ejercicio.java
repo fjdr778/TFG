@@ -20,12 +20,12 @@ public class Ejercicio {
     private String ejercicioDescripcion;
     private String ejercicioEstado_Forma;
     private int ejercicioRepeticiones;
-    private int ejercicioRep_Video;
+    private boolean ejercicioPub_Priv;
 
     
 
 	public Ejercicio(long ej_id, String ejercicioNombre, String ejercicioTitulo, String ejercicioSubtitulo,String ejercicioDescripcion,
-    		String ejercicioEstado_Forma,int ejercicioRepeticiones,int ejercicioRep_Video,String ownerId) {
+    		String ejercicioEstado_Forma,int ejercicioRepeticiones,boolean ejercicioPub_Priv, String ownerId) {
 	this.ej_id=ej_id;
 	this.ejercicioNombre=ejercicioNombre;
 	this.ejercicioTitulo=ejercicioTitulo;
@@ -33,7 +33,7 @@ public class Ejercicio {
 	this.ejercicioDescripcion=ejercicioDescripcion;
 	this.ejercicioEstado_Forma=ejercicioEstado_Forma;
 	this.ejercicioRepeticiones=ejercicioRepeticiones;
-	this.ejercicioRep_Video=ejercicioRep_Video;
+	this.ejercicioPub_Priv=ejercicioPub_Priv;
 	this.ownerId=ownerId;
     }
     
@@ -96,13 +96,6 @@ public class Ejercicio {
     	this.ejercicioRepeticiones=ejercicioRepeticiones;
     }
     
-    public int getEjercicioRep_Video(){
-    	return ejercicioRep_Video;
-    }
-    
-    public void setEjercicioRep_Video(int ejercicioRep_Video){	
-    	this.ejercicioRep_Video=ejercicioRep_Video;
-    }
 
 	public String getOwnerId() {
 		return ownerId;
@@ -110,6 +103,14 @@ public class Ejercicio {
 
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
+	}
+
+	public boolean isEjercicioPub_Priv() {
+		return ejercicioPub_Priv;
+	}
+
+	public void setEjercicioPub_Priv(boolean ejercicioPub_Priv) {
+		this.ejercicioPub_Priv = ejercicioPub_Priv;
 	}
 }
 

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,9 +79,15 @@ public class RutinaController {
     // Obtiene todas las rutinas de la base de datos
     @RequestMapping(value = UriConstants.ALL_RUTINAS, method = RequestMethod.GET)
     public @ResponseBody List<Rutina> getAllRutinas(
-    		@PathVariable("owner_id") String ownerId) 
+    		@PathVariable("owner_id") String ownerId,@RequestParam("rutina_Pub_Priv") boolean rutina_Pub_Priv,
+    		@RequestParam("rutina_busqueda") String rutina_busqueda) 
     {
-    	return this.rutinaDao.getAllRutinas(ownerId);
+    	System.out.println(ownerId);
+    	System.out.println(rutina_Pub_Priv);
+    	System.out.println(rutina_busqueda);
+    	
+
+    	return this.rutinaDao.getAllRutinas(ownerId,rutina_Pub_Priv,rutina_busqueda);
     }
     
     // Eliminar una rutina de la base de datos
@@ -106,8 +113,12 @@ public class RutinaController {
     //@ResponseStatus(HttpStatus.NO_CONTENT)
     public void addRutina(@PathVariable("owner_id") String ownerId,
     		@RequestBody Rutina rutina) {
-    	//System.out.println(rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina());
-    	this.rutinaDao.createRutina(rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
+    	
+    	//System.out.println("controller: "+rutina_Pub_Priv);
+
+    	//System.out.println(rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina()+rutina.isRutinaPub_Priv());
+    	this.rutinaDao.createRutina(rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),
+    			rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
     }
 
    //Actualiza una rutina en la base de datos
@@ -115,7 +126,8 @@ public class RutinaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateRutina(@PathVariable("owner_id") String ownerId,
     		@PathVariable("rut_id") int rut_id,@RequestBody Rutina rutina) {
-    	System.out.println(rut_id+rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina());
+    	
+    	//System.out.println("Controlador:"+ rut_id+rutina.getRutinaNombre()+rutina.getRutinaDescripcion()+rutina.getRutinaInfo_Rutina()+rutina.isRutinaPub_Priv());
 	this.rutinaDao.updateRutina(rut_id, rutina.getRutinaNombre(),rutina.getRutinaDescripcion(),rutina.getRutinaInfo_Rutina(),rutina.isRutinaPub_Priv(),ownerId);
     }
     
@@ -127,7 +139,7 @@ public class RutinaController {
 
 		// Obtengo la turina y los ejercicios asociados a esa rutina:
 		List<Rutina> rutina = this.rutinaDao.getRutina(ownerId, rut_id);
-		List<Ejercicio> ejercicio = this.ejercicioDao.getAllEjerciciosdeRutina(rut_id);
+		List<Ejercicio> ejercicio = this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
 
 
 		/* CREACION DEL JSON */
@@ -149,7 +161,6 @@ public class RutinaController {
 			jsonBuilder.add("Descripcion", ejercicio.get(i).getEjercicioDescripcion());
 			jsonBuilder.add("Estado de forma", ejercicio.get(i).getEjercicioEstado_Forma());
 			jsonBuilder.add("Repeticiones", ejercicio.get(i).getEjercicioRepeticiones());
-			jsonBuilder.add("Repeticiones video", ejercicio.get(i).getEjercicioRep_Video());
 
 			// create each key-value pair as seperate object and add it to the
 			// array

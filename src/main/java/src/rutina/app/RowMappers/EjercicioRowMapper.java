@@ -26,7 +26,7 @@ public class EjercicioRowMapper implements RowMapper<Ejercicio> {
 	Ejercicio ejercicio = new Ejercicio(resultSet.getInt(1), resultSet.getString(2),
 		resultSet.getString(3), resultSet.getString(4),
 		resultSet.getString(5), resultSet.getString(6),
-		resultSet.getInt(7), resultSet.getInt(8),"");
+		resultSet.getInt(7),resultSet.getBoolean(8),"");
 
 	return ejercicio;
     }
