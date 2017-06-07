@@ -12,18 +12,23 @@
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
 	//accionboton();
-	getAllEjerciciosData();
+
+		
+		getAllEjerciciosData("");
+
+
+
 });
 
 
 /* Función que obtiene los datos de todas los ejercicios no asociados a dicha rutina*/
-function getAllEjerciciosData() {
+function getAllEjerciciosData(busqueda) {
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	var rut_id = getUrlParameter('rut_Id');
 	$.ajax({
-		url : "/Rutina_app/rutinas/noasociaciones/" + rut_id + "/",
+		url : "/Rutina_app/rutinas/noasociaciones/" + rut_id + "/"+"?ownerId="+cookie.userid + "&ejercicio_busqueda="+busqueda,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
@@ -35,6 +40,9 @@ function getAllEjerciciosData() {
 		alert("Se ha producido un error");
 	});
 }
+
+
+
 
 /*function accionboton()
 {
@@ -55,7 +63,8 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $(".print-ejerciciosderutina")[0];
 	var rut_id = getUrlParameter('rut_Id');
-
+	var rutPub = getUrlParameter('rutPub');
+	console.log(rutPub);
 	//compruebo si el json obtenido esta vacio:
 	if (jsonEjerciciosArray.length == 0)
 		{
@@ -119,13 +128,39 @@ function printAllEjerciciosData(jsonEjerciciosArray) {
 
 
 
+function busqueda()
+{
+
+	// Obtenemos los datos del evento del formulario
+	var ejercicio_busqueda = $('[name="ejercicio_busqueda"]').val();
+	console.log(ejercicio_busqueda);
+
+
+	$('.print-ejerciciosderutina tbody tr').slice(0).remove();
+
+	if(ejercicio_busqueda=="")
+	{
+		getAllEjerciciosData("");
+	}
+	else
+	{
+		getAllEjerciciosData(ejercicio_busqueda);
+
+	}
+
+}
+
 
 /* Función que elimina los datos de la rutina de la base de datos */
 function AsociateEjercicioData(rut_id,ej_id) {
 	
+	
+
+	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+	var rutPub = getUrlParameter('rutPub');
+	console.log(rutPub);
 	$.ajax({
 		url : "/Rutina_app/rutinas/asociaciones"+ "/" + rut_id + "/"
 				+ ej_id,
@@ -134,7 +169,7 @@ function AsociateEjercicioData(rut_id,ej_id) {
 	// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Ejercicio Asociado.");
-		window.location.href = "EjerciciosDeRutinaMain.html?rut_Id="+rut_id;
+		window.location.href = "EjerciciosDeRutinaMain.html?rut_Id="+rut_id+"&rutPub="+rutPub;
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error.");

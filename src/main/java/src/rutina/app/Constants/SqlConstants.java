@@ -108,6 +108,7 @@ public class SqlConstants {
     public static final String GET_EJERCICIO = 
 	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
     
+    
     public static final String GET_ALL_EJERCICIO = 
 	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
     
@@ -131,17 +132,32 @@ public class SqlConstants {
     		+ "WHERE EJERCICIO.ej_id=EJERCICIO_has_RUTINA.EJERCICIO_ej_id";
     
     
-    //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina
+    //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina.
     public static final String GET_EJERCICIOS_DE_RUTINA = 
     		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM "
     		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id";
     
-  //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios que noe stna asociados a dicha rutina.
-    public static final String GET_EJERCICIOS_NO_DE_RUTINA =
-    		"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
-    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)";
-
     
+  //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina PUBLICA EXCEPTO LOS PRIVADOS.
+    public static final String GET_EJERCICIOS_DE_RUTINA_PUBLICA = 
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM "
+    		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id AND EJERCICIO.Pub_priv=1";
+    
+    
+  //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios que noe estan asociados a dicha rutina.
+    
+    /*public static final String GET_EJERCICIOS_NO_DE_RUTINA =
+    		"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
+    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND EJERCICIO.Pub_priv=1";*/
+    
+    
+    public static final String GET_EJERCICIOS_NO_DE_RUTINA =
+    		" select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
+    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND Pub_priv=1 UNION "
+    		+ "select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE RUTINA_USUARIOS_Email=?" 
+    				+ "AND Pub_priv=0";
+    
+    		
     public static final String DELETE_EJERCICIO_DE_RUTINA = 
     		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
 

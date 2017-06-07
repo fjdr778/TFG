@@ -51,9 +51,11 @@ public class EjercicioController {
     // Obtiene todos los ejercicios de la base de datos para un usuario
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.GET)
     public @ResponseBody List<Ejercicio> getAllEjercicio(
-	    @PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv) {
+	    @PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+		@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
+    	
     	System.out.println(ejercicio_Pub_Priv);
-	return this.ejercicioDao.getAllEjercicio(ownerId,ejercicio_Pub_Priv);
+	return this.ejercicioDao.getAllEjercicio(ownerId,ejercicio_Pub_Priv,ejercicio_busqueda);
     }
 
     
@@ -62,18 +64,31 @@ public class EjercicioController {
  // Obtiene todos los ejercicios de la base de datos asociados a una rutina
     @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.GET)
     public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
-	    @PathVariable("rut_id") int rut_id) {
+	    @PathVariable("rut_id") int rut_id,@RequestParam("rutPub") String rutPub) {
 
-	return this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
+    	//System.out.println(rutPub);
+    	if(rutPub.equals("nopub"))
+    	{
+    		//System.out.println("controlador1");
+    		return this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
+    	}
+    	else
+    	{
+    		//System.out.println("controlador2");
+    		return this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,rutPub);
+    		
+    	}
+    	
+	
     }
     
  //Obtiene todos los ejercicios asociados a una rutina que no esten asociados a dicha rutina
     
     @RequestMapping(value = UriConstants.ALL_RUTINAS_NO_EJERCICIOS, method = RequestMethod.GET)
     public @ResponseBody List<Ejercicio> getAllEjerciciosNoDeRutina(
-	    @PathVariable("rut_id") int rut_id) {
-
-	return this.ejercicioDao.getAllEjerciciosNoDeRutina(rut_id);
+	    @PathVariable("rut_id") int rut_id,@RequestParam("ownerId") String ownerId,@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
+    	System.out.println(ejercicio_busqueda);
+	return this.ejercicioDao.getAllEjerciciosNoDeRutina(rut_id,ownerId,ejercicio_busqueda);
     }
     
     // Eliminar un ejercicio de la base de datos

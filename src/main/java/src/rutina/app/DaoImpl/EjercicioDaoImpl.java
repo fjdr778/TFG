@@ -60,32 +60,84 @@ public class EjercicioDaoImpl implements EjercicioDao {
 		new EjercicioRowMapper());
     }
 
-    public List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv) {
+    public List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv,String ejercicio_busqueda) {
     	
     	if(ejercicioPub_Priv==false)
     	{
+    		if(ejercicio_busqueda=="")
+    		{
     		//System.out.println(ejercicioPub_Priv);
     			return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO,
     				new Object[] { ownerId}, new EjercicioRowMapper());
+    		}
+    		else 
+    		{
+    			return jdbcTemplate.query("SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND Descripcion LIKE '%" +
+    		ejercicio_busqueda +"%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' ",
+        				new Object[] { ownerId}, new EjercicioRowMapper());
+    		}
+    			
     	}
     	else
     	{
+    		if(ejercicio_busqueda=="")
+    		{
     		//System.out.println(ejercicioPub_Priv);
     		return jdbcTemplate.query(SqlConstants.GET_ALL_EJERCICIO1,
     				new Object[] { ejercicioPub_Priv}, new EjercicioRowMapper());
+    		}
+    		else
+    		{
+    			return jdbcTemplate.query("SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE Pub_priv=? AND Descripcion LIKE '%" + 
+    					ejercicio_busqueda + "%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' ",
+        				new Object[] { ejercicioPub_Priv}, new EjercicioRowMapper());
+    		}
     	}
     		
     }
     
     
     public List<Ejercicio> getAllEjerciciosDeRutina(int rut_id){  	
+    	
+      	System.out.println("1");
     	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA,
+    			new Object[] {rut_id}, new EjercicioRowMapper());  	
+    	
+  
+    }
+    
+    public List<Ejercicio> getEjerciciosDeRutinaPublica(int rut_id, String rutPub){ 
+    	
+    	System.out.println("2");
+    	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA_PUBLICA,			
     			new Object[] {rut_id}, new EjercicioRowMapper());  	
     }
     
-    public List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id){
+    
+    
+    
+    
+    
+    
+    public List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id, String ownerId,String ejercicio_busqueda){
+    	
+    	if(ejercicio_busqueda.equals(""))
+    	{
+    		System.out.println("vacio: "+ejercicio_busqueda);
     	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_NO_DE_RUTINA,
-    			new Object[] { rut_id}, new EjercicioRowMapper());
+    			new Object[] { rut_id,ownerId}, new EjercicioRowMapper());  	
+    	}
+    	else
+    	{
+    		System.out.println("lleno: "+ejercicio_busqueda);
+    		return jdbcTemplate.query("select * from (select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
+    	    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND Pub_priv=1 UNION "
+    	    		+ "select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE RUTINA_USUARIOS_Email=?" 
+    	    				+ "AND Pub_priv=0) as tab WHERE tab.Descripcion LIKE '%" + 
+    					ejercicio_busqueda + "%' OR tab.Nombre LIKE '%" + ejercicio_busqueda +"%' OR tab.Titulo LIKE '%" + ejercicio_busqueda +"%' "
+    							+ "OR tab.SubTitulo LIKE '%" + ejercicio_busqueda +"%'",
+        			new Object[] { rut_id,ownerId}, new EjercicioRowMapper());  	
+    	}
     	
     }
     

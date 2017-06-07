@@ -37,10 +37,12 @@ public abstract interface EjercicioDao {
     public abstract void AsociateEjercicioDeRutina(int ej_id,int rut_id);
     
     public abstract List<Ejercicio> getEjercicio(String ownerId, int ej_id);
-    public abstract List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv);
+    public abstract List<Ejercicio> getAllEjercicio(String ownerId, boolean ejercicioPub_Priv, String ejercicio_busqueda);
     
     public abstract List<Ejercicio> getAllEjerciciosDeRutina(int rut_id);
-    public abstract List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id);
+    public abstract List<Ejercicio> getEjerciciosDeRutinaPublica(int rut_id, String rutPub);
+    
+    public abstract List<Ejercicio> getAllEjerciciosNoDeRutina(int rut_id,String ownerId,String ejercicio_busqueda);
     
     
     public abstract void deleteEjercicio(String ownerId, int ej_id);

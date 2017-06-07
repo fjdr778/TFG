@@ -13,29 +13,30 @@
 $(document).ready(function() {
 	
 	
-	var ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
+	var ejercicio_Pub_Priv = false;
+	ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
 	console.log(ejercicio_Pub_Priv);
 	if(ejercicio_Pub_Priv=="false")
 		{
-			getMisEjerciciosData();
+			getMisEjerciciosData("");
 		}
 	else
 		{
-			getEjerciciosPublicos();
+			getEjerciciosPublicos("");
 		
 		}
 });
 
 
 /* Función que obtiene los datos de todas los ejercicios de un propietario */
-function getMisEjerciciosData() {
+function getMisEjerciciosData(busqueda) {
 
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
 
 	$.ajax({
-		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + "?ejercicio_Pub_Priv=false",
+		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + "?ejercicio_Pub_Priv=false&ejercicio_busqueda="+busqueda,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
@@ -49,14 +50,14 @@ function getMisEjerciciosData() {
 }
 
 /* Función que obtiene los datos de todas las rutinas de un propietario */
-function getEjerciciosPublicos() {
+function getEjerciciosPublicos(busqueda) {
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
 
 	$.ajax({
-		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + "?ejercicio_Pub_Priv=true",
+		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + "?ejercicio_Pub_Priv=true&ejercicio_busqueda="+busqueda,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
@@ -69,30 +70,7 @@ function getEjerciciosPublicos() {
 	});
 }
 
-//IMORTANTE: Ajax es asincrono, lo cual debe ponerse sincrono para coger el valor
-//de la respuesta correctamente y poder gestionarlo con JQuery
-function getVideoData(ej_id){
-	// Obtenemos la cookie
-	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	var json;
 
-	$.ajax({
-		url : "/Rutina_app/videos/" + cookie.userid + "/" + ej_id,
-		headers: {'X-CSRF-TOKEN': cookie.csrf},
-		type : "GET",
-		dataType : "json",
-		async:false,
-		// En caso de éxito: imprimimos un resumen de los ejercicios
-	}).done(function (data, textStatus, jqXHR) {
-		//console.log(data);
-		json=data;
-		// Avisamos al usuario de que ha surgido un error
-	}).fail(function (jqXHR, textStatus, errorThrown) {
-		alert("Se ha producido un error");
-	});	
-
-	return json;
-}
 
 /* Función que imprime un resumen de todos los ejercicios de un propietario 
    en una tabla */
@@ -323,9 +301,54 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 
 
 
+function busqueda()
+{
+	var ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
+	console.log(ejercicio_Pub_Priv);
+
+	// Obtenemos los datos del evento del formulario
+	var ejercicio_busqueda = $('[name="ejercicio_busqueda"]').val();
+	console.log(ejercicio_busqueda);
 
 
+	$('.print-ejercicios tbody tr').slice(0).remove();
 
+	if(ejercicio_Pub_Priv=="false")
+	{
+		getMisEjerciciosData(ejercicio_busqueda);
+	}
+	else
+	{
+		getEjerciciosPublicos(ejercicio_busqueda);
+
+	}
+
+}
+
+//IMORTANTE: Ajax es asincrono, lo cual debe ponerse sincrono para coger el valor
+//de la respuesta correctamente y poder gestionarlo con JQuery
+function getVideoData(ej_id){
+	// Obtenemos la cookie
+	var cookie = JSON.parse($.cookie('RutinaUsuario'));
+	var json;
+
+	$.ajax({
+		url : "/Rutina_app/videos/" + cookie.userid + "/" + ej_id,
+		headers: {'X-CSRF-TOKEN': cookie.csrf},
+		type : "GET",
+		dataType : "json",
+		async:false,
+		// En caso de éxito: imprimimos un resumen de los ejercicios
+	}).done(function (data, textStatus, jqXHR) {
+		//console.log(data);
+		json=data;
+		// Avisamos al usuario de que ha surgido un error
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		alert("Se ha producido un error");
+	});	
+
+	return json;
+}
 
 /* Función que elimina los datos de la rutina de la base de datos */
 function deleteEjercicioData(ej_id) {
