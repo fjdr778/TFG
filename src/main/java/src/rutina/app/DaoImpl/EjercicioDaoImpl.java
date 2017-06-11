@@ -73,7 +73,7 @@ public class EjercicioDaoImpl implements EjercicioDao {
     		else 
     		{
     			return jdbcTemplate.query("SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND Descripcion LIKE '%" +
-    		ejercicio_busqueda +"%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' ",
+    		ejercicio_busqueda +"%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' OR Titulo LIKE '%" + ejercicio_busqueda +"%' OR Subtitulo LIKE '%" + ejercicio_busqueda +"%' ",
         				new Object[] { ownerId}, new EjercicioRowMapper());
     		}
     			
@@ -89,7 +89,7 @@ public class EjercicioDaoImpl implements EjercicioDao {
     		else
     		{
     			return jdbcTemplate.query("SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE Pub_priv=? AND Descripcion LIKE '%" + 
-    					ejercicio_busqueda + "%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' ",
+    					ejercicio_busqueda + "%' OR Nombre LIKE '%" + ejercicio_busqueda +"%' OR Titulo LIKE '%" + ejercicio_busqueda +"%' OR Subtitulo LIKE '%" + ejercicio_busqueda +"%'",
         				new Object[] { ejercicioPub_Priv}, new EjercicioRowMapper());
     		}
     	}

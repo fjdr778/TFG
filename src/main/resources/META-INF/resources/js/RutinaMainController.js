@@ -75,7 +75,7 @@ function getRutinasPublicas(busqueda) {
 function printMisRutinasData(jsonRutinasArray) {
 	// Obtenemos el contenedor donde imprimiremos los locales
 	var container = $(".print-rutinas")[0];
-
+	var rutPub="nopub";
 	//compruebo si el json obtenido esta vacio:
 	if (jsonRutinasArray.length == 0)
 	{
@@ -121,7 +121,7 @@ function printMisRutinasData(jsonRutinasArray) {
 			+"&rutPub=nopub"
 			+ "'><i class='material-icons'>assignment</i></a>"
 			+ "<a onclick='downloadRutinaData("
-			+ obj.rut_id	
+			+ obj.rut_id
 			+ ")' download><i class='material-icons'>note_add</i></a>"
 			+ "<a href='http://localhost:8080/rutina_app/zip/rutina_"
 			+ obj.rut_id
@@ -228,7 +228,7 @@ function busqueda()
 
 }
 
-function downloadRutinaData(RutinaId){
+function downloadRutinaData(RutinaId,rutPub){
 
 	//Queda por configurar bien. Nose si es Get o Post.
 
@@ -237,7 +237,7 @@ function downloadRutinaData(RutinaId){
 
 	$.ajax({
 		url : "/Rutina_app/downloads/" + cookie.userid + "/"
-		+ RutinaId,
+		+ RutinaId + "?rutPub=nopub",
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
 		// En caso de éxito: informamos y redirigimos

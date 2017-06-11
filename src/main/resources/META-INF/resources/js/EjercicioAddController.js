@@ -33,7 +33,7 @@ $(document).ready(function() {
 			ejercicio_descripcion: {
 				required : true,
 				minlength : 2,
-				maxlength : 200
+				maxlength : 500
 			},
 			ejercicio_estadoforma: {
 				required : true

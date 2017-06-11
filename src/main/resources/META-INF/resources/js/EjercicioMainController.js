@@ -168,6 +168,8 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 				+ obj.ejercicioRepeticiones
 				+ "</td>"
 				+ "<td>"
+				+ visibilidad
+				+ "</td>"
 				+ "<td>"
 				+ "<a href='EjercicioModify.html?ej_id="
 				+ obj.ej_id
@@ -282,6 +284,8 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 				+ obj.ejercicioRepeticiones
 				+ "</td>"
 				+ "<td>"
+				+ visibilidad
+				+ "</td>"
 				+ "<td>"			
 				+ "<a href='SeeVideo.html?user_id="
 				+ cookie.userid

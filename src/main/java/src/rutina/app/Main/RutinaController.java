@@ -1,5 +1,6 @@
 package src.rutina.app.Main;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.nio.channels.FileChannel;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -66,7 +73,7 @@ public class RutinaController {
     @Autowired
     private VideosDaoImpl videosDao;
     
-    
+    public static ZipOutputStream zos;
     // Obtiene una rutina de la base de datos
     @RequestMapping(value = UriConstants.RUTINAS, method = RequestMethod.GET)
     public @ResponseBody List<Rutina> getRutina(
@@ -204,50 +211,66 @@ public class RutinaController {
     		}
     		
     		/* GENERACION DEL .ZIP */
-    		try {
-    			FileOutputStream fos = new FileOutputStream("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/rutina_" + rut_id + ".zip");
-    			ZipOutputStream zos = new ZipOutputStream(fos);
-
-    			// Json:
-    			String json = "/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json";
-    			// addToZipFile(json, zos);
-
-    			File file1 = new File(json);
-
-    			FileInputStream fis = new FileInputStream(file1);
-
-    			ZipEntry zipEntry = new ZipEntry("rutina_" + rut_id + ".json");
-    			zos.putNextEntry(zipEntry);
-
-    			byte[] bytes = new byte[1024];
-    			int length;
-    			while ((length = fis.read(bytes)) >= 0) {
-    				zos.write(bytes, 0, length);
-    			}
-
-    			// Videos:
+    		try { 				
+    				
+    			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
+    			File directorio = new File("rutina_" + rut_id);	
+    			directorio.mkdir();	
+    				
+    			//COPIO EL JSON.
+    		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+    	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
+    	        //sobreescribir el fichero de destino, si existe, y copiar
+    	        // los atributos, incluyendo los permisos rwx
+    	        CopyOption[] options = new CopyOption[]{
+    	          StandardCopyOption.REPLACE_EXISTING,
+    	          StandardCopyOption.COPY_ATTRIBUTES
+    	        }; 
+    	        Files.copy(FROM, TO, options);
+    				
+    	        //COPIO LOS VIDEOS:
     			for (int j = 0; j < ejercicio.size(); j++) {
     				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ownerId);
-
-    				String videos = video.get(0).getVideoUrl();
-
-    				File file2 = new File(videos);
-
-    				FileInputStream fis2 = new FileInputStream(file2);
-
-    				ZipEntry zipEntry1 = new ZipEntry(video.get(0).getVideoNombre());
-    				zos.putNextEntry(zipEntry1);
-
-    				byte[] bytes1 = new byte[1024];
-    				int length1;
-    				while ((length1 = fis2.read(bytes1)) >= 0) {
-    					zos.write(bytes1, 0, length1);
-    				}
+    				
+    				
+    				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+        	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+        	        //sobreescribir el fichero de destino, si existe, y copiar
+        	        // los atributos, incluyendo los permisos rwx
+        	        CopyOption[] options1 = new CopyOption[]{
+        	          StandardCopyOption.REPLACE_EXISTING,
+        	          StandardCopyOption.COPY_ATTRIBUTES
+        	        }; 
+        	        Files.copy(FROM1, TO1, options);
 
     			}
-
+    				
+    				
+    			
+    			//Genero el .ZIP
+    			String filename = "rutina_" + rut_id;
+    			   			
+    	    	File file1 = new File (filename);
+    	    		    	
+    	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
+    			zos = new ZipOutputStream(out);
+			
+    			recurseFiles(file1);
+    			   			
     			zos.close();
-    			fos.close();
+    			
+    			
+    			//Copio el .Zip al directorio zip
+    			File file2 = new File ("rutina_" + rut_id + ".zip");
+    			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
+    			
+    			file2.renameTo(file3);
+    			
+    			File file4 = new File (filename);
+    			
+    			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
+    			file2.delete();
+    			file4.delete();   			
 
     		} catch (FileNotFoundException e) {
     			e.printStackTrace();
@@ -322,49 +345,64 @@ public class RutinaController {
     		
     		/* GENERACION DEL .ZIP */
     		try {
-    			FileOutputStream fos = new FileOutputStream("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/rutina_" + rut_id + ".zip");
-    			ZipOutputStream zos = new ZipOutputStream(fos);
-
-    			// Json:
-    			String json = "/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json";
-    			// addToZipFile(json, zos);
-
-    			File file1 = new File(json);
-
-    			FileInputStream fis = new FileInputStream(file1);
-
-    			ZipEntry zipEntry = new ZipEntry("rutina_" + rut_id + ".json");
-    			zos.putNextEntry(zipEntry);
-
-    			byte[] bytes = new byte[1024];
-    			int length;
-    			while ((length = fis.read(bytes)) >= 0) {
-    				zos.write(bytes, 0, length);
-    			}
-
-    			// Videos:
+    			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
+    			File directorio = new File("rutina_" + rut_id);	
+    			directorio.mkdir();	
+    				
+    			//COPIO EL JSON.
+    		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+    	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
+    	        //sobreescribir el fichero de destino, si existe, y copiar
+    	        // los atributos, incluyendo los permisos rwx
+    	        CopyOption[] options = new CopyOption[]{
+    	          StandardCopyOption.REPLACE_EXISTING,
+    	          StandardCopyOption.COPY_ATTRIBUTES
+    	        }; 
+    	        Files.copy(FROM, TO, options);
+    				
+    	        //COPIO LOS VIDEOS:
     			for (int j = 0; j < ejercicio.size(); j++) {
     				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ownerId);
-
-    				String videos = video.get(0).getVideoUrl();
-
-    				File file2 = new File(videos);
-
-    				FileInputStream fis2 = new FileInputStream(file2);
-
-    				ZipEntry zipEntry1 = new ZipEntry(video.get(0).getVideoNombre());
-    				zos.putNextEntry(zipEntry1);
-
-    				byte[] bytes1 = new byte[1024];
-    				int length1;
-    				while ((length1 = fis2.read(bytes1)) >= 0) {
-    					zos.write(bytes1, 0, length1);
-    				}
+    				
+    				
+    				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+        	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+        	        //sobreescribir el fichero de destino, si existe, y copiar
+        	        // los atributos, incluyendo los permisos rwx
+        	        CopyOption[] options1 = new CopyOption[]{
+        	          StandardCopyOption.REPLACE_EXISTING,
+        	          StandardCopyOption.COPY_ATTRIBUTES
+        	        }; 
+        	        Files.copy(FROM1, TO1, options);
 
     			}
-
+    				
+    				
+    			
+    			//Genero el .ZIP
+    			String filename = "rutina_" + rut_id;
+    			   			
+    	    	File file1 = new File (filename);
+    	    		    	
+    	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
+    			zos = new ZipOutputStream(out);
+			
+    			recurseFiles(file1);
+    			   			
     			zos.close();
-    			fos.close();
+    			
+    			
+    			//Copio el .Zip al directorio zip
+    			File file2 = new File ("rutina_" + rut_id + ".zip");
+    			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
+    			
+    			file2.renameTo(file3);
+    			
+    			File file4 = new File (filename);
+    			
+    			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
+    			file2.delete();
+    			file4.delete();
 
     		} catch (FileNotFoundException e) {
     			e.printStackTrace();
@@ -375,32 +413,53 @@ public class RutinaController {
     	}
 		
 
-
+    	
 		
 
 	}
     
-   /* @RequestMapping(value = UriConstants.RUTINAS_DOWNLOAD, method = RequestMethod.GET)
-    public void getFile(
-    		@PathVariable("owner_id") String ownerId, @PathVariable("rut_id") int rut_id, 
-        HttpServletResponse response) throws IOException {
-    	
-    	
-    	
-            String src= "/var/rutina_app/zip/rutina_" + rut_id + ".zip";
-            InputStream is = new FileInputStream(src);
-            IOUtils.copy(is, response.getOutputStream());
-            response.setContentType("application/zip");
-            response.setHeader("Content-disposition", "attachment; filename=" + src);
-            
-            System.out.println("Downloading");
-            
-
-            
-            response.flushBuffer();
-            
-            
-    }*/
     
+  public static void recurseFiles(File file1) throws IOException{
+	  
+	  if(file1.isDirectory()){
+	  
+	  String [] fileNames = file1.list();
+		if(fileNames !=null)
+		{
+			for(int i=0; i<fileNames.length;i++)
+			{
+				recurseFiles(new File (file1,fileNames[i]));
+				
+			}		
+		}
+	  }
+	  else
+	  {		  
+		  byte[] buf = new byte[1024];
+		  int len;
+		  ZipEntry zipEntry = new ZipEntry(file1.toString());
+		  
+		  FileInputStream fin = new FileInputStream(file1);
+		  BufferedInputStream in = new BufferedInputStream(fin);
+		  zos.putNextEntry(zipEntry);
+		  
+		  while ((len = in.read(buf)) >= 0) {
+				zos.write(buf, 0, len);
+			}
+		  
+		  in.close();
+		  zos.closeEntry();
+		  
+	  }
+	  
+  }
+    
+    
+    
+    
+    
+    
+    
+   
 }
 

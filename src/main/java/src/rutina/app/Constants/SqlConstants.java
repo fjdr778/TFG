@@ -151,13 +151,13 @@ public class SqlConstants {
     		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND EJERCICIO.Pub_priv=1";*/
     
     
-    public static final String GET_EJERCICIOS_NO_DE_RUTINA =
-    		" select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN "
-    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND Pub_priv=1 UNION "
-    		+ "select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE RUTINA_USUARIOS_Email=?" 
-    				+ "AND Pub_priv=0";
+    public static final String GET_EJERCICIOS_NO_DE_RUTINA =    
+    			"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN ("
+    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND Pub_priv=1) AND EJERCICIO.ej_id NOT IN"
+    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)) AND Pub_priv=0";		
     
-    		
+    
+    
     public static final String DELETE_EJERCICIO_DE_RUTINA = 
     		"DELETE FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND EJERCICIO_ej_id=?";
 

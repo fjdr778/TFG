@@ -114,7 +114,7 @@ public class VideosController{
 
 	    	  
 	        //Esto serviria para obtener el nombre original del fichero a subir
-	    	  String realfilename = uploadfile.getOriginalFilename();
+	    	 // String realfilename = uploadfile.getOriginalFilename();
 	    	  
 	        
 	        //Modificar el nombre del fichero compuesto por el nombre de usuario y un id unico del video
@@ -131,13 +131,13 @@ public class VideosController{
 	        stream.write(uploadfile.getBytes());
 	        stream.close();
 	        
-	        
+	        String filename1= ownerId + "_" + ej_id; 
 	       Videos video=new Videos();
 	        video.setEj_Id(ej_id);
-	        video.setVideoNombre(realfilename);
+	        video.setVideoNombre(filename1);
 	        video.setVideoUrl(filepath);
 	        video.setOwnerId(ownerId);
-	        this.videosDao.createVideo(realfilename, filepath,ej_id,ownerId);
+	        this.videosDao.createVideo(filename1, filepath,ej_id,ownerId);
 	      }
 	      catch (Exception e) {
 	        System.out.println(e.getMessage());

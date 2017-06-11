@@ -24,7 +24,7 @@ $(document).ready(function() {
 			rutina_description : {
 				required : true,
 				minlength : 20,
-				maxlength : 200
+				maxlength : 500
 			},			
 			rutina_info: {
 				required : true
