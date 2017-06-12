@@ -83,11 +83,13 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 	{
 		$(".print-ejercicios").hide();
 		$("#text-info").show();
+		$(".leyenda").hide();
 	}
 	else
 	{
 		$(".print-ejercicios").show();
 		$("#text-info").hide();
+		$(".leyenda").show();
 
 		// Iteramos para cada una de los ejercicios e imprimimos sus campos
 		for (var i = 0; i < jsonEjerciciosArray.length; i++) {
@@ -207,11 +209,13 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 	{
 		$(".print-ejercicios").hide();
 		$("#text-info").show();
+		$(".leyenda").hide();
 	}
 	else
 	{
 		$(".print-ejercicios").show();
 		$("#text-info").hide();
+		$(".leyenda").show();
 
 		// Iteramos para cada una de los ejercicios e imprimimos sus campos
 		for (var i = 0; i < jsonEjerciciosArray.length; i++) {

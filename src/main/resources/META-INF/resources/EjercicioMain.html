@@ -80,7 +80,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="RutinaMain.html">Mis Rutinas Disponibles</a>
+                                <a href="RutinaMain.html?rutina_Pub_Priv=false">Mis Rutinas Disponibles</a>
                             </li>
                             <li>
                                 <a href="RutinaAdd.html">Crear Nueva Rutina</a>
@@ -95,7 +95,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="active">
-                                <a href="EjercicioMain.html">Mis Ejercicios Disponibles</a>
+                                <a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Mis Ejercicios Disponibles</a>
                             </li>
                             <li>
                                 <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
@@ -162,13 +162,16 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Mis Ejercicios Disponibles
-                                <small >Estos son los Ejercicios que tiene registrados el usuario, con un resumen de sus datos. En el caso de que quiera añadir nuevos ejercicios, 
-                                o modificar los ya existentes, deberá hacer uso de las opciones de debajo de la lista</small>
+                                Ejercicios Disponibles
+                                <small >Estos son los Ejercicios que tiene disponibles el usuario. Podemos ver tanto los Ejercicios del 
+                                usuario registrado como los Ejercicios públicos del resto de usuarios con un resumen de sus datos. En el 
+                                caso de que quiera añadir nuevos ejercicios, o modificar los ya existentes, deberá hacer uso de las 
+                                opciones de debajo de la lista</small>
                             </h2>
                             <h3 id="text-info" style="text-align:center">
 						No hay Ejercicios Disponibles.
 					</h3><br/>
+						
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -185,12 +188,23 @@
                         <!-- Esqueleto de la tabla sobre la que se imprimirán las rutinas -->
                        
                         <div class="body table-responsive">
+                        <table class="leyenda table table-hover">
+                        		<thead>
+                                    <tr>
+                                        <th><i class='material-icons'>create</i> Modificar Ejercicio</th>
+										<th><i class='material-icons'>file_upload</i> Subir Video</th>
+                						<th><i class='material-icons'>delete</i> Eliminar Video/Ejercicio</th>
+                						
+                                    </tr>
+                                </thead>
+                                                               
+                            </table>
                        		 <form>
 									<div class="row clearfix">									
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 											<div class="form-group">
 												<div class="form-line">
-													<input type="text" name="ejercicio_busqueda" class="form-control" placeholder="Busqueda de Rutina">
+													<input type="text" name="ejercicio_busqueda" class="form-control" placeholder="Busqueda de Ejercicio">
 												</div>
 											</div>
 										</div>
@@ -203,7 +217,7 @@
 									</div>
 								</form>
                             <table class="print-ejercicios table table-hover">
-                                <thead>
+                             <thead>
                                     <tr>
                                         <th>Nombre</th>
 										<th>Titulo</th>
@@ -212,9 +226,8 @@
 										<th>Estado de Forma</th>
                 						<th>Repeticiones</th>
                 						<th>Visibilidad</th>
-										<th style="text-align:center">Gestionar Ejercicios</th>
                                     </tr>
-                                </thead>                               
+                                </thead>                                  
                             </table><br/><br/><br/><br/>
                             
                             

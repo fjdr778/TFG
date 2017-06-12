@@ -118,6 +118,14 @@ public class EjercicioController {
 	this.ejercicioDao.deleteEjercicioDeRutina(rut_id,ej_id);
     }
     
+  //Eliminar todos los ejercicios asociados a una rutina
+    @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteEjerciciosDeRutina(@PathVariable("rut_id") int rut_id) {
+
+	this.ejercicioDao.deleteEjerciciosDeRutina(rut_id);
+    }
+    
     // Añade un ejerciio en la base de datos
     @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.POST)
     //@ResponseStatus(HttpStatus.NO_CONTENT)

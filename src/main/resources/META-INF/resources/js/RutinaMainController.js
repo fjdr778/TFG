@@ -81,11 +81,13 @@ function printMisRutinasData(jsonRutinasArray) {
 	{
 		$(".print-rutinas").hide();
 		$("#text-info").show();
+		$(".leyenda").hide();
 	}
 	else
 	{
 		$(".print-rutinas").show();
 		$("#text-info").hide();
+		$(".leyenda").show();
 		// Iteramos para cada una de las rutinas e imprimimos sus campos
 		for (var i = 0; i < jsonRutinasArray.length; i++) {
 			var obj = jsonRutinasArray[i];
@@ -148,13 +150,15 @@ function printRutinasPublicasData(jsonRutinasArray) {
 	//compruebo si el json obtenido esta vacio:
 	if (jsonRutinasArray.length == 0)
 	{
-		$(".print-rutinas").hide();
+		$(".print-rutinas").hide();	
 		$("#text-info").show();
+		$(".leyenda").hide();
 	}
 	else
 	{
 		$(".print-rutinas").show();
 		$("#text-info").hide();
+		$(".leyenda").show();
 		// Iteramos para cada una de las rutinas e imprimimos sus campos
 		for (var i = 0; i < jsonRutinasArray.length; i++) {
 			var obj = jsonRutinasArray[i];
@@ -294,7 +298,9 @@ function deleteRutinaData(RutinaId) {
 
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-
+	
+	if(confirm("La Rutina que desea borrar tiene Ejercicios Asociados. ¿Esta seguro que desea borrar dicha rutina?"))
+		{
 	$.ajax({
 		url : "/Rutina_app/rutinas/" + cookie.userid + "/"
 		+ RutinaId,
@@ -306,6 +312,11 @@ function deleteRutinaData(RutinaId) {
 		window.location.href = "RutinaMain.html";
 		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
-		alert("La Rutina que desea borrar tiene Ejercicios Asociados. Por favor, desasocie los ejercicios antes de eliminar la Rutina");
+		alert("Rutina Borrada");
 	});
+		}
+	else
+		{
+		
+		}
 }

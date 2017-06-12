@@ -87,7 +87,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="EjercicioMain.html">Mis Ejercicios Disponibles</a>
+                                <a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Mis Ejercicios Disponibles</a>
                             </li>
                             <li>
                                 <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
@@ -156,12 +156,14 @@
 						<div class="card">
 							<div class="header">
 								<h2>
-									Mis Rutinas Disponibles <small>Estos son los Rutinas
-										que tiene registrados el usuario, con un resumen de sus datos.
+									Rutinas Disponibles <small>Estos son los Rutinas que tiene disponibles el usuario.
+									Podemos ver tanto las rutinas del usuario registrado como las rutinas publicas del 
+									resto de usuarios con un resumen de sus datos.
 										En el caso de que quiera añadir nuevas rutinas, o modificar
 										los ya existentes, deberá hacer uso de las opciones de debajo
 										de la lista</small>
 								</h2>
+								
 								<h3 id="text-info" style="text-align: center">No hay
 									Rutinas Disponibles.</h3>
 								<br />
@@ -184,6 +186,18 @@
 							<!-- Esqueleto de la tabla sobre la que se imprimirán las rutinas -->
 
 							<div class="body table-responsive">
+							<table class="leyenda table table-hover">
+                        		<thead>
+                                    <tr>
+                                        <th><i class='material-icons'>create</i> Modificar Rutina</th>
+										<th><i class='material-icons'>assignment</i> Ejercicios Asociados</th>
+                						<th><i class='material-icons'>note_add</i> Crear Rutina</th>
+                						<th><i class='material-icons'>file_download</i> Descargar Rutina</th>
+                						<th><i class='material-icons'>delete</i> Eliminar Rutina</th>
+                                    </tr>
+                                </thead>
+                                                               
+                            </table>
 								<form>
 									<div class="row clearfix">									
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">

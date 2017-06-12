@@ -95,7 +95,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="RutinaMain.html">Mis Rutinas Disponibles</a>
+                                <a href="RutinaMain.html?rutina_Pub_Priv=false">Mis Rutinas Disponibles</a>
                             </li>
                             <li>
                                 <a href="RutinaAdd.html">Crear Nueva Rutina</a>
@@ -110,7 +110,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="EjercicioMain.html">Mis Ejercicios Disponibles</a>
+                                <a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Mis Ejercicios Disponibles</a>
                             </li>
                             <li>
                                 <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
@@ -252,13 +252,14 @@
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                         <label>Estado de Forma:</label>
                                     </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="ejercicio_estadoforma" size="40" class="form-control" placeholder="Estado de forma del usuario">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="col-sm-6">
+                                    <select name="ejercicio_estadoforma" class="form-control show-tick">
+                                        <option value="">-- Seleccione una Opcion --</option>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option> 
+                                        <option value="Alto">Alto</option>                                       
+                                    </select>
+                               		</div>
                                 </div>
                                  <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">

@@ -49,4 +49,5 @@ public abstract interface EjercicioDao {
     public abstract void deleteAllEjercicio(String ownerId);
     
     public abstract void deleteEjercicioDeRutina(int rut_id,int ej_id);
+    public abstract void deleteEjerciciosDeRutina(int rut_id);
 }

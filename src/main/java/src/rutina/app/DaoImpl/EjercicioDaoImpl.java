@@ -154,6 +154,12 @@ public class EjercicioDaoImpl implements EjercicioDao {
 		new Object[] { ownerId});
     }
     
+    public void deleteEjerciciosDeRutina(int rut_id){
+    	jdbcTemplate.update(SqlConstants.DELETE_ALL_EJERCICIOS_DE_RUTINA,
+    			new Object[] { rut_id});
+    	
+    }
+    
     // Inyección del dataSource mediante el constructor
     public void setDataSource(DataSource dataSource) {
 	this.jdbcTemplate = new JdbcTemplate(dataSource);

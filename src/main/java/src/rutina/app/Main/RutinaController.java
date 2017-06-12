@@ -103,8 +103,10 @@ public class RutinaController {
     public void deleteRutina(
     		@PathVariable("owner_id") String ownerId,
     		@PathVariable("rut_id") int rut_id) {
-
+    	
+    	this.ejercicioDao.deleteEjerciciosDeRutina(rut_id);
     	this.rutinaDao.deleteRutina(ownerId,rut_id);
+    	
     }
 
     // Eliminar todas las rutinas de la base de datos
