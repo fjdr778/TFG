@@ -82,6 +82,10 @@ public class SqlConstants {
     public static final String GET_RUTINA = 
 	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND rut_id=?";
     
+  //Obtener rutinas de un usuario
+    public static final String GET_RUTINA1 = 
+	    "SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE rut_id=?";
+    
    //Los dos siguientes estan impoementados directamente en RutinaDaoImpl!! 
     
    /* public static final String GET_ALL_RUTINAS = 
@@ -106,14 +110,14 @@ public class SqlConstants {
     
     //Obtener rutinas de un usuario
     public static final String GET_EJERCICIO = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=? AND ej_id=?";
     
     
     public static final String GET_ALL_EJERCICIO = 
-	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
+	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
     
     public static final String GET_ALL_EJERCICIO1 =
-    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO WHERE Pub_priv=?";
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE Pub_priv=?";
     
   //Eliminar rutinas de un usuario
     public static final String DELETE_EJERCICIO = 
@@ -128,19 +132,19 @@ public class SqlConstants {
     		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id) VALUES (?,?)";
     
     public static final String GET_EJERCICIO_DE_RUTINA = 
-        		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM EJERCICIO,EJERCICIO_has_RUTINA"
+        		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO,EJERCICIO_has_RUTINA"
     		+ "WHERE EJERCICIO.ej_id=EJERCICIO_has_RUTINA.EJERCICIO_ej_id";
     
     
     //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina.
     public static final String GET_EJERCICIOS_DE_RUTINA = 
-    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM "
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM "
     		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id";
     
     
   //Va a devolver un objeto tipo ejercicio. Array de Ejercicios. Todos los ejercicios asociados a una rutina PUBLICA EXCEPTO LOS PRIVADOS.
     public static final String GET_EJERCICIOS_DE_RUTINA_PUBLICA = 
-    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv FROM "
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM "
     		+ "EJERCICIO,EJERCICIO_has_RUTINA WHERE EJERCICIO_has_RUTINA.RUTINA_rut_id=? AND EJERCICIO_has_RUTINA.EJERCICIO_ej_id=EJERCICIO.ej_id AND EJERCICIO.Pub_priv=1";
     
     
@@ -151,10 +155,14 @@ public class SqlConstants {
     		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?) AND EJERCICIO.Pub_priv=1";*/
     
     
-    public static final String GET_EJERCICIOS_NO_DE_RUTINA =    
-    			"select ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv from EJERCICIO WHERE EJERCICIO.ej_id NOT IN ("
-    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=? AND Pub_priv=1) AND EJERCICIO.ej_id NOT IN"
-    		+ "(SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)) AND Pub_priv=0";		
+    /*public static final String GET_EJERCICIOS_NO_DE_RUTINA =    
+    			"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email from EJERCICIO WHERE EJERCICIO.Pub_priv=0 AND RUTINA_USUARIOS_Email=?"
+    			+ "AND EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)"
+    			+ "UNION"
+    			+ "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email from EJERCICIO WHERE EJERCICIO.Pub_priv=1"
+    			+ "AND EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id=?)";
+    			/*+ "EJERCICIO.ej_id NOT IN ("
+    		+ "SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA,EJERCICIO WHERE RUTINA_rut_id=? AND)";*/
     
     
     

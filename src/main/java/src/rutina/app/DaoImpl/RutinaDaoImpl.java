@@ -56,6 +56,12 @@ public class RutinaDaoImpl implements RutinaDao {
 				new RutinaRowMapper());
 	}
     
+    @Override
+	public List<Rutina> getRutina1(int rut_id) {
+		return jdbcTemplate.query(SqlConstants.GET_RUTINA1,
+				new Object[] {rut_id },
+				new RutinaRowMapper());
+	}
     
     @Override
 	public List<Rutina> getAllRutinas(String ownerId,boolean rutinaPub_Priv,String rutina_busqueda) {	

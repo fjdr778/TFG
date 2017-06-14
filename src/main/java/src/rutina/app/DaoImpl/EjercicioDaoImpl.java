@@ -99,7 +99,7 @@ public class EjercicioDaoImpl implements EjercicioDao {
     
     public List<Ejercicio> getAllEjerciciosDeRutina(int rut_id){  	
     	
-      	System.out.println("1");
+      	
     	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA,
     			new Object[] {rut_id}, new EjercicioRowMapper());  	
     	
@@ -108,7 +108,7 @@ public class EjercicioDaoImpl implements EjercicioDao {
     
     public List<Ejercicio> getEjerciciosDeRutinaPublica(int rut_id, String rutPub){ 
     	
-    	System.out.println("2");
+    	
     	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_DE_RUTINA_PUBLICA,			
     			new Object[] {rut_id}, new EjercicioRowMapper());  	
     }
@@ -124,8 +124,12 @@ public class EjercicioDaoImpl implements EjercicioDao {
     	if(ejercicio_busqueda.equals(""))
     	{
     		System.out.println("vacio: "+ejercicio_busqueda);
-    	return jdbcTemplate.query(SqlConstants.GET_EJERCICIOS_NO_DE_RUTINA,
-    			new Object[] { rut_id,ownerId}, new EjercicioRowMapper());  	
+    	return jdbcTemplate.query("SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email from EJERCICIO WHERE EJERCICIO.Pub_priv=0 AND RUTINA_USUARIOS_Email='"+ ownerId +
+    			 "' AND EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id="+rut_id+ ")"
+    			 + "UNION SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email from EJERCICIO WHERE EJERCICIO.Pub_priv=1" +
+    			 " AND EJERCICIO.ej_id NOT IN (SELECT EJERCICIO_has_RUTINA.EJERCICIO_ej_id FROM EJERCICIO_has_RUTINA WHERE RUTINA_rut_id="+rut_id+ ")"
+    			,
+    			new Object[] {}, new EjercicioRowMapper());  	
     	}
     	else
     	{

@@ -23,6 +23,7 @@ public abstract interface RutinaDao {
     public abstract void createRutina(String rutinaNombre, String rutinaDescripcion,
 	    String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId);
     public abstract List<Rutina> getRutina(String ownerId,int rut_id);
+    public abstract List<Rutina> getRutina1(int rut_id);
     public abstract List<Rutina> getAllRutinas(String ownerId, boolean rutinaPub_Priv,String rutina_busqueda);
     public abstract void deleteRutina(String ownerId,int rut_id);
     public abstract void deleteAllRutinas(String ownerId);

@@ -12,7 +12,7 @@
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
 	
-	
+	$('[data-toggle="tooltip"]').tooltip();
 	var ejercicio_Pub_Priv = false;
 	ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
 	console.log(ejercicio_Pub_Priv);
@@ -135,13 +135,13 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 				+ "<td>"
 				+ "<a href='EjercicioModify.html?ej_id="
 				+ obj.ej_id
-				+ "'><i class='material-icons'>create</i></a>"	
+				+ "' data-toggle='tooltip' title='Modificar Ejercicio'><i class='material-icons'>create</i></a>"	
 				+ "<a href='VideosAdd.html?ej_id=" 
 				+ obj.ej_id
-				+ "'><i class='material-icons'>file_upload</i></a>"	
+				+ "' data-toggle='tooltip' title='Subir Video'><i class='material-icons'>file_upload</i></a>"	
 				+ "<a onclick='deleteEjercicioData("
 				+ obj.ej_id
-				+ ")'><i class='material-icons'>delete</i></a>"
+				+ ")' data-toggle='tooltip' title='Eliminar Ejercicio'><i class='material-icons'>delete</i></a>"
 				+ "</td>" + "</tr>"
 
 
@@ -175,16 +175,16 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 				+ "<td>"
 				+ "<a href='EjercicioModify.html?ej_id="
 				+ obj.ej_id
-				+ "'><i class='material-icons'>create</i></a>"
+				+ "' data-toggle='tooltip' title='Modificar Ejercicio'><i class='material-icons'>create</i></a>"
 
 				+ "<a href='SeeVideo.html?user_id="
 				+ cookie.userid
 				+ "&ej_id="
 				+ obj.ej_id
-				+ "'><i class='material-icons'>video_library</i></a>"	
+				+ "' data-toggle='tooltip' title='Ver Video'><i class='material-icons'>video_library</i></a>"	
 				+ "<a onclick='deleteVideoData("
 				+ obj.ej_id
-				+ ")'><i class='material-icons'>delete</i></a>"
+				+ ")' data-toggle='tooltip' title='Eliminar Video'><i class='material-icons'>delete</i></a>"
 				+ "</td>" + "</tr>"
 
 
@@ -295,7 +295,7 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 				+ cookie.userid
 				+ "&ej_id="
 				+ obj.ej_id
-				+ "'><i class='material-icons'>video_library</i></a>"					
+				+ "' data-toggle='tooltip' title='Ver Video'><i class='material-icons'>video_library</i></a>"					
 				+ "</td>" + "</tr>"
 
 

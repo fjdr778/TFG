@@ -13,6 +13,7 @@
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
 
+	$('[data-toggle="tooltip"]').tooltip();
 	var rutina_Pub_Priv = false; 
 	rutina_Pub_Priv= getUrlParameter('rutina_Pub_Priv');
 	console.log(rutina_Pub_Priv);
@@ -117,20 +118,20 @@ function printMisRutinasData(jsonRutinasArray) {
 			+ "<td>"
 			+ "<a href='RutinaModify.html?rut_id="
 			+ obj.rut_id
-			+ "'><i class='material-icons'>create</i></a>"
+			+ "'data-toggle='tooltip' title='Modificar Rutina'><i class='material-icons'>create</i></a>"
 			+ "<a href='EjerciciosDeRutinaMain.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
 			+ obj.rut_id
 			+"&rutPub=nopub"
-			+ "'><i class='material-icons'>assignment</i></a>"
+			+ "' data-toggle='tooltip' title='Ejercicios Asociados'><i class='material-icons'>assignment</i></a>"
 			+ "<a onclick='downloadRutinaData("
 			+ obj.rut_id
-			+ ")' download><i class='material-icons'>note_add</i></a>"
+			+ ")' data-toggle='tooltip' title='Generar .Zip'><i class='material-icons'>note_add</i></a>"
 			+ "<a href='http://localhost:8080/rutina_app/zip/rutina_"
 			+ obj.rut_id
-			+".zip' download><i class='material-icons'>file_download</i></a>"
+			+".zip' data-toggle='tooltip' title='Descargar Rutina'><i class='material-icons'>file_download</i></a>"
 			+ "<a onclick='deleteRutinaData("
 			+ obj.rut_id
-			+ ")'><i class='material-icons'>delete</i></a>"
+			+ ")' data-toggle='tooltip' title='Eliminar Rutina'><i class='material-icons'>delete</i></a>"
 			+ "</td>" + "</tr>"
 
 			container.innerHTML += summedRutinaInfo;
@@ -189,13 +190,13 @@ function printRutinasPublicasData(jsonRutinasArray) {
 			+ "<a href='EjerciciosDeRutinaMain.html?rut_Id="//En este html, deben mostrarse los ejercicios de una rutina
 			+ obj.rut_id
 			+"&rutPub=pub"
-			+ "'><i class='material-icons'>assignment</i></a>"
-			+ "<a onclick='downloadRutinaData("
+			+ "' data-toggle='tooltip' title='Ejercicios Asociados'><i class='material-icons'>assignment</i></a>"
+			+ "<a onclick='downloadRutinaData1("
 			+ obj.rut_id	
-			+ ")' download><i class='material-icons'>note_add</i></a>"
+			+ ")' data-toggle='tooltip' title='Generar .Zip'><i class='material-icons'>note_add</i></a>"
 			+ "<a href='http://localhost:8080/rutina_app/zip/rutina_"
 			+ obj.rut_id
-			+".zip' download><i class='material-icons'>file_download</i></a>"
+			+".zip' data-toggle='tooltip' title='Descargar Rutina'><i class='material-icons'>file_download</i></a>"
 			+ "</td>" + "</tr>"
 
 			container.innerHTML += summedRutinaInfo;
@@ -232,13 +233,12 @@ function busqueda()
 
 }
 
-function downloadRutinaData(RutinaId,rutPub){
+function downloadRutinaData(RutinaId){
 
 	//Queda por configurar bien. Nose si es Get o Post.
 
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-
 	$.ajax({
 		url : "/Rutina_app/downloads/" + cookie.userid + "/"
 		+ RutinaId + "?rutPub=nopub",
@@ -252,9 +252,27 @@ function downloadRutinaData(RutinaId,rutPub){
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Zip no creado");
 	});
-
-
 }
+	
+function downloadRutinaData1(RutinaId){
+	// Obtenemos la cookie
+	var cookie = JSON.parse($.cookie('RutinaUsuario'));
+		$.ajax({
+			url : "/Rutina_app/downloads/" + cookie.userid + "/"
+			+ RutinaId + "?rutPub=pub",
+			headers: {'X-CSRF-TOKEN': cookie.csrf},
+			type : "POST",
+			// En caso de éxito: informamos y redirigimos
+		}).done(function (data, textStatus, jqXHR) {
+			alert("Zip Creado.");
+			//descargareal(RutinaId);
+			// Avisamos al usuario de que ha surgido un error
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			alert("Zip no creado");
+		});
+			
+}
+
 
 function descargareal(RutId)
 {

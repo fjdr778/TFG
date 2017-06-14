@@ -82,6 +82,16 @@ public class RutinaController {
 
     	return this.rutinaDao.getRutina(ownerId,rut_id);
     }
+    
+ // Obtiene una rutina de la base de datos
+    @RequestMapping(value = UriConstants.RUTINAS1, method = RequestMethod.GET)
+    public @ResponseBody List<Rutina> getRutina1( 
+	    @PathVariable("rut_id") int rut_id) {
+
+    	return this.rutinaDao.getRutina1(rut_id);
+    }
+    
+
 
     // Obtiene todas las rutinas de la base de datos
     @RequestMapping(value = UriConstants.ALL_RUTINAS, method = RequestMethod.GET)
@@ -147,281 +157,319 @@ public class RutinaController {
 	public void downloadRutina(@PathVariable("owner_id") String ownerId, @PathVariable("rut_id") int rut_id,
 			@RequestParam("rutPub") String rutPub) {
 	
-		//System.out.println(rutPub);
+        	
     	if(rutPub.equals("nopub"))
     	{
     		// Obtengo la turina y los ejercicios asociados a esa rutina:
-    		List<Rutina> rutina = this.rutinaDao.getRutina(ownerId, rut_id);
-    		List<Ejercicio> ejercicio = this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
-    		/* CREACION DEL JSON */
+        		List<Rutina> rutina = this.rutinaDao.getRutina(ownerId, rut_id);
+        		List<Ejercicio> ejercicio = this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
+        		//List<Ejercicio> ejerciciospublicos = this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,ownerId);
+        		/* CREACION DEL JSON */
 
-    		JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
-    		JsonObjectBuilder jsonBuilder1 = Json.createObjectBuilder();
+        		JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
+        		JsonObjectBuilder jsonBuilder1 = Json.createObjectBuilder();
 
-    		// create an array of key-value pairs
-    		JsonArrayBuilder ejer = Json.createArrayBuilder();
-    		JsonArrayBuilder total = Json.createArrayBuilder();
+        		// create an array of key-value pairs
+        		JsonArrayBuilder ejer = Json.createArrayBuilder();
+        		JsonArrayBuilder total = Json.createArrayBuilder();
 
-    		// Para cada ejercicio, creo el Json:
-    		for (int i = 0; i < ejercicio.size(); i++) {
+        
+        		
+        		/*List<Videos> video = this.videosDao.getVideo((int) ejerciciospublicos.get(0).getEj_id(), ownerId);
+        		System.out.print(ejercicio.get(0).getEj_id());
+        		System.out.print(video.get(0).getVideoNombre());*/
+        		// Para cada ejercicio, creo el Json:
+        		for (int i = 0; i < ejercicio.size(); i++) {
 
-    			List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(i).getEj_id(), ownerId);
-    			jsonBuilder.add("Nombre", video.get(0).getVideoNombre());
-    			jsonBuilder.add("Titulo", ejercicio.get(i).getEjercicioTitulo());
-    			jsonBuilder.add("Subtitulo", ejercicio.get(i).getEjercicioSubtitulo());
-    			jsonBuilder.add("Descripcion", ejercicio.get(i).getEjercicioDescripcion());
-    			jsonBuilder.add("Estado de forma", ejercicio.get(i).getEjercicioEstado_Forma());
-    			jsonBuilder.add("Repeticiones", ejercicio.get(i).getEjercicioRepeticiones());
+        			List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(i).getEj_id(), ejercicio.get(i).getOwnerId());
 
+        			jsonBuilder.add("Nombre", video.get(0).getVideoNombre());
+        			jsonBuilder.add("Titulo", ejercicio.get(i).getEjercicioTitulo());
+        			jsonBuilder.add("Subtitulo", ejercicio.get(i).getEjercicioSubtitulo());
+        			jsonBuilder.add("Descripcion", ejercicio.get(i).getEjercicioDescripcion());
+        			jsonBuilder.add("Estado de forma", ejercicio.get(i).getEjercicioEstado_Forma());
+        			jsonBuilder.add("Repeticiones", ejercicio.get(i).getEjercicioRepeticiones());
+        						
+        			System.out.println("Id: "+ejercicio.get(i).getEj_id());
+        			System.out.println("Titulo: "+ ejercicio.get(i).getEjercicioTitulo());
+        			System.out.println("Subtitulo: "+ ejercicio.get(i).getEjercicioSubtitulo());
+        			System.out.println("Descripcion: "+ ejercicio.get(i).getEjercicioDescripcion());
+        			System.out.println("Estado de forma: "+ ejercicio.get(i).getEjercicioEstado_Forma());
+        			System.out.println("Repeticiones: "+ ejercicio.get(i).getEjercicioRepeticiones());
+        			System.out.println("Pub_priv: "+ ejercicio.get(i).isEjercicioPub_Priv());
+        			System.out.println("Propietario: "+ ejercicio.get(i).getOwnerId());
+        			System.out.println("Nombre: "+ video.get(0).getVideoNombre());
     			// create each key-value pair as seperate object and add it to the
     			// array
-    			ejer.add(jsonBuilder);
-    		}
+        			ejer.add(jsonBuilder);
+        		}
+        		
 
-    		JsonArray ejerArr = ejer.build();
-    		// add contacts array object
+        		JsonArray ejerArr = ejer.build();
+        		// add contacts array object
 
-    		jsonBuilder.add("descripcion rutina", rutina.get(0).getRutinaDescripcion());
-    		jsonBuilder1.add("informacion ejercicios", ejerArr);
+        		jsonBuilder.add("descripcion rutina", rutina.get(0).getRutinaDescripcion());
+        		jsonBuilder1.add("informacion ejercicios", ejerArr);
 
-    		total.add(jsonBuilder);
-    		total.add(jsonBuilder1);
+        		total.add(jsonBuilder);
+        		total.add(jsonBuilder1);
 
-    		JsonArray totalArr = total.build();
+        		JsonArray totalArr = total.build();
 
-    		// here we are writing to String writer.
-    		// if you want you can write it to a file as well
-    		StringWriter strWtr = new StringWriter();
-    		JsonWriter jsonWtr = Json.createWriter(strWtr);
-    		jsonWtr.writeArray(totalArr);
-    		jsonWtr.close();
+        		// here we are writing to String writer.
+        		// if you want you can write it to a file as well
+        		StringWriter strWtr = new StringWriter();
+        		JsonWriter jsonWtr = Json.createWriter(strWtr);
+        		jsonWtr.writeArray(totalArr);
+        		jsonWtr.close();
 
-    		System.out.println(strWtr.toString());
+        		System.out.println(strWtr.toString());
 
-    		
+        		
 
-    		
-    		FileWriter file;
-    		try {
-    			file = new FileWriter("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
-    			file.write(strWtr.toString());
-    			file.close();
-    			System.out.println("Successfully Copied JSON Object to File...");
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-    		
-    		/* GENERACION DEL .ZIP */
-    		try { 				
-    				
-    			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
-    			File directorio = new File("rutina_" + rut_id);	
-    			directorio.mkdir();	
-    				
-    			//COPIO EL JSON.
-    		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
-    	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
-    	        //sobreescribir el fichero de destino, si existe, y copiar
-    	        // los atributos, incluyendo los permisos rwx
-    	        CopyOption[] options = new CopyOption[]{
-    	          StandardCopyOption.REPLACE_EXISTING,
-    	          StandardCopyOption.COPY_ATTRIBUTES
-    	        }; 
-    	        Files.copy(FROM, TO, options);
-    				
-    	        //COPIO LOS VIDEOS:
-    			for (int j = 0; j < ejercicio.size(); j++) {
-    				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ownerId);
-    				
-    				
-    				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
-        	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+        		
+        		FileWriter file;
+        		try {
+        			file = new FileWriter("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+        			file.write(strWtr.toString());
+        			file.close();
+        			System.out.println("Successfully Copied JSON Object to File...");
+        		} catch (IOException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
+        		
+        		/* GENERACION DEL .ZIP */
+        		try { 				
+        				
+        			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
+        			File directorio = new File("rutina_" + rut_id);	
+        			directorio.mkdir();	
+        				
+        			//COPIO EL JSON.
+        		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+        	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
         	        //sobreescribir el fichero de destino, si existe, y copiar
         	        // los atributos, incluyendo los permisos rwx
-        	        CopyOption[] options1 = new CopyOption[]{
+        	        CopyOption[] options = new CopyOption[]{
         	          StandardCopyOption.REPLACE_EXISTING,
         	          StandardCopyOption.COPY_ATTRIBUTES
         	        }; 
-        	        Files.copy(FROM1, TO1, options);
+        	        Files.copy(FROM, TO, options);
+        				
+        	        //COPIO LOS VIDEOS:
+        			for (int j = 0; j < ejercicio.size(); j++) {
+        				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ejercicio.get(j).getOwnerId());
+        				
+        				
+        				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+            	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+            	        //sobreescribir el fichero de destino, si existe, y copiar
+            	        // los atributos, incluyendo los permisos rwx
+            	        CopyOption[] options1 = new CopyOption[]{
+            	          StandardCopyOption.REPLACE_EXISTING,
+            	          StandardCopyOption.COPY_ATTRIBUTES
+            	        }; 
+            	        Files.copy(FROM1, TO1, options);
 
-    			}
-    				
-    				
+        			}
+        				
+        				
+        			
+        			//Genero el .ZIP
+        			String filename = "rutina_" + rut_id;
+        			   			
+        	    	File file1 = new File (filename);
+        	    		    	
+        	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
+        			zos = new ZipOutputStream(out);
     			
-    			//Genero el .ZIP
-    			String filename = "rutina_" + rut_id;
-    			   			
-    	    	File file1 = new File (filename);
-    	    		    	
-    	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
-    			zos = new ZipOutputStream(out);
-			
-    			recurseFiles(file1);
-    			   			
-    			zos.close();
-    			
-    			
-    			//Copio el .Zip al directorio zip
-    			File file2 = new File ("rutina_" + rut_id + ".zip");
-    			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
-    			
-    			file2.renameTo(file3);
-    			
-    			File file4 = new File (filename);
-    			
-    			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
-    			file2.delete();
-    			file4.delete();   			
+        			recurseFiles(file1);
+        			   			
+        			zos.close();
+        			
+        			
+        			//Copio el .Zip al directorio zip
+        			File file2 = new File ("rutina_" + rut_id + ".zip");
+        			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
+        			
+        			file2.renameTo(file3);
+        			
+        			File file4 = new File (filename);
+        			
+        			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
+        			file2.delete();
+        			file4.delete();   			
 
-    		} catch (FileNotFoundException e) {
-    			e.printStackTrace();
-    		} catch (IOException e) {
-    			e.printStackTrace();
+        		} catch (FileNotFoundException e) {
+        			e.printStackTrace();
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
     		}
-    	}
-    	else
-    	{
-    		// Obtengo la turina y los ejercicios asociados a esa rutina:
-    		List<Rutina> rutina = this.rutinaDao.getRutina(ownerId, rut_id);
-    		//System.out.println("controlador2");
-    		List<Ejercicio> ejercicio = this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,rutPub);
-    		/* CREACION DEL JSON */
+        		else
+        		{
+        			// Obtengo la turina y los ejercicios asociados a esa rutina:
+            		List<Rutina> rutina = this.rutinaDao.getRutina1(rut_id);
+            		List<Ejercicio> ejercicio = this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,rutPub);
+            		//List<Ejercicio> ejerciciospublicos = this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,ownerId);
+            		/* CREACION DEL JSON */
 
-    		JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
-    		JsonObjectBuilder jsonBuilder1 = Json.createObjectBuilder();
+            		JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
+            		JsonObjectBuilder jsonBuilder1 = Json.createObjectBuilder();
 
-    		// create an array of key-value pairs
-    		JsonArrayBuilder ejer = Json.createArrayBuilder();
-    		JsonArrayBuilder total = Json.createArrayBuilder();
+            		// create an array of key-value pairs
+            		JsonArrayBuilder ejer = Json.createArrayBuilder();
+            		JsonArrayBuilder total = Json.createArrayBuilder();
 
-    		// Para cada ejercicio, creo el Json:
-    		for (int i = 0; i < ejercicio.size(); i++) {
+            
+            		
+            		/*List<Videos> video = this.videosDao.getVideo((int) ejerciciospublicos.get(0).getEj_id(), ownerId);
+            		System.out.print(ejercicio.get(0).getEj_id());
+            		System.out.print(video.get(0).getVideoNombre());*/
+            		// Para cada ejercicio, creo el Json:
+            		for (int i = 0; i < ejercicio.size(); i++) {
 
-    			List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(i).getEj_id(), ownerId);
-    			jsonBuilder.add("Nombre", video.get(0).getVideoNombre());
-    			jsonBuilder.add("Titulo", ejercicio.get(i).getEjercicioTitulo());
-    			jsonBuilder.add("Subtitulo", ejercicio.get(i).getEjercicioSubtitulo());
-    			jsonBuilder.add("Descripcion", ejercicio.get(i).getEjercicioDescripcion());
-    			jsonBuilder.add("Estado de forma", ejercicio.get(i).getEjercicioEstado_Forma());
-    			jsonBuilder.add("Repeticiones", ejercicio.get(i).getEjercicioRepeticiones());
+            			//List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(i).getEj_id(), ejercicio.get(i).getOwnerId());
 
-    			// create each key-value pair as seperate object and add it to the
-    			// array
-    			ejer.add(jsonBuilder);
-    		}
+            			jsonBuilder.add("Nombre", ejercicio.get(i).getOwnerId() + "_" + ejercicio.get(i).getEj_id());
+            			jsonBuilder.add("Titulo", ejercicio.get(i).getEjercicioTitulo());
+            			jsonBuilder.add("Subtitulo", ejercicio.get(i).getEjercicioSubtitulo());
+            			jsonBuilder.add("Descripcion", ejercicio.get(i).getEjercicioDescripcion());
+            			jsonBuilder.add("Estado de forma", ejercicio.get(i).getEjercicioEstado_Forma());
+            			jsonBuilder.add("Repeticiones", ejercicio.get(i).getEjercicioRepeticiones());
+            						
+            			System.out.println("Id: "+ejercicio.get(i).getEj_id());
+            			System.out.println("Titulo: "+ ejercicio.get(i).getEjercicioTitulo());
+            			System.out.println("Subtitulo: "+ ejercicio.get(i).getEjercicioSubtitulo());
+            			System.out.println("Descripcion: "+ ejercicio.get(i).getEjercicioDescripcion());
+            			System.out.println("Estado de forma: "+ ejercicio.get(i).getEjercicioEstado_Forma());
+            			System.out.println("Repeticiones: "+ ejercicio.get(i).getEjercicioRepeticiones());
+            			System.out.println("Pub_priv: "+ ejercicio.get(i).isEjercicioPub_Priv());
+            			System.out.println("Propietario: "+ ejercicio.get(i).getOwnerId());
+            			System.out.println("Nombre: " + ejercicio.get(i).getOwnerId() + "_" + ejercicio.get(i).getEj_id());
+        			// create each key-value pair as seperate object and add it to the
+        			// array
+            			ejer.add(jsonBuilder);
+            		}
+            		
 
-    		JsonArray ejerArr = ejer.build();
-    		// add contacts array object
+            		JsonArray ejerArr = ejer.build();
+            		// add contacts array object
 
-    		jsonBuilder.add("descripcion rutina", rutina.get(0).getRutinaDescripcion());
-    		jsonBuilder1.add("informacion ejercicios", ejerArr);
+            		jsonBuilder.add("descripcion rutina", rutina.get(0).getRutinaDescripcion());
+            		jsonBuilder1.add("informacion ejercicios", ejerArr);
 
-    		total.add(jsonBuilder);
-    		total.add(jsonBuilder1);
+            		total.add(jsonBuilder);
+            		total.add(jsonBuilder1);
 
-    		JsonArray totalArr = total.build();
+            		JsonArray totalArr = total.build();
 
-    		// here we are writing to String writer.
-    		// if you want you can write it to a file as well
-    		StringWriter strWtr = new StringWriter();
-    		JsonWriter jsonWtr = Json.createWriter(strWtr);
-    		jsonWtr.writeArray(totalArr);
-    		jsonWtr.close();
+            		// here we are writing to String writer.
+            		// if you want you can write it to a file as well
+            		StringWriter strWtr = new StringWriter();
+            		JsonWriter jsonWtr = Json.createWriter(strWtr);
+            		jsonWtr.writeArray(totalArr);
+            		jsonWtr.close();
 
-    		System.out.println(strWtr.toString());
+            		System.out.println(strWtr.toString());
 
-    		
+            		
 
-    		
-    		FileWriter file;
-    		try {
-    			file = new FileWriter("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
-    			file.write(strWtr.toString());
-    			file.close();
-    			System.out.println("Successfully Copied JSON Object to File...");
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-    		
-    		/* GENERACION DEL .ZIP */
-    		try {
-    			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
-    			File directorio = new File("rutina_" + rut_id);	
-    			directorio.mkdir();	
-    				
-    			//COPIO EL JSON.
-    		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
-    	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
-    	        //sobreescribir el fichero de destino, si existe, y copiar
-    	        // los atributos, incluyendo los permisos rwx
-    	        CopyOption[] options = new CopyOption[]{
-    	          StandardCopyOption.REPLACE_EXISTING,
-    	          StandardCopyOption.COPY_ATTRIBUTES
-    	        }; 
-    	        Files.copy(FROM, TO, options);
-    				
-    	        //COPIO LOS VIDEOS:
-    			for (int j = 0; j < ejercicio.size(); j++) {
-    				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ownerId);
-    				
-    				
-    				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
-        	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
-        	        //sobreescribir el fichero de destino, si existe, y copiar
-        	        // los atributos, incluyendo los permisos rwx
-        	        CopyOption[] options1 = new CopyOption[]{
-        	          StandardCopyOption.REPLACE_EXISTING,
-        	          StandardCopyOption.COPY_ATTRIBUTES
-        	        }; 
-        	        Files.copy(FROM1, TO1, options);
+            		
+            		FileWriter file;
+            		try {
+            			file = new FileWriter("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+            			file.write(strWtr.toString());
+            			file.close();
+            			System.out.println("Successfully Copied JSON Object to File...");
+            		} catch (IOException e) {
+            			// TODO Auto-generated catch block
+            			e.printStackTrace();
+            		}
+            		
+            		/* GENERACION DEL .ZIP */
+            		try { 				
+            				
+            			//CREO EL DIRECTORIO CORRESPONDIENTE A LA RUTINA.
+            			File directorio = new File("rutina_" + rut_id);	
+            			directorio.mkdir();	
+            				
+            			//COPIO EL JSON.
+            		    Path FROM = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/json/rutina_" + rut_id + ".json");
+            	        Path TO = Paths.get("rutina_" + rut_id +"/rutina_" + rut_id + ".json");
+            	        //sobreescribir el fichero de destino, si existe, y copiar
+            	        // los atributos, incluyendo los permisos rwx
+            	        CopyOption[] options = new CopyOption[]{
+            	          StandardCopyOption.REPLACE_EXISTING,
+            	          StandardCopyOption.COPY_ATTRIBUTES
+            	        }; 
+            	        Files.copy(FROM, TO, options);
+            				
+            	        //COPIO LOS VIDEOS:
+            			for (int j = 0; j < ejercicio.size(); j++) {
+            				List<Videos> video = this.videosDao.getVideo((int) ejercicio.get(j).getEj_id(), ejercicio.get(j).getOwnerId());
+            				
+            				
+            				Path FROM1 = Paths.get("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/uploads/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+                	        Path TO1 = Paths.get("rutina_" + rut_id + "/" + video.get(0).getOwnerId() + "_" + video.get(0).getEj_Id() + ".mp4");
+                	        //sobreescribir el fichero de destino, si existe, y copiar
+                	        // los atributos, incluyendo los permisos rwx
+                	        CopyOption[] options1 = new CopyOption[]{
+                	          StandardCopyOption.REPLACE_EXISTING,
+                	          StandardCopyOption.COPY_ATTRIBUTES
+                	        }; 
+                	        Files.copy(FROM1, TO1, options);
 
-    			}
-    				
-    				
-    			
-    			//Genero el .ZIP
-    			String filename = "rutina_" + rut_id;
-    			   			
-    	    	File file1 = new File (filename);
-    	    		    	
-    	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
-    			zos = new ZipOutputStream(out);
-			
-    			recurseFiles(file1);
-    			   			
-    			zos.close();
-    			
-    			
-    			//Copio el .Zip al directorio zip
-    			File file2 = new File ("rutina_" + rut_id + ".zip");
-    			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
-    			
-    			file2.renameTo(file3);
-    			
-    			File file4 = new File (filename);
-    			
-    			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
-    			file2.delete();
-    			file4.delete();
+            			}
+            				
+            				
+            			
+            			//Genero el .ZIP
+            			String filename = "rutina_" + rut_id;
+            			   			
+            	    	File file1 = new File (filename);
+            	    		    	
+            	    	FileOutputStream out = new FileOutputStream(file1 + ".zip");
+            			zos = new ZipOutputStream(out);
+        			
+            			recurseFiles(file1);
+            			   			
+            			zos.close();
+            			
+            			
+            			//Copio el .Zip al directorio zip
+            			File file2 = new File ("rutina_" + rut_id + ".zip");
+            			File file3 = new File ("/home/fran/sts-bundle/pivotal-tc-server-developer-3.2.2.RELEASE/Servidor1/webapps/ROOT/rutina_app/zip/" + "rutina_" + rut_id + ".zip");
+            			
+            			file2.renameTo(file3);
+            			
+            			File file4 = new File (filename);
+            			
+            			//Elimino lo creado del directorio "sts-3.8.3.RELEASE"
+            			file2.delete();
+            			file4.delete();   			
 
-    		} catch (FileNotFoundException e) {
-    			e.printStackTrace();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-    		
-    	}
-		
-
+            		} catch (FileNotFoundException e) {
+            			e.printStackTrace();
+            		} catch (IOException e) {
+            			e.printStackTrace();
+            		}
+        		
+        		}
+        		
+}
+        	
     	
-		
 
-	}
+	
     
     
-  public static void recurseFiles(File file1) throws IOException{
+ 
+    
+    
+    
+    public static void recurseFiles(File file1) throws IOException{
 	  
 	  if(file1.isDirectory()){
 	  
