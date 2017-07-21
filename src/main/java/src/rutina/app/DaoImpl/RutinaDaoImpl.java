@@ -21,110 +21,107 @@ import src.rutina.app.RowMappers.RutinaRowMapper;
  * descritos previamente.
  * 
  * 
- * Diseño: Francisco Jose Diaz Romero
+ * Diseño: Francisco José Díaz Romero
  * All rights reserved
+ * Version 2.0.0
  *
  */
 
 public class RutinaDaoImpl implements RutinaDao {
-    
-    JdbcTemplate jdbcTemplate;
 
-    @Override
-	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
-    	//System.out.println(rutinaNombre+rutinaDescripcion+rutinaInfo_Rutina+rutinaPub_Priv);
-    	jdbcTemplate.update(SqlConstants.CREATE_RUTINA,
-    	new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina,rutinaPub_Priv, ownerId });
-		
+	JdbcTemplate jdbcTemplate;
+
+	@Override
+	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String userId) {
+		jdbcTemplate.update(SqlConstants.CREATE_RUTINA,
+				new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina,rutinaPub_Priv, userId });
+
 	}
-    
-    @Override
-    public void updateRutina(int rut_id, String rutinaNombre, String rutinaDescripcion,
-    	    String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
-    	
-    	System.out.println("DaoImplUpdate:"+ rut_id+rutinaNombre+rutinaDescripcion+rutinaInfo_Rutina+rutinaPub_Priv+ownerId);
-    	jdbcTemplate.update(SqlConstants.UPDATE_RUTINA,
-    		new Object[] { rut_id,rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,rutinaPub_Priv,ownerId});
-        }
 
+	@Override
+	public void updateRutina(int rut_id, String rutinaNombre, String rutinaDescripcion,
+			String rutinaInfo_Rutina,boolean rutinaPub_Priv,String userId) {
 
+		System.out.println("DaoImplUpdate:"+ rut_id+rutinaNombre+rutinaDescripcion+rutinaInfo_Rutina+rutinaPub_Priv+userId);
+		jdbcTemplate.update(SqlConstants.UPDATE_RUTINA,
+				new Object[] { rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,rutinaPub_Priv,rut_id,userId});
+	}
 
-    @Override
-	public List<Rutina> getRutina(String ownerId, int rut_id) {
+	@Override
+	public List<Rutina> getRutina(String userId, int rut_id) {
 		return jdbcTemplate.query(SqlConstants.GET_RUTINA,
-				new Object[] { ownerId,rut_id },
+				new Object[] { userId,rut_id },
 				new RutinaRowMapper());
 	}
-    
-    @Override
+
+	@Override
 	public List<Rutina> getRutina1(int rut_id) {
 		return jdbcTemplate.query(SqlConstants.GET_RUTINA1,
 				new Object[] {rut_id },
 				new RutinaRowMapper());
 	}
-    
-    @Override
-	public List<Rutina> getAllRutinas(String ownerId,boolean rutinaPub_Priv,String rutina_busqueda) {	
-    	
-    	if(rutinaPub_Priv==false)
-    	{
-    		if(rutina_busqueda=="")
-    		{
-    			System.out.println("Privado");	  		
-    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=?",
-    					new Object[] {ownerId},
-    					new RutinaRowMapper()) ;
-    		}
-    		else
-    		{
-    			System.out.println("Privado");	  		
-    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND Descripcion LIKE '%" + rutina_busqueda +
-    					"%' OR Nombre LIKE '%" + rutina_busqueda +"%' ",
-    					new Object[] {ownerId},
-    					new RutinaRowMapper()) ;
-    		}   		 		
-    	}
-    	else
-    	{  		
-    		if(rutina_busqueda=="")
-    		{	
-    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=?",
-        				new Object[] {rutinaPub_Priv},
-        				new RutinaRowMapper()) ;
-    		}
-    		else
-    		{
-    		System.out.println("Publico");	  
 
-    			return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=? AND Descripcion LIKE '%" + rutina_busqueda + 
-    				"%' OR Nombre LIKE '%" + rutina_busqueda +"%' ",
-    				new Object[] {rutinaPub_Priv},
-    				new RutinaRowMapper()) ;	
-    		}
-    		
-    		
-    	}
+	@Override
+	public List<Rutina> getAllRutinas(String userId,boolean rutinaPub_Priv,String rutina_busqueda) {	
+
+		if(rutinaPub_Priv==false)
+		{
+			if(rutina_busqueda=="")
+			{
+				System.out.println("Privado");	  		
+				return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=?",
+						new Object[] {userId},
+						new RutinaRowMapper()) ;
+			}
+			else
+			{
+				System.out.println("Privado");	  		
+				return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE USUARIOS_Email=? AND Descripcion LIKE '%" + rutina_busqueda +
+						"%' OR Nombre LIKE '%" + rutina_busqueda +"%'",
+						new Object[] {userId},
+						new RutinaRowMapper()) ;
+			}   		 		
+		}
+		else
+		{  		
+			if(rutina_busqueda=="")
+			{	
+				return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=1 LIMIT 5",
+						new Object[] {},
+						new RutinaRowMapper()) ;
+			}
+			else
+			{
+				System.out.println("Publico");	  
+
+				return jdbcTemplate.query("SELECT rut_id,Nombre,Descripcion,Info_Rutina,Pub_priv FROM RUTINA WHERE Pub_priv=1 AND (Descripcion LIKE '%" + rutina_busqueda + 
+						"%' OR Nombre LIKE '%" + rutina_busqueda +"%') ",
+						new Object[] {},
+						new RutinaRowMapper()) ;	
+			}
+
+
+		}
 	}
-    
-    
-    @Override
-    public void deleteRutina(String ownerId,int rut_id) {
-	jdbcTemplate.update(SqlConstants.DELETE_RUTINA,
-		new Object[] { ownerId,rut_id });
-    }
-    @Override
-    public void deleteAllRutinas(String ownerId) {
-	jdbcTemplate.update(SqlConstants.DELETE_ALL_RUTINAS,
-		new Object[] {ownerId});
-    }
-    
-  
-    // Inyección del dataSource mediante el constructor
-    public void setDataSource(DataSource dataSource) {
-	this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
-    public RutinaDaoImpl() {
-    }
+	@Override
+	public void deleteRutina(String userId,int rut_id) {
+		jdbcTemplate.update(SqlConstants.DELETE_RUTINA,
+				new Object[] { userId,rut_id });
+	}
+	
+	@Override
+	public void deleteAllRutinas(String userId) {
+		jdbcTemplate.update(SqlConstants.DELETE_ALL_RUTINAS,
+				new Object[] {userId});
+	}
+
+	// Inyección del dataSource mediante el constructor
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public RutinaDaoImpl() {
+	}
 
 }

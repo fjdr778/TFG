@@ -1,11 +1,11 @@
 
-    /*
- * Controlador de la página EjercicioMain.html
+/*
+ * Controlador de la página SeeVideo.html
  * 
  * 
- * Diseño por Fco Jose Diaz Romero
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -16,8 +16,7 @@ $(document).ready(function() {
 });
 
 
-/* Función que imprime un resumen de todos los ejercicios de un propietario 
-   en una tabla */
+/* Funcion que permite la visualizacion de un video de un ejercicio */
 function repvideo() {
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $("#videCont")[0];
@@ -27,15 +26,15 @@ function repvideo() {
 
 	console.log(userid);
 	console.log(ej_id);
-			var summedSeeVideo = "<video controls>" 
-			+ "<source src='http://localhost:8080/rutina_app/uploads/" 
-			+ userid
-			+ "_"
-			+ ej_id
-			+ ".mp4' type='video/mp4'>"
-			+ "</video>"		
-			container.innerHTML += summedSeeVideo;
-			
+	var summedSeeVideo = "<video controls>" 
+		+ "<source src='/rutina_app/uploads/" 
+		+ userid
+		+ "_"
+		+ ej_id
+		+ ".mp4' type='video/mp4'>"
+		+ "</video>"		
+		container.innerHTML += summedSeeVideo;
+
 }
 
 

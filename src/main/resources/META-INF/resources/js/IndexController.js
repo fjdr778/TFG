@@ -1,11 +1,11 @@
 
 /*
- * Controlador de la página ownerMain.html
+ * Controlador de la página Index.html
  * 
  * 
- * Diseño por Fco Jose Diaz Romero
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 /* Función que gestiona el Token de primera conexión */
 function getToken() {
-	
+
 	$.ajax({
 		url : "/Rutina_app/",
 		type: 'GET',

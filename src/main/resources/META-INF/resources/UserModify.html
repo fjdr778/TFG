@@ -28,19 +28,6 @@ Versión: 2.0.0
 <!-- Waves Effect Css -->
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
-<!-- Bootstrap Material Datetime Picker Css -->
-<link
-	href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
-	rel="stylesheet" />
-
-<!-- Wait Me Css -->
-<link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
-
-<!-- Bootstrap Select Css -->
-<link href="../../plugins/bootstrap-select/css/bootstrap-select.css"
-	rel="stylesheet" />
-
-
 <!-- Animation Css -->
 <link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
@@ -102,9 +89,8 @@ Versión: 2.0.0
 					<li><a href="index.html"> <i class="material-icons">home</i>
 							<span>Pagina Principal</span>
 					</a></li>
-					<li class="active"><a href="javascript:void(0);"
-						class="menu-toggle"> <i class="material-icons">assignment</i>
-							<span>Rutinas</span>
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">assignment</i> <span>Rutinas</span>
 					</a>
 						<ul class="ml-menu">
 							<li><a href="RutinaMain.html?rutina_Pub_Priv=false">Rutinas
@@ -120,12 +106,12 @@ Versión: 2.0.0
 									Disponibles</a></li>
 							<li><a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a></li>
 						</ul></li>
-					<li><a href="javascript:void(0);" class="menu-toggle"> <i
-							class="material-icons">build</i> <span>Ajustes</span>
+					<li class="active"><a href="javascript:void(0);"
+						class="menu-toggle"> <i class="material-icons">build</i> <span>Ajustes</span>
 					</a>
 						<ul class="ml-menu">
-							<li><a href="UserModify.html">Modificar Datos de Usuario</a>
-							</li>
+							<li class="active"><a href="UserModify.html">Modificar
+									Datos de Usuario</a></li>
 							<li><a href="UserDropOut.html">Darme de Baja</a></li>
 						</ul></li>
 					<li><a href="helpMain.html"> <i class="material-icons">help</i>
@@ -171,29 +157,37 @@ Versión: 2.0.0
 						<div class="card">
 							<div class="header">
 								<h2>
-									Modificar Rutina <small>A continuación se muestran
-										los datos acruales de la rutina que se desea modificar.
-										Recuerde que el hecho de modificar rutinas es completamente
-										gratuito, por lo que puede modificar todas las rutinas que
-										desee sin ningún coste. Por otra parte, es obligatorio
-										rellenar todos los campos de manera correcta, si no, no se
-										completará la modificación de la rutina.</small>
+									Modificar mi perfil <small>A continuación se muestran
+										los datos de usuario, pudiéndose modificar aquellos campos que
+										se necesiten modificar.</small>
 								</h2>
-
+								<ul class="header-dropdown m-r--5">
+									<li class="dropdown"><a href="javascript:void(0);"
+										class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false"> <i
+											class="material-icons">more_vert</i>
+									</a>
+										<ul class="dropdown-menu pull-right">
+											<li><a href="javascript:void(0);">Action</a></li>
+											<li><a href="javascript:void(0);">Another action</a></li>
+											<li><a href="javascript:void(0);">Something else
+													here</a></li>
+										</ul></li>
+								</ul>
 							</div>
+
 							<div class="body">
-								<form id="rutina_form">
+								<form id="personal_form">
 									<div class="row clearfix">
 										<div
 											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-											<label>Nombre de la Rutina:</label>
+											<label>E-mail:</label>
 										</div>
 										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 											<div class="form-group">
 												<div class="form-line">
-													<input type="text" name="rutina_name" size="30"
-														class="form-control"
-														placeholder="Nombre deseado para la rutina">
+													<input type="text" name="user_email" size="40"
+														class="form-control" placeholder="Correo electronico">
 												</div>
 											</div>
 										</div>
@@ -201,17 +195,13 @@ Versión: 2.0.0
 									<div class="row clearfix">
 										<div
 											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-											<label>Descripción de la Rutina:</label>
+											<label>Nombre:</label>
 										</div>
 										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 											<div class="form-group">
 												<div class="form-line">
-													<textarea rows="5" cols="10" style="resize: none"
-														placeholder="Escribe aquí la descripción de la rutina"
-														name="rutina_description" class="form-control"></textarea>
-													<br />
-													<br />
-													<br />
+													<input type="text" name="user_name" size="35"
+														class="form-control" placeholder="Nombre">
 												</div>
 											</div>
 										</div>
@@ -219,17 +209,13 @@ Versión: 2.0.0
 									<div class="row clearfix">
 										<div
 											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-											<label>Informacion Adicional de la Rutina:</label>
+											<label>Fecha de nacimiento:</label>
 										</div>
 										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 											<div class="form-group">
 												<div class="form-line">
-													<textarea style="resize: none"
-														placeholder="Mas informacion" name="rutina_info"
-														class="form-control"></textarea>
-													<br />
-													<br />
-													<br />
+													<input type="date" name="user_birthdate" size="10"
+														class="form-control">
 												</div>
 											</div>
 										</div>
@@ -237,14 +223,45 @@ Versión: 2.0.0
 									<div class="row clearfix">
 										<div
 											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-											<label>Visibilidad:</label>
+											<label>Número de teléfono (opcional):</label>
 										</div>
-										<div class="col-sm-6">
-											<select name="rutina_Pub_Priv" class="form-control show-tick">
-												<option value="">-- Seleccione una Opcion --</option>
-												<option value="false">Privada</option>
-												<option value="true">Publica</option>
-											</select>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input type="text" name="user_phonenumber" size="35"
+														class="form-control placeholder=" Numero detelefono"">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Contraseña:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input name="user_password" id="user_password"
+														class="form-control" placeholder="Contraseña"
+														type="password">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Confirmar Contraseña:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input placeholder="Confirmar contraseña"
+														name="user_password_confirm" class="form-control"
+														placeholder="Confirmar contraseña" type="password">
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="row clearfix">
@@ -253,11 +270,10 @@ Versión: 2.0.0
 											<button onclick="submitForm()" type="button"
 												class="btn btn-primary m-t-15 waves-effect"
 												style="float: left">Confirmar</button>
-											<button onclick="submitForm()" type="button"
+											<button type="button"
 												class="btn btn-primary m-t-15 waves-effect"
 												style="float: right">
-												<a href="RutinaMain.html?rutina_Pub_Priv=false"><font
-													color="white">Cancelar</font></a>
+												<a href="index.html"><font color="white">Cancelar</font></a>
 											</button>
 										</div>
 									</div>
@@ -279,7 +295,7 @@ Versión: 2.0.0
 	<script src="js/lib/messages_es.js"></script>
 	<script src="js/lib/utils.js"></script>
 	<script src="js/lib/jquery.cookie.js"></script>
-	<script src="js/RutinaModifyController.js"></script>
+	<script src="js/userModifyController.js"></script>
 
 
 
@@ -292,18 +308,6 @@ Versión: 2.0.0
 
 	<!-- Slimscroll Plugin Js -->
 	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-
-	<!-- Autosize Plugin Js -->
-	<script src="plugins/autosize/autosize.js"></script>
-
-	<!-- Moment Plugin Js -->
-	<script src="plugins/momentjs/moment.js"></script>
-
-	<!-- Bootstrap Material Datetime Picker Plugin Js -->
-	<script
-		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
 
 	<!-- Waves Effect Plugin Js -->
 	<script src="plugins/node-waves/waves.js"></script>

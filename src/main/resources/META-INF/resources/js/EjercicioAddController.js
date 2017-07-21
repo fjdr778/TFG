@@ -1,11 +1,11 @@
 
 /*
- * Controlador de la página localAdd.html
+ * Controlador de la página EjercicioAdd.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -33,7 +33,6 @@ $(document).ready(function() {
 			ejercicio_descripcion: {
 				required : true,
 				minlength : 2,
-				maxlength : 500
 			},
 			ejercicio_estadoforma: {
 				required : true
@@ -67,7 +66,7 @@ function sendEjercicioData() {
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
-	// Obtenemos los datos del evento del formulario
+	// Obtenemos los datos del ejercicio del formulario
 	var ejercicio_nombre = $('[name="ejercicio_nombre"]').val();
 	var ejercicio_titulo = $('[name="ejercicio_titulo"]').val();
 	var ejercicio_subtitulo = $('[name="ejercicio_subtitulo"]').val();
@@ -80,7 +79,7 @@ function sendEjercicioData() {
 	
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
-		ownerId : cookie.userid,
+		userId : cookie.userid,
 		ejercicioNombre: ejercicio_nombre,
 		ejercicioTitulo : ejercicio_titulo,
 		ejercicioSubtitulo: ejercicio_subtitulo,
@@ -100,7 +99,7 @@ function sendEjercicioData() {
 	// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Ejercicio añadido con éxito");
-		window.location.href = "EjercicioMain.html";
+		window.location.href = "EjercicioMain.html?ejercicio_Pub_Priv=false";
 
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {

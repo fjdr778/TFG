@@ -1,11 +1,11 @@
 
 /*
- * Controlador de la página ownerLogin.html
+ * Controlador de la página UserLogin.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -24,17 +24,12 @@ $(document).ready(function() {
 			user_password : {
 				required : true,
 				minlength : 5
-			},
-			/*user_password_confirm : {
-				required : true,
-				equalTo : "#user_password",
-				minlength : 5
-			}*/
+			},			
 		},
 		// Establecemos la función que se ejecutará en caso
 		// de envío del formulario.
 		submitHandler : function(form) {
-			sendOwnerData();
+			sendUserData();
 		}
 	});
 
@@ -53,18 +48,18 @@ function submitForm() {
    programa,aunque pueda autenticarse cualquier usuario debido a que no 
    disponemos de sistema de autenticación.
  */
-function sendOwnerData() {
-	
+function sendUserData() {
+
 	//showMeYourCookies('At loginform submission');
-	
+
 	// Obtenemos los datos del propietario del formulario
-	var owner_Id = $('[name="user_email"]').val();
-	var owner_Passw = $('[name="user_password"]').val();
-	
+	var user_Id = $('[name="user_email"]').val();
+	var user_Passw = $('[name="user_password"]').val();
+
 	// Obtenemos la cookie de usuario
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	var data = 'username=' + owner_Id + '&password=' + owner_Passw;
-	
+	var data = 'username=' + user_Id + '&password=' + user_Passw;
+
 	$.ajax({
 		data: data,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
@@ -76,12 +71,12 @@ function sendOwnerData() {
 		// No se informa de nada: 
 		// La autenticación del usuario es autodescriptiva		
 		// Almacenamos en la cookie RutinaUser la información del usuario
-		var cookie = JSON.stringify({method: '', url: '/', csrf: jqXHR.getResponseHeader('X-CSRF-TOKEN'), userid: owner_Id});
+		var cookie = JSON.stringify({method: '', url: '/', csrf: jqXHR.getResponseHeader('X-CSRF-TOKEN'), userid: user_Id});
 		$.cookie('RutinaUsuario', cookie);
-		
+
 		// Obtenemos la cookie nueva
 		var cookie = JSON.parse($.cookie('RutinaUsuario'));
-		
+
 		// Redireccionamos
 
 		window.location.href = "index.html";
@@ -90,6 +85,6 @@ function sendOwnerData() {
 		// Informamos de que ha fallado la autenticación
 		alert("La contraseña o el dni son erróneos");
 		// Redirigimos si recarga la página para recargar la cookie
-		window.location.href = "index.html";
+		window.location.href = "login.html";
 	});
 }

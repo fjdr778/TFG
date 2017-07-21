@@ -15,9 +15,9 @@ import java.io.IOException;
  * a nuestro servicio.
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * version 2.0.0
  *
  */
 

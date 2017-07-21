@@ -7,6 +7,19 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
+
+/*
+ * Clase principal del servicio web, configurada para la inicialización
+ * con Spring Boot y despliegue en tomcat 
+ * 
+ * 
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
+ *
+ */
+
 /*@SpringBootApplication
 public class RutinaAppApplication {
 	
@@ -20,6 +33,7 @@ public class RutinaAppApplication {
 		SpringApplication.run(RutinaAppApplication.class, args);
 	}
 }*/
+
 @SpringBootApplication
 public class RutinaAppApplication extends SpringBootServletInitializer {
 

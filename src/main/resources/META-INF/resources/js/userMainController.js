@@ -1,11 +1,10 @@
-
 /*
- * Controlador de la página ownerMain.html
+ * Controlador de la página UserMain.html
  * 
  * 
- * Diseño por Fco Jose Diaz Romero
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -14,15 +13,15 @@
 $(document).ready(function() {
 	// Debemos hacer dos consultas: una para obtener el token y otra
 	// para obtener los datos de usuario	
-	getOwnerData();
+	getUserData();
 });
 
 /* Función que obtiene e  imprime los datos del propietario */
-function getOwnerData() {
-	
+function getUserData() {
+
 	// Obtenemos la cookie de usuario
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+
 	$.ajax({
 		url : "/Rutina_app/" + cookie.userid,
 		type: 'GET',
@@ -34,10 +33,10 @@ function getOwnerData() {
 			cookie.csrf = csrfToken;
 			$.cookie('RutinaUsuario', JSON.stringify(cookie));
 		}
-		$('[name="user_email"]').val(data[0].ownerId);
-		$('[name="user_name"]').val(data[0].ownerName);
-		$('[name="user_birthdate"]').val(data[0].ownerBirthDate);
-		$('[name="user_phonenumber"]').val(data[0].ownerPhoneNumber);
+		$('[name="user_email"]').val(data[0].userId);
+		$('[name="user_name"]').val(data[0].userName);
+		$('[name="user_birthdate"]').val(data[0].userBirthDate);
+		$('[name="user_phonenumber"]').val(data[0].userPhoneNumber);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		if (jqXHR.status === 401) { // HTTP Status 401: Unauthorized
 			var cookie = JSON.stringify({method: '', url: '/', csrf: jqXHR.getResponseHeader('X-CSRF-TOKEN')});

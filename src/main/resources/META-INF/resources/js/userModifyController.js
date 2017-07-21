@@ -1,19 +1,19 @@
 
 /*
- * Controlador de la página ownerModify.html
+ * Controlador de la página UserModify.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
 
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
-	// Obtenemos los datos del local de la base de datos
-	getOwnerData();
+	// Obtenemos los datos del usuario de la base de datos
+	getUserData();
 	// Inicializamos el plugin de validación
 	$('#personal_form').validate({
 		// Establecemos las reglas de validación para
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		// Establecemos la función que se ejecutará en caso
 		// de envío del formulario.
 		submitHandler : function(form) {
-			sendOwnerData();
+			sendUserData();
 		}
 	});
 
@@ -62,39 +62,39 @@ function submitForm() {
 
 
 /* Función de extracción y envío de los datos del formulario */
-function sendOwnerData() {
+function sendUserData() {
 
-	// Obtenemos los datos del propietario del formulario
-	var owner_Id = $('[name="user_email"]').val();
-	var owner_Name = $('[name="user_name"]').val();
-	var owner_BirthDate = $('[name="user_birthdate"]').val();
-	var owner_PhoneNumber = $('[name="user_phonenumber"]').val();
-	var owner_Passw = $('[name="user_password"]').val();
+	// Obtenemos los datos del usuario del formulario
+	var user_Id = $('[name="user_email"]').val();
+	var user_Name = $('[name="user_name"]').val();
+	var user_BirthDate = $('[name="user_birthdate"]').val();
+	var user_PhoneNumber = $('[name="user_phonenumber"]').val();
+	var user_Passw = $('[name="user_password"]').val();
 	
 	// JSON formado con los datos extraídos del formulario
-	var owner_json = {
-		ownerId : owner_Id,
-		ownerName : owner_Name,
-		ownerBirthDate : owner_BirthDate,
-		ownerPhoneNumber: owner_PhoneNumber,
-		ownerPassw : owner_Passw
+	var user_json = {
+		userId : user_Id,
+		userName : user_Name,
+		userBirthDate : user_BirthDate,
+		userPhoneNumber: user_PhoneNumber,
+		userPassw : user_Passw
 	};
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	
-	// Añadimos la información del propietario a la BBDD
+	// Añadimos la información del usuario a la BBDD
 	$.ajax({
 		url : "/Rutina_app/" + cookie.userid,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "POST",
-		data : JSON.stringify(owner_json),
+		data : JSON.stringify(user_json),
 		contentType : "application/json",
 		timeout: 1000
 	}).done(function(data, textStatus, jqXHR) {
 		// Reinicializamos el campo userid de la cookie, por si
 		// el usuario lo ha modificado
-		cookie.userid = owner_Id;
+		cookie.userid = user_Id;
 		// Informamos de la operación y redirigimos
 		alert("Modificación realizada con éxito");
 		window.location.href = "index.html";
@@ -105,14 +105,14 @@ function sendOwnerData() {
 
 
 
-/* Función que obtiene los datos del ejercicio de la base de datos */
-function getOwnerData() {
+/* Función que obtiene los datos del usuario de la base de datos */
+function getUserData() {
 	
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 	console.log(cookie.userid);
 
-	// Obtenemos la información del evento de la base de datos
+	// Obtenemos la información del usuario de la base de datos
 	$.ajax({
 		url : "/Rutina_app/",
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
@@ -131,21 +131,21 @@ function getOwnerData() {
 }
 
 
-/* Función que imprime un resumen de todos los ejercicios de un propietario 
+/* Función que imprime un resumen de todos los datos de un usuario 
    en una tabla */
-function muestrausuario(jsonOwnerArray) {
+function muestrausuario(jsonUserArray) {
 	
-	// Iteramos para cada una de los ejercicios e imprimimos sus campos
-	for (var i = 0; i < jsonOwnerArray.length; i++) {
-		var obj = jsonOwnerArray[i];
+	// Iteramos para cada una de los usuarios e imprimimos sus campos
+	for (var i = 0; i < jsonUserArray.length; i++) {
+		var obj = jsonUserArray[i];
 
 
 		var cookie = JSON.parse($.cookie('RutinaUsuario'));
-		   if(obj.ownerId==cookie.userid){
-			$('[name="user_email"]').val(obj.ownerId);
-			$('[name="user_name"]').val(obj.ownerName);
-			$('[name="user_birthdate"]').val(obj.ownerBirthDate);
-			$('[name="user_phonenumber"]').val(obj.ownerPhoneNumber);
+		   if(obj.userId==cookie.userid){
+			$('[name="user_email"]').val(obj.userId);
+			$('[name="user_name"]').val(obj.userName);
+			$('[name="user_birthdate"]').val(obj.userBirthDate);
+			$('[name="user_phonenumber"]').val(obj.userPhoneNumber);
 			}
 			
 		}

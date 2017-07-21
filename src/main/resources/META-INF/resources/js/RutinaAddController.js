@@ -1,11 +1,11 @@
 
 /*
- * Controlador de la página localAdd.html
+ * Controlador de la página RutinaAdd.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -24,7 +24,6 @@ $(document).ready(function() {
 			rutina_description : {
 				required : true,
 				minlength : 20,
-				maxlength : 500
 			},			
 			rutina_info: {
 				required : true
@@ -58,7 +57,7 @@ function sendRutinaData() {
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
-	// Obtenemos los datos del evento del formulario
+	// Obtenemos los datos de la rutina del formulario
 	var rutina_name = $('[name="rutina_name"]').val();
 	var rutina_description = $('[name="rutina_description"]').val();
 	var rutina_info = $('[name="rutina_info"]').val();
@@ -71,14 +70,14 @@ function sendRutinaData() {
 	
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
-		ownerId : cookie.userid,
+		userId : cookie.userid,
 		rutinaNombre : rutina_name,
 		rutinaDescripcion : rutina_description,
 		rutinaInfo_Rutina : rutina_info,
 		rutinaPub_Priv : rutina_Pub_Priv
 	};
 	
-	// Añadimos el local a la base de datos
+	// Añadimos la rutina a la base de datos
 	$.ajax({
 		url : "/Rutina_app/rutinas/" + cookie.userid + "/",
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
@@ -88,7 +87,7 @@ function sendRutinaData() {
 	// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Rutina añadida con éxito");
-		window.location.href = "RutinaMain.html";
+		window.location.href = "RutinaMain.html?rutina_Pub_Priv=false";
 
 	// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {

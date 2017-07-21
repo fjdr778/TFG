@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <!--
-Diseño por Fco Jose Diaz Romero
-Todos los derechos reservados.
-
-Versión: 1.0
+Diseño: Francisco José Díaz Romero
+all Rights Reserved.
+Versión: 2.0.0
 -->
 <html>
 
 <!-- Cabecera del documento -->
 <head>
 <!-- Metadatos de la página web -->
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</title>
-    <!-- Favicon-->
-	<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>RutinaApp - Plataforma de Gestion de Rutinas de
+	Entrenamiento</title>
+<!-- Favicon-->
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap Core Css -->
-    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- Bootstrap Core Css -->
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Waves Effect Css -->
-    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Waves Effect Css -->
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Animation Css -->
-    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="css/style1.css" rel="stylesheet">
+<!-- Custom Css -->
+<link href="css/style1.css" rel="stylesheet">
 
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />
-    
-    <!-- Fontawesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- Fontawesome -->
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <!-- Ficheros de código Javascript -->
 <script src="js/lib/jquery-1.12.3.min.js"></script>
@@ -55,132 +65,109 @@ Versión: 1.0
 
 
 <body class="theme-light-blue">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
-    <!-- fin de la carga de la pagina -->
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>Please wait...</p>
+		</div>
+	</div>
+	<!-- fin de la carga de la pagina -->
 
- <!-- superposicion de barras laterales -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Barra superior -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</a>
-            </div>
-           </div> 
-    </nav>
-    <!-- #Barra superior  -->
-    <section>
-        <!-- Barra Lateral Izquierda -->
-        <aside id="leftsidebar" class="sidebar">      
-        <div class="user-info">
-                <div class="image">
-                	<img class="ima1" src="favicon/retra-logo.png" width="70" height="60" alt="User" />	
-                </div>
-        </div>     
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    
-                    <li class="active">
-                        <a href="index.html">
-                            <i class="material-icons">home</i>
-                            <span>Pagina Principal</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Rutinas</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="RutinaMain.html?rutina_Pub_Priv=false">Mis Rutinas Disponibles</a>
-                            </li>
-                            <li>
-                                <a href="RutinaAdd.html">Crear Nueva Rutina</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Ejercicios</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Mis Ejercicios Disponibles</a>
-                            </li>
-                            <li>
-                                <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
-                            </li>                   
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">build</i>
-                            <span>Ajustes</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="ownerModify.html">Modificar Datos de Usuario</a>
-                            </li>
-                            <li>
-                                <a href="ownerDropOut.html">Darme de Baja</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="helpMain.html">
-                            <i class="material-icons">help</i>
-                            <span>Ayuda</span>
-                        </a>
-                    </li>
-                    
-                    <li onclick="closeSession()">
-                        <a href="login.html">
-                            <i class="material-icons">pan_tool</i>
-                            <span>Cerrar Sesion</span>
-                        </a>
-                    </li>
-                                                                                                                              
-                </ul>
-            </div>
-            <!-- #Menu -->
-            
-            <!-- Pie de pagina -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">© Rutina_app España. Todos los derechos reservados.</a>.
-                </div>
-                
-                <div class="version">
-                    <b>Version: </b> 2.0.0
-                </div>
-            </div>
-            <!-- #Footer -->
-        </aside>
-        <!-- #END# Left Sidebar -->
-        
-    </section>
+	<!-- superposicion de barras laterales -->
+	<div class="overlay"></div>
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Barra superior -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar-collapse"
+					aria-expanded="false"></a> <a href="javascript:void(0);"
+					class="bars"></a> <a class="navbar-brand" href="index.html">RutinaApp
+					- Plataforma de Gestion de Rutinas de Entrenamiento</a>
+			</div>
+		</div>
+	</nav>
+	<!-- #Barra superior  -->
+	<section>
+		<!-- Barra Lateral Izquierda -->
+		<aside id="leftsidebar" class="sidebar">
+			<div class="user-info">
+				<div class="image">
+					<img class="ima1" src="favicon/retra-logo.png" width="70"
+						height="60" alt="User" />
+				</div>
+			</div>
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+
+					<li class="active"><a href="index.html"> <i
+							class="material-icons">home</i> <span>Pagina Principal</span>
+					</a></li>
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">assignment</i> <span>Rutinas</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="RutinaMain.html?rutina_Pub_Priv=false">Rutinas
+									Disponibles</a></li>
+							<li><a href="RutinaAdd.html">Crear Nueva Rutina</a></li>
+						</ul></li>
+
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">assignment</i> <span>Ejercicios</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Ejercicios
+									Disponibles</a></li>
+							<li><a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a></li>
+						</ul></li>
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">build</i> <span>Ajustes</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="UserModify.html">Modificar Datos de Usuario</a>
+							</li>
+							<li><a href="UserDropOut.html">Darme de Baja</a></li>
+						</ul></li>
+					<li><a href="helpMain.html"> <i class="material-icons">help</i>
+							<span>Ayuda</span>
+					</a></li>
+
+					<li onclick="closeSession()"><a href="login.html"> <i
+							class="material-icons">pan_tool</i> <span>Cerrar Sesion</span>
+					</a></li>
+
+				</ul>
+			</div>
+			<!-- #Menu -->
+
+			<!-- Pie de pagina -->
+			<div class="legal">
+				<div class="copyright">
+					&copy; 2017 <a href="javascript:void(0);">© Rutina_app España.
+						Todos los derechos reservados.</a>.
+				</div>
+
+				<div class="version">
+					<b>Version: </b> 2.0.0
+				</div>
+			</div>
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+
+	</section>
 
 
 
@@ -198,32 +185,50 @@ Versión: 1.0
 								class="active"></li>
 							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 							<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="4"></li>			
 						</ol>
 
 						<!-- Wrapper for slides -->
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="/favicon/carrousel1.jpg" alt="..."
-									style="width: 100%">
+								<img src="/favicon/1.jpg" alt="..." style="width: 100%">
 								<div class="carousel-caption">
 									<h3>Bienvenidos a la plataforma Web de Rutina App</h3>
-									Aplicacion para la Creación y Gestión de Rutinas de Entrenamiento
+									Aplicacion para la Creación y Gestión de Rutinas de
+									Entrenamiento
 								</div>
 							</div>
 							<div class="item">
-								<img src="/favicon/carrousel2.jpg" alt="..."
-									style="width: 100%">
+								<img src="/favicon/2.jpg" alt="..." style="width: 100%">
 								<div class="carousel-caption">
 									<h3>Bienvenidos a la plataforma Web de Rutina App</h3>
-									Aplicacion para la Creación y Gestión de Rutinas de Entrenamiento
+									Aplicacion para la Creación y Gestión de Rutinas de
+									Entrenamiento
 								</div>
 							</div>
 							<div class="item">
-								<img src="/favicon/carrousel3.jpg" alt="..."
-									style="width: 100%">
+								<img src="/favicon/3.jpg" alt="..." style="width: 100%">
 								<div class="carousel-caption">
 									<h3>Bienvenidos a la plataforma Web de Rutina App</h3>
-									Aplicacion para la Creación y Gestión de Rutinas de Entrenamiento
+									Aplicacion para la Creación y Gestión de Rutinas de
+									Entrenamiento
+								</div>
+							</div>
+							<div class="item">
+								<img src="/favicon/4.jpg" alt="..." style="width: 100%">
+								<div class="carousel-caption">
+									<h3>Bienvenidos a la plataforma Web de Rutina App</h3>
+									Aplicacion para la Creación y Gestión de Rutinas de
+									Entrenamiento
+								</div>
+							</div>
+							<div class="item">
+								<img src="/favicon/7.jpeg" alt="..." style="width: 100%">
+								<div class="carousel-caption">
+									<h3>Bienvenidos a la plataforma Web de Rutina App</h3>
+									Aplicacion para la Creación y Gestión de Rutinas de
+									Entrenamiento
 								</div>
 							</div>
 						</div>
@@ -247,22 +252,23 @@ Versión: 1.0
 
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-   <!-- Bootstrap Core Js -->
-    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
 
-    <!-- Select Plugin Js -->
-    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="plugins/node-waves/waves.js"></script>
-<!-- Custom Js -->
-    <script src="js/admin.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="plugins/node-waves/waves.js"></script>
+	<!-- Custom Js -->
+	<script src="js/admin.js"></script>
 
- <!-- Demo Js -->
-    <script src="js/demo.js"></script>
+	<!-- Demo Js -->
+	<script src="js/demo.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 
 /*
- * Controlador de la página localModify.html
+ * Controlador de la página RutinaModify.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -27,7 +27,6 @@ $(document).ready(function() {
 			rutina_description : {
 				required : true,
 				minlength : 20,
-				maxlength : 200
 			},			
 			rutina_info: {
 				required : true
@@ -57,27 +56,27 @@ function sendRutinaData() {
 
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+
 	// Obtenemos los parámetros de la URL
 	var rut_id = getUrlParameter('rut_id');
-	
-	// Obtenemos los datos del evento del formulario
+
+	// Obtenemos los datos de la Rutina del formulario
 	var rutina_name = $('[name="rutina_name"]').val();
 	var rutina_description = $('[name="rutina_description"]').val();
 	var rutina_info = $('[name="rutina_info"]').val();
 	var rutina_Pub_Priv = $('[name="rutina_Pub_Priv"]').val();
-	
+
 	console.log(rutina_Pub_Priv);
-	
+
 	// JSON formado con los datos del formulario extraídos
 	var rutina_json = {
-		ownerId : cookie.userid,
-		rutinaNombre : rutina_name,
-		rutinaDescripcion : rutina_description,
-		rutinaInfo_Rutina : rutina_info,
-		rutinaPub_Priv : rutina_Pub_Priv,
+			userId : cookie.userid,
+			rutinaNombre : rutina_name,
+			rutinaDescripcion : rutina_description,
+			rutinaInfo_Rutina : rutina_info,
+			rutinaPub_Priv : rutina_Pub_Priv,
 	};
-	
+
 	// Actualizamos la información de la Rutina en la base de datos
 	$.ajax({
 		url : "/Rutina_app/rutinas/" + cookie.userid + "/" + rut_id,
@@ -87,8 +86,8 @@ function sendRutinaData() {
 		contentType : "application/json",
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Modificación realizada con éxito");
-		window.location.href = "RutinaMain.html";
-	// Avisamos al usuario de que ha surgido un error
+		window.location.href = "RutinaMain.html?rutina_Pub_Priv=false";
+		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error");
 	});
@@ -97,17 +96,17 @@ function sendRutinaData() {
 
 /* Función que obtiene los datos de la rutina de la base de datos */
 function getRutinaData() {
-	
+
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
 	// Obtenemos los parámetros de la URL
 	var rut_id = getUrlParameter('rut_id');
 
-	// Obtenemos la información del evento de la base de datos
+	// Obtenemos la información de la Rutina de la base de datos
 	$.ajax({
 		url : "/Rutina_app/rutinas/" + cookie.userid + "/"
-				+ rut_id,
+		+ rut_id,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
 		type : "GET",
 		dataType : "json",
@@ -118,7 +117,7 @@ function getRutinaData() {
 		$('[name="rutina_description"]').val(data[0].rutinaDescripcion);
 		$('[name="rutina_info"]').val(data[0].rutinaInfo_Rutina);
 		$('[name="rutina_Pub_Priv"]').val(data[0].rutinaPub_Priv);
-	// Avisamos al usuario de que ha surgido un error
+		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error.");
 	});

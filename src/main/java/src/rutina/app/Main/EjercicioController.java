@@ -25,8 +25,9 @@ import src.rutina.app.Objects.Ejercicio;
  * hacerlas efectivas en la base de datos.
  * 
  * 
- * Diseño: Francisco Jose Diaz Romero
+ * Diseño: Francisco José Díaz Romero
  * All rights reserved
+ * version 2.0.0
  *
  */
 
@@ -35,138 +36,121 @@ import src.rutina.app.Objects.Ejercicio;
 @ImportResource("classpath:spring/config/beanLocations.xml")
 public class EjercicioController {
 
-    // Obtenemos el DAO mediante inyección de dependencias
-    @Autowired
-    private EjercicioDaoImpl ejercicioDao;
+	// Obtenemos el DAO mediante inyección de dependencias
+	@Autowired
+	private EjercicioDaoImpl ejercicioDao;
 
-    // Obtiene un ejercicio de la base de datos
-    @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.GET )
-    public @ResponseBody List<Ejercicio> getEjercicio(
-	    @PathVariable("owner_id") String ownerId,
-	    @PathVariable("ej_id") int ej_id) {
+	// Obtiene un ejercicio de la base de datos
+	@RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.GET )
+	public @ResponseBody List<Ejercicio> getEjercicio(
+			@PathVariable("user_id") String userId,
+			@PathVariable("ej_id") int ej_id) {
 
-	return this.ejercicioDao.getEjercicio(ownerId, ej_id);
-    }
+		return this.ejercicioDao.getEjercicio(userId, ej_id);
+	}
 
-    // Obtiene todos los ejercicios de la base de datos para un usuario
-    @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.GET)
-    public @ResponseBody List<Ejercicio> getAllEjercicio(
-	    @PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
-		@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
-    	
-    	System.out.println(ejercicio_Pub_Priv);
-	return this.ejercicioDao.getAllEjercicio(ownerId,ejercicio_Pub_Priv,ejercicio_busqueda);
-    }
+	// Obtiene todos los ejercicios de la base de datos para un usuario
+	@RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.GET)
+	public @ResponseBody List<Ejercicio> getAllEjercicio(
+			@PathVariable("user_id") String userId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+			@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
 
-    
-    
-    
- // Obtiene todos los ejercicios de la base de datos asociados a una rutina
-    @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.GET)
-    public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
-	    @PathVariable("rut_id") int rut_id,@RequestParam("rutPub") String rutPub) {
+		return this.ejercicioDao.getAllEjercicio(userId,ejercicio_Pub_Priv,ejercicio_busqueda);
+	}
 
-    	//System.out.println(rutPub);
-    	if(rutPub.equals("nopub"))
-    	{
-    		//System.out.println("controlador1");
-    		return this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
-    	}
-    	else
-    	{
-    		//System.out.println("controlador2");
-    		return this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,rutPub);
-    		
-    	}
-    	
-	
-    }
-    
- //Obtiene todos los ejercicios asociados a una rutina que no esten asociados a dicha rutina
-    
-    @RequestMapping(value = UriConstants.ALL_RUTINAS_NO_EJERCICIOS, method = RequestMethod.GET)
-    public @ResponseBody List<Ejercicio> getAllEjerciciosNoDeRutina(
-	    @PathVariable("rut_id") int rut_id,@RequestParam("ownerId") String ownerId,@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
-    	System.out.println(ejercicio_busqueda);
-	return this.ejercicioDao.getAllEjerciciosNoDeRutina(rut_id,ownerId,ejercicio_busqueda);
-    }
-    
-    // Eliminar un ejercicio de la base de datos
-    @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEjercicio(@PathVariable("owner_id") String ownerId,
-	    @PathVariable("ej_id") int ej_id) {
+	// Obtiene todos los ejercicios de la base de datos asociados a una rutina
+	@RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.GET)
+	public @ResponseBody List<Ejercicio> getAllEjerciciosDeRutina(
+			@PathVariable("rut_id") int rut_id,@RequestParam("rutPub") String rutPub) {
 
-	this.ejercicioDao.deleteEjercicio(ownerId,ej_id);
-    }
+		if(rutPub.equals("nopub"))
+		{
+			return this.ejercicioDao.getAllEjerciciosDeRutina(rut_id);
+		}
+		else
+		{
+			return this.ejercicioDao.getEjerciciosDeRutinaPublica(rut_id,rutPub);
 
-    // Eliminar todos los ejericios de la base de datos
-    @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllEjericios(@PathVariable("owner_id") String ownerId) {
+		}
+	}
 
-	this.ejercicioDao.deleteAllEjercicio(ownerId);
-    }
+	//Obtiene todos los ejercicios asociados a una rutina que no esten asociados a dicha rutina
+	@RequestMapping(value = UriConstants.ALL_RUTINAS_NO_EJERCICIOS, method = RequestMethod.GET)
+	public @ResponseBody List<Ejercicio> getAllEjerciciosNoDeRutina(
+			@PathVariable("rut_id") int rut_id,@RequestParam("userId") String userId,
+			@RequestParam("ejercicio_busqueda") String ejercicio_busqueda) {
 
-    
-    //Eliminar ejercicio asociado a rutina
-    @RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEjercicioDeRutina(@PathVariable("rut_id") int rut_id,
-	    @PathVariable("ej_id") int ej_id) {
+		return this.ejercicioDao.getAllEjerciciosNoDeRutina(rut_id,userId,ejercicio_busqueda);
+	}
 
-	this.ejercicioDao.deleteEjercicioDeRutina(rut_id,ej_id);
-    }
-    
-  //Eliminar todos los ejercicios asociados a una rutina
-    @RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEjerciciosDeRutina(@PathVariable("rut_id") int rut_id) {
+	// Eliminar un ejercicio de la base de datos
+	@RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteEjercicio(@PathVariable("user_id") String userId,
+			@PathVariable("ej_id") int ej_id) {
 
-	this.ejercicioDao.deleteEjerciciosDeRutina(rut_id);
-    }
-    
-    // Añade un ejerciio en la base de datos
-    @RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.POST)
-    //@ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addEvent(@PathVariable("owner_id") String ownerId,@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
-    		@RequestBody Ejercicio ejercicio) {
-    	ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
-    	
-    	
-    	/*System.out.println("Controlador: "+ejercicio.getEjercicioNombre()+ ejercicio.getEjercicioTitulo()+
-			ejercicio.getEjercicioSubtitulo()+ ejercicio.getEjercicioDescripcion()+
-			ejercicio.getEjercicioEstado_Forma()+ ejercicio.getEjercicioRepeticiones()+ejercicio.isEjercicioPub_Priv()+ownerId);*/
-    	
-    	
-	this.ejercicioDao.createEjercicio(ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
-			ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
-			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(),ownerId);
-    }
+		this.ejercicioDao.deleteEjercicio(userId,ej_id);
+	}
 
-    // Actualiza un ejercicio en la base de datos
-    @RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateEvent(@PathVariable("owner_id") String ownerId,
-	    @PathVariable("ej_id") int ej_id, @RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
-	    @RequestBody Ejercicio ejercicio) {
-    	ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
-	this.ejercicioDao.updateEjercicio(ej_id,ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
-			ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
-			ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(), ownerId);
-    }
-    
-    
-    // Asocia un ejercicio con una rutina
-    @RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.POST)
-    public void asociateEjercicio(@PathVariable("rut_id") int rut_id,
-    		@PathVariable("ej_id") int ej_id) {
+	// Eliminar todos los ejericios de la base de datos
+	@RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAllEjericios(@PathVariable("user_id") String userId) {
 
-	this.ejercicioDao.AsociateEjercicioDeRutina(ej_id,rut_id);
-    }
-    
-    
-    
-    
-    
+		this.ejercicioDao.deleteAllEjercicio(userId);
+	}
+
+	//Eliminar ejercicio asociado a rutina
+	@RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteEjercicioDeRutina(@PathVariable("rut_id") int rut_id,
+			@PathVariable("ej_id") int ej_id) {
+
+		this.ejercicioDao.deleteEjercicioDeRutina(rut_id,ej_id);
+	}
+
+	//Eliminar todos los ejercicios asociados a una rutina
+	@RequestMapping(value = UriConstants.ALL_RUTINAS_EJERCICIOS, method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteEjerciciosDeRutina(@PathVariable("rut_id") int rut_id) {
+
+		this.ejercicioDao.deleteEjerciciosDeRutina(rut_id);
+	}
+
+	// Añade un ejerciio en la base de datos
+	@RequestMapping(value = UriConstants.ALL_EJERCICIOS, method = RequestMethod.POST)
+	//@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void addEjercicio(@PathVariable("user_id") String userId,
+			@RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+			@RequestBody Ejercicio ejercicio) {
+
+		ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
+
+		this.ejercicioDao.createEjercicio(ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
+				ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
+				ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(),userId);
+	}
+
+	// Actualiza un ejercicio en la base de datos
+	@RequestMapping(value = UriConstants.EJERCICIOS, method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateEjercicio(@PathVariable("user_id") String userId,
+			@PathVariable("ej_id") int ej_id, @RequestParam("ejercicio_Pub_Priv") boolean ejercicio_Pub_Priv,
+			@RequestBody Ejercicio ejercicio) {
+
+		ejercicio.setEjercicioPub_Priv(ejercicio_Pub_Priv);
+
+		this.ejercicioDao.updateEjercicio(ej_id,ejercicio.getEjercicioNombre(), ejercicio.getEjercicioTitulo(),
+				ejercicio.getEjercicioSubtitulo(), ejercicio.getEjercicioDescripcion(),
+				ejercicio.getEjercicioEstado_Forma(), ejercicio.getEjercicioRepeticiones(),ejercicio.isEjercicioPub_Priv(), userId);
+	}
+
+
+	// Asocia un ejercicio con una rutina
+	@RequestMapping(value = UriConstants.RUTINAS_EJERCICIOS, method = RequestMethod.POST)
+	public void asociateEjercicio(@PathVariable("rut_id") int rut_id,@RequestParam("user_id") String userId,
+			@PathVariable("ej_id") int ej_id) {
+
+		this.ejercicioDao.AsociateEjercicioDeRutina(ej_id,rut_id,userId);
+	}
 }

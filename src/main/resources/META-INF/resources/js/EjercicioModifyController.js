@@ -1,18 +1,17 @@
-
 /*
- * Controlador de la página localModify.html
+ * Controlador de la página EjercicioModify.html
  * 
  * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
 
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
-	// Obtenemos los datos de la Rutina de la base de datos
+	// Obtenemos los datos del ejercicio de la base de datos
 	getEjercicioData();
 
 	// Inicializamos el plugin de validación
@@ -36,7 +35,6 @@ $(document).ready(function() {
 			ejercicio_descripcion: {
 				required : true,
 				minlength : 2,
-				maxlength : 200
 			},
 			ejercicio_estadoforma: {
 				required : true
@@ -69,7 +67,7 @@ function sendEjercicioData() {
 
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+
 	// Obtenemos los parámetros de la URL
 	var ej_id = getUrlParameter('ej_id');
 
@@ -81,20 +79,20 @@ function sendEjercicioData() {
 	var ejercicio_estadoforma = $('[name="ejercicio_estadoforma"]').val();
 	var ejercicio_repeticiones = $('[name="ejercicio_repeticiones"]').val();
 	var ejercicio_Pub_Priv = $('[name="ejercicio_Pub_Priv"]').val();
-	
+
 	// JSON formado con los datos del formulario extraídos
 	var ejercicio_json = {
-		ownerId : cookie.userid,
-		ejercicioNombre: ejercicio_nombre,
-		ejercicioTitulo : ejercicio_titulo,
-		ejercicioSubtitulo: ejercicio_subtitulo,
-		ejercicioDescripcion : ejercicio_descripcion,
-		ejercicioEstado_Forma : ejercicio_estadoforma,
-		ejercicioRepeticiones: ejercicio_repeticiones,
-		ejercicioPub_Priv: ejercicio_Pub_Priv
+			userId : cookie.userid,
+			ejercicioNombre: ejercicio_nombre,
+			ejercicioTitulo : ejercicio_titulo,
+			ejercicioSubtitulo: ejercicio_subtitulo,
+			ejercicioDescripcion : ejercicio_descripcion,
+			ejercicioEstado_Forma : ejercicio_estadoforma,
+			ejercicioRepeticiones: ejercicio_repeticiones,
+			ejercicioPub_Priv: ejercicio_Pub_Priv
 	};
-	
-	// Actualizamos la información de la Rutina en la base de datos
+
+	// Actualizamos la información del ejercicio en la base de datos
 	$.ajax({
 		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + ej_id + "?ejercicio_Pub_Priv=" + ejercicio_Pub_Priv,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
@@ -103,8 +101,8 @@ function sendEjercicioData() {
 		contentType : "application/json",
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Modificación realizada con éxito");
-		window.location.href = "EjercicioMain.html";
-	// Avisamos al usuario de que ha surgido un error
+		window.location.href = "EjercicioMain.html?ejercicio_Pub_Priv=false";
+		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error");
 	});
@@ -113,14 +111,14 @@ function sendEjercicioData() {
 
 /* Función que obtiene los datos del ejercicio de la base de datos */
 function getEjercicioData() {
-	
+
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
 	// Obtenemos los parámetros de la URL
 	var ej_id = getUrlParameter('ej_id');
 
-	// Obtenemos la información del evento de la base de datos
+	// Obtenemos la información del ejercicio de la base de datos
 	$.ajax({
 		url : "/Rutina_app/ejercicios/" + cookie.userid + "/" + ej_id,
 		headers: {'X-CSRF-TOKEN': cookie.csrf},
@@ -128,7 +126,7 @@ function getEjercicioData() {
 		dataType : "json",
 		cache : false,
 	}).done(function (data, textStatus, jqXHR) {
-		
+
 		console.log(data[0].ejercicioNombre);
 
 		// Imprimimos los datos en el HTML
@@ -139,7 +137,7 @@ function getEjercicioData() {
 		$('[name="ejercicio_estadoforma"]').val(data[0].ejercicioEstado_Forma);
 		$('[name="ejercicio_repeticiones"]').val(data[0].ejercicioRepeticiones);
 		$('[name="ejercicio_Pub_Priv"]').val(data[0].ejercicioPub_Priv);
-	// Avisamos al usuario de que ha surgido un error
+		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(ej_id);
 		alert("Se ha producido un error.");

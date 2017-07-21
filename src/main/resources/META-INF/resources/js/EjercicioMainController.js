@@ -2,29 +2,29 @@
  * Controlador de la página EjercicioMain.html
  * 
  * 
- * Diseño por Fco Jose Diaz Romero
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
 
 /* Funciones a ejecutar en la carga de la página */
 $(document).ready(function() {
-	
+
 	$('[data-toggle="tooltip"]').tooltip();
 	var ejercicio_Pub_Priv = false;
 	ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
 	console.log(ejercicio_Pub_Priv);
 	if(ejercicio_Pub_Priv=="false")
-		{
-			getMisEjerciciosData("");
-		}
+	{
+		getMisEjerciciosData("");
+	}
 	else
-		{
-			getEjerciciosPublicos("");
-		
-		}
+	{
+		getEjerciciosPublicos("");
+
+	}
 });
 
 
@@ -49,9 +49,9 @@ function getMisEjerciciosData(busqueda) {
 	});
 }
 
-/* Función que obtiene los datos de todas las rutinas de un propietario */
+/* Función que obtiene los datos de todos los ejercicios de un propietario */
 function getEjerciciosPublicos(busqueda) {
-	
+
 	// Obtenemos la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
 
@@ -72,9 +72,10 @@ function getEjerciciosPublicos(busqueda) {
 
 
 
-/* Función que imprime un resumen de todos los ejercicios de un propietario 
+/* Función que imprime un resumen de todos los ejercicios de un usuario 
    en una tabla */
 function printMisEjerciciosData(jsonEjerciciosArray) {
+
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $(".print-ejercicios")[0];
 
@@ -84,12 +85,14 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 		$(".print-ejercicios").hide();
 		$("#text-info").show();
 		$(".leyenda").hide();
+		cabeceraprivada();
 	}
 	else
 	{
 		$(".print-ejercicios").show();
 		$("#text-info").hide();
 		$(".leyenda").show();
+		cabeceraprivada();
 
 		// Iteramos para cada una de los ejercicios e imprimimos sus campos
 		for (var i = 0; i < jsonEjerciciosArray.length; i++) {
@@ -195,12 +198,10 @@ function printMisEjerciciosData(jsonEjerciciosArray) {
 	}
 }
 
-
-
-
-/* Función que imprime un resumen de todos los ejercicios de un propietario 
+/* Función que imprime un resumen de todos los ejercicios publicos de otros usuarios 
 en una tabla */
 function printEjerciciosPublicosData(jsonEjerciciosArray) {
+
 	// Obtenemos el contenedor donde imprimiremos los ejercicios
 	var container = $(".print-ejercicios")[0];
 
@@ -210,12 +211,14 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 		$(".print-ejercicios").hide();
 		$("#text-info").show();
 		$(".leyenda").hide();
+		cabecerapublica();
 	}
 	else
 	{
 		$(".print-ejercicios").show();
 		$("#text-info").hide();
 		$(".leyenda").show();
+		cabecerapublica();
 
 		// Iteramos para cada una de los ejercicios e imprimimos sus campos
 		for (var i = 0; i < jsonEjerciciosArray.length; i++) {
@@ -259,7 +262,7 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 				+ visibilidad
 				+ "</td>"
 				+ "<td>"								
-				+ "No tiene privilegios para ejercicios de otros usuarios"
+				+ "Este ejercicio no tiene videos disponibles."
 				+ "</td>" + "</tr>"
 
 
@@ -306,9 +309,42 @@ function printEjerciciosPublicosData(jsonEjerciciosArray) {
 	}
 }
 
+//Añade informacion de cabecera para los ejercicios privados
+function cabeceraprivada()
+{
+	var cab= "<h2>" +
+	"Mis Ejercicios<small>Estos son los Ejercicios creados por el usuario que ha iniado sesion." +
+	"Podemos ver tanto los ejercicios públicos como privados del usuario registrado con un resumen de sus datos." +
+	"En caso de que quiera añadir nuevos ejercicios, o modificar los ya existentes, deberá hacer uso de las" +
+	"opciones de debajo de la lista"                        
+	"</small></h2>";
+
+	var container = $(".cabecera");
 
 
+	container.empty();
+	container.prepend(cab);	
+}
 
+//Añade informacion de cabecera para las ejercicios publicos
+function cabecerapublica()
+{
+	var cab= "<h2>" +
+	"Ejercicios Públicos<small>Estas son los Ejercicios creados por otros usuarios que han decidido publicarlas." +
+	"Podemos ver tanto los ejercicios públicos del usuario registrado como los ejercicios públicos de los demás usuarios," +
+	" con un resumen de sus datos." +
+	"Solo se tiene acceso a la visualiacion de los videos asigandos a cada ejercicio. Recordar que si un ejercicio no" +
+	"tiene asociado videos, este no puede ser usado para una rutina." +
+	"</small></h2>";
+
+	var container = $(".cabecera");
+
+
+	container.empty();
+	container.prepend(cab);	
+}
+
+//Obtiene el campo para realizar la busqueda de un ejercicio.
 function busqueda()
 {
 	var ejercicio_Pub_Priv = getUrlParameter('ejercicio_Pub_Priv');
@@ -372,7 +408,7 @@ function deleteEjercicioData(ej_id) {
 		// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Ejercicio borrado.");
-		window.location.href = "EjercicioMain.html";
+		window.location.href = "EjercicioMain.html?ejercicio_Pub_Priv=false";
 		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Error: Ejercicio asociado a alguna rutina.");
@@ -380,7 +416,7 @@ function deleteEjercicioData(ej_id) {
 }
 
 
-/* Función que elimina los datos de la rutina de la base de datos */
+/* Función que elimina los datos de un video asociado a un ejercicio de la base de datos */
 function deleteVideoData(ej_id) {
 
 	// Obtenemos la cookie
@@ -394,7 +430,7 @@ function deleteVideoData(ej_id) {
 		// En caso de éxito: informamos y redirigimos
 	}).done(function (data, textStatus, jqXHR) {
 		alert("Video borrado.");
-		window.location.href = "EjercicioMain.html";
+		window.location.href = "EjercicioMain.html?ejercicio_Pub_Priv=false";
 		// Avisamos al usuario de que ha surgido un error
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		alert("Se ha producido un error.");

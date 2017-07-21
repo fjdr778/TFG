@@ -21,11 +21,10 @@ import org.springframework.security.web.csrf.CsrfFilter;
  * o pueden visualizarse una vez o no autenticado, además
  * de la protección CSRF.
  * 
- * 
- * Diseño por Adrián Gil Gago
- * Todos los derechos reservados.
- * Versión: 1.0
- *
+ *  
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * version 2.0.0
  */
 
 
@@ -56,8 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    	// Las reglas van de más específicas a menos específicas
 	    	// antMatchers() indica el patrón sobre el que se aplicará la regla
 	    	http.authorizeRequests().antMatchers("/RutinaRegister/**").permitAll();
-	    	//http.authorizeRequests().antMatchers("/Rutina_app/**").permitAll();
-	    	http.authorizeRequests().antMatchers("/index.html","/login.html","/ownerAdd.html").permitAll();
+	    	http.authorizeRequests().antMatchers("/index.html","/login.html","/UserAdd.html").permitAll();
 	    	http.authorizeRequests().antMatchers("/index.html").authenticated();
 	    	http.authorizeRequests().antMatchers("/*.html").authenticated();
 	    	

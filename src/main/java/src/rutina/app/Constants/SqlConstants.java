@@ -9,8 +9,9 @@ import src.rutina.app.RowMappers.EjercicioRowMapper;
  * relacionadas con cada una de las implementaciones DAO de las rutinas y ejercicios.
  * 
  * 
- * Diseño: Francisco Jose Diaz Romero
+ * Diseño: Francisco José Díaz Romero
  * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -52,7 +53,11 @@ public class SqlConstants {
     public static final String DELETE_USUARIO_ROLE =
 	    "DELETE FROM USUARIOS_ROLES WHERE USUARIOS_Email=?";
     
+    public static final String DELETE_USUARIO_ALL_ASOCACIONES_USUARIO = 
+    	    "DELETE FROM EJERCICIO_has_RUTINA WHERE USUARIOS_Email=?";
     
+    public static final String DELETE_USUARIO_ALL_VIDEOS = 
+    	    "DELETE FROM VIDEOS WHERE USUARIOS_Email=?";
     public static final String DELETE_USUARIO_ALL_RUTINAS = 
 	    "DELETE FROM RUTINA WHERE USUARIOS_Email=?";
     public static final String DELETE_USUARIO_ALL_EJERCICIOS = 
@@ -117,7 +122,7 @@ public class SqlConstants {
 	    "SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE RUTINA_USUARIOS_Email=?";
     
     public static final String GET_ALL_EJERCICIO1 =
-    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE Pub_priv=?";
+    		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO WHERE Pub_priv=? LIMIT 5";
     
   //Eliminar rutinas de un usuario
     public static final String DELETE_EJERCICIO = 
@@ -129,7 +134,7 @@ public class SqlConstants {
     /*ASOCICACION DE EJERCICIOS A RUTINAS*/
     
     public static final String ASOCIATE_EJERCICIO_DE_RUTINA = 
-    		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id) VALUES (?,?)";
+    		"INSERT INTO EJERCICIO_has_RUTINA (EJERCICIO_ej_id,RUTINA_rut_id,USUARIOS_Email) VALUES (?,?,?)";
     
     public static final String GET_EJERCICIO_DE_RUTINA = 
         		"SELECT ej_id,Nombre,Titulo,Subtitulo,Descripcion,Estado_forma,Repeticiones,Pub_priv,RUTINA_USUARIOS_Email FROM EJERCICIO,EJERCICIO_has_RUTINA"

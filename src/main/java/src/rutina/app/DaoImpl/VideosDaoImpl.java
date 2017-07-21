@@ -18,8 +18,9 @@ import src.rutina.app.Dao.*;
  * descritos previamente.
  * 
  * 
- * Diseño: Francisco Jose Diaz Romero
+ * Diseño: Francisco José Díaz Romero
  * All rights reserved
+ * Version 2.0.0
  *
  */
 
@@ -28,114 +29,44 @@ public class VideosDaoImpl implements VideosDao {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public  void createVideo(String videoNombre, String videoUrl,int ej_id,String ownerId){
+    public  void createVideo(String videoNombre, String videoUrl,int ej_id,String userId){
+    	
     	jdbcTemplate.update(SqlConstants.CREATE_VIDEO,
-    	    	new Object[] {videoNombre,videoUrl,ej_id,ownerId});
+    	    	new Object[] {videoNombre,videoUrl,ej_id,userId});
     	
     }
     @Override
-    public List<Videos> getVideo(int ej_id,String ownerId){
+    public List<Videos> getVideo(int ej_id,String userId){
+    	//System.out.println(ej_id+userId);
     	return jdbcTemplate.query(SqlConstants.GET_VIDEO,
-				new Object[] { ej_id,ownerId},
+				new Object[] { ej_id,userId},
 				new VideosRowMapper());
 	 }
     
 
     @Override
-    public void deleteVideo(int ej_id,String ownerId){
+    public void deleteVideo(int ej_id,String userId){
+    	
     	jdbcTemplate.update(SqlConstants.DELETE_VIDEO,
-    			new Object[] { ej_id,ownerId });
+    			new Object[] { ej_id,userId });
 	 }
 
     @Override
-    public void updateVideo(String videoNombre, String videoUrl,int ej_id,String ownerId){
+    public void updateVideo(String videoNombre, String videoUrl,int ej_id,String userId){
+    	
     	jdbcTemplate.update(SqlConstants.UPDATE_VIDEO,
-    	    	new Object[] {videoNombre,videoUrl,ej_id,ownerId});
+    	    	new Object[] {videoNombre,videoUrl,ej_id,userId});
 	 }
     
     
     // Inyección del dataSource mediante el constructor
     public void setDataSource(DataSource dataSource) {
+    	
 	this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public VideosDaoImpl() {
     }
 }  
-	
-	 
-	 
-	 
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*@Override
-	public void createRutina(String rutinaNombre, String rutinaDescripcion, String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
-    	
-    	jdbcTemplate.update(SqlConstants.CREATE_RUTINA,
-    	new Object[] { rutinaNombre, rutinaDescripcion, rutinaInfo_Rutina, ownerId });
-		
-	}
-    
-    @Override
-    public void updateRutina(int rut_id, String rutinaNombre, String rutinaDescripcion,
-    	    String rutinaInfo_Rutina,boolean rutinaPub_Priv,String ownerId) {
-    	jdbcTemplate.update(SqlConstants.UPDATE_RUTINA,
-    		new Object[] { rut_id,rutinaNombre, rutinaDescripcion,rutinaInfo_Rutina,
-    				ownerId});
-        }
 
-
-
-    @Override
-	public List<Rutina> getRutina(String ownerId, int rut_id) {
-		return jdbcTemplate.query(SqlConstants.GET_RUTINA,
-				new Object[] { ownerId,rut_id },
-				new RutinaRowMapper());
-	}
-    
-    
-    @Override
-	public List<Rutina> getAllRutinas(String ownerId) {	
-		return jdbcTemplate.query(SqlConstants.GET_ALL_RUTINAS,
-				new Object[] {ownerId},
-				new RutinaRowMapper()) ;
-	}
-    @
-    Override
-    public void deleteRutina(String ownerId,int rut_id) {
-	jdbcTemplate.update(SqlConstants.DELETE_RUTINA,
-		new Object[] { ownerId,rut_id });
-    }
-    @Override
-    public void deleteAllRutinas(String ownerId) {
-	jdbcTemplate.update(SqlConstants.DELETE_ALL_RUTINAS,
-		new Object[] {ownerId});
-    }
-    
-  
-    // Inyección del dataSource mediante el constructor
-    public void setDataSource(DataSource dataSource) {
-	this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    public RutinaDaoImpl() {
-    }*/
 

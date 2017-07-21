@@ -1,26 +1,34 @@
 package src.rutina.app.Objects;
 
+/*
+ * Clase que representa un Vvideo en la aplicación.
+ * 
+ * 
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
+ */
+
+
 public class Videos {
-	
+
 	private long ej_id;
-	private String ownerId;
+	private String userId;
 	private String videoNombre;
 	private String videoUrl;
-	
-	
-	
-	public Videos(String videoNombre, String videoUrl,long ej_id,String ownerId) {
-	this.videoNombre=videoNombre;
-	this.videoUrl=videoUrl;
-	this.ownerId=ownerId;
-	this.ej_id=ej_id;
 
-    }
-    
-    public Videos(){
-    }
+	public Videos(String videoNombre, String videoUrl,long ej_id,String userId) {
+		this.videoNombre=videoNombre;
+		this.videoUrl=videoUrl;
+		this.userId=userId;
+		this.ej_id=ej_id;
 
-    
+	}
+
+	public Videos(){
+	}
+
+
 	public long getEj_Id() {
 		return ej_id;
 	}
@@ -28,15 +36,15 @@ public class Videos {
 	public void setEj_Id(long ej_id) {
 		this.ej_id = ej_id;
 	}
-	
-    public String getVideoNombre() {
+
+	public String getVideoNombre() {
 		return videoNombre;
 	}
 
 	public void setVideoNombre(String videoNombre) {
 		this.videoNombre = videoNombre;
 	}
-    
+
 	public String getVideoUrl() {
 		return videoUrl;
 	}
@@ -45,13 +53,13 @@ public class Videos {
 		this.videoUrl = videoUrl;
 	}
 
-	public String getOwnerId() {
-		return ownerId;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-    
+
 }

@@ -1,355 +1,370 @@
 <!DOCTYPE html>
 <html>
-
+<!--
+Diseño: Francisco José Díaz Romero
+all Rights Reserved.
+Versión: 2.0.0
+-->
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</title>
-    <!-- Favicon-->
-	<link rel="icon" type="image/png" href="/favicon/favicon.png" />
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>RutinaApp - Plataforma de Gestion de Rutinas de
+	Entrenamiento</title>
+<!-- Favicon-->
+<link rel="icon" type="image/png" href="/favicon/favicon.png" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap Core Css -->
-    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- Bootstrap Core Css -->
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Waves Effect Css -->
-    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Waves Effect Css -->
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Animation Css -->
-    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
-    
-    <!-- Bootstrap Material Datetime Picker Css -->
-    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Wait Me Css -->
-    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+<!-- Bootstrap Material Datetime Picker Css -->
+<link
+	href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+	rel="stylesheet" />
 
-    <!-- Bootstrap Select Css -->
-    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    
+<!-- Wait Me Css -->
+<link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="css/style1.css" rel="stylesheet">
+<!-- Bootstrap Select Css -->
+<link href="../../plugins/bootstrap-select/css/bootstrap-select.css"
+	rel="stylesheet" />
 
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- Custom Css -->
+<link href="css/style1.css" rel="stylesheet">
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="css/themes/all-themes.css" rel="stylesheet" />
 <!-- Ficheros de código Javascript -->
-	<script src="js/lib/jquery-1.12.3.min.js"></script>
-	<script src="js/lib/jquery.validate.min.js"></script>
-	<script src="js/lib/messages_es.js"></script>
-	<script src="js/lib/utils.js"></script>
-	<script src="js/lib/jquery.cookie.js"></script>
-	<script src="js/EjercicioAddController.js"></script>
+<script src="js/lib/jquery-1.12.3.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/messages_es.js"></script>
+<script src="js/lib/utils.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/EjercicioAddController.js"></script>
 </head>
 
 <body class="theme-light-blue">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
-    <!-- fin de la carga de la pagina -->
-    
-    <!-- superposicion de barras laterales -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Barra superior -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">RutinaApp - Plataforma de Gestion de Rutinas de Entrenamiento</a>
-            </div>
-           </div> 
-    </nav>
-    <!-- #Barra superior  -->
-    <section>
-        <!-- Barra Lateral Izquierda -->
-        <aside id="leftsidebar" class="sidebar">      
-        <div class="user-info">
-                <div class="image">
-                	<img class="ima1" src="favicon/retra-logo.png" width="70" height="60" alt="User" />	
-                </div>
-        </div>     
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    
-                    <li>
-                        <a href="index.html">
-                            <i class="material-icons">home</i>
-                            <span>Pagina Principal</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Rutinas</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="RutinaMain.html?rutina_Pub_Priv=false">Mis Rutinas Disponibles</a>
-                            </li>
-                            <li>
-                                <a href="RutinaAdd.html">Crear Nueva Rutina</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    <li class="active">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Ejercicios</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Mis Ejercicios Disponibles</a>
-                            </li>
-                            <li class="active">
-                                <a href="EjercicioAdd.html">Crear Nuevo Ejercicio</a>
-                            </li>                   
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">build</i>
-                            <span>Ajustes</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="ownerModify.html">Modificar Datos de Usuario</a>
-                            </li>
-                            <li>
-                                <a href="ownerDropOut.html">Darme de Baja</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="helpMain.html">
-                            <i class="material-icons">help</i>
-                            <span>Ayuda</span>
-                        </a>
-                    </li>
-                    
-                    <li onclick="closeSession()">
-                        <a href="login.html">
-                            <i class="material-icons">pan_tool</i>
-                            <span>Cerrar Sesion</span>
-                        </a>
-                    </li>
-                                                                                                                              
-                </ul>
-            </div>
-            <!-- #Menu -->
-            
-            <!-- Pie de pagina -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">© Rutina_app España. Todos los derechos reservados.</a>.
-                </div>
-                
-                <div class="version">
-                    <b>Version: </b> 2.0.0
-                </div>
-            </div>
-            <!-- #Footer -->
-        </aside>
-        <!-- #END# Left Sidebar -->
-        
-    </section>
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>Please wait...</p>
+		</div>
+	</div>
+	<!-- fin de la carga de la pagina -->
+
+	<!-- superposicion de barras laterales -->
+	<div class="overlay"></div>
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Barra superior -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar-collapse"
+					aria-expanded="false"></a> <a href="javascript:void(0);"
+					class="bars"></a> <a class="navbar-brand" href="index.html">RutinaApp
+					- Plataforma de Gestion de Rutinas de Entrenamiento</a>
+			</div>
+		</div>
+	</nav>
+	<!-- #Barra superior  -->
+	<section>
+		<!-- Barra Lateral Izquierda -->
+		<aside id="leftsidebar" class="sidebar">
+			<div class="user-info">
+				<div class="image">
+					<img class="ima1" src="favicon/retra-logo.png" width="70"
+						height="60" alt="User" />
+				</div>
+			</div>
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+
+					<li><a href="index.html"> <i class="material-icons">home</i>
+							<span>Pagina Principal</span>
+					</a></li>
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">assignment</i> <span>Rutinas</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="RutinaMain.html?rutina_Pub_Priv=false">Rutinas
+									Disponibles</a></li>
+							<li><a href="RutinaAdd.html">Crear Nueva Rutina</a></li>
+						</ul></li>
+
+					<li class="active"><a href="javascript:void(0);"
+						class="menu-toggle"> <i class="material-icons">assignment</i>
+							<span>Ejercicios</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="EjercicioMain.html?ejercicio_Pub_Priv=false">Ejercicios
+									Disponibles</a></li>
+							<li class="active"><a href="EjercicioAdd.html">Crear
+									Nuevo Ejercicio</a></li>
+						</ul></li>
+					<li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">build</i> <span>Ajustes</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="UserModify.html">Modificar Datos de Usuario</a>
+							</li>
+							<li><a href="UserDropOut.html">Darme de Baja</a></li>
+						</ul></li>
+					<li><a href="helpMain.html"> <i class="material-icons">help</i>
+							<span>Ayuda</span>
+					</a></li>
+
+					<li onclick="closeSession()"><a href="login.html"> <i
+							class="material-icons">pan_tool</i> <span>Cerrar Sesion</span>
+					</a></li>
+
+				</ul>
+			</div>
+			<!-- #Menu -->
+
+			<!-- Pie de pagina -->
+			<div class="legal">
+				<div class="copyright">
+					&copy; 2017 <a href="javascript:void(0);">© Rutina_app España.
+						Todos los derechos reservados.</a>.
+				</div>
+
+				<div class="version">
+					<b>Version: </b> 2.0.0
+				</div>
+			</div>
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+
+	</section>
 
 
 
-    <!-- En esta seccion añadimos las cosas de cada vista -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <!-- Input -->
-                   
-                            <!-- Horizontal Layout -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Crear Nuevo Ejercicio
-                                <small>A continuación introduzca los de un ejercicio que desea registrar. Recuerde que el hecho de
-              			introducir ejercicios es completamente gratuito, por lo que puede añadir todos los ejercicios que
-              			desee sin ningún coste. Por otra parte, es obligatorio rellenar todos los campos de manera
-              			correcta, si no, no se registrará el evento.</small>
-                            </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                                   
-                        <div class="body">
-                            <form id="ejercicio_form">
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Nombre del Ejercicio:</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="ejercicio_nombre" size="40" class="form-control" placeholder="Nombre deseado para el ejercicio">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Titulo:</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="ejercicio_titulo" size="40" class="form-control" placeholder="Nombre deseado para el ejercicio">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Subtitulo:</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="ejercicio_subtitulo" size="40" class="form-control" placeholder="Nombre deseado para el ejercicio">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Descripción del Ejercicio</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea rows="5" cols="10" style="resize:none" placeholder="Escribe aquí la descripción del ejercicio" name="ejercicio_descripcion" class="form-control"></textarea><br/><br/><br/>                                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Estado de Forma:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <select name="ejercicio_estadoforma" class="form-control show-tick">
-                                        <option value="">-- Seleccione una Opcion --</option>
-                                        <option value="Bajo">Bajo</option>
-                                        <option value="Medio">Medio</option> 
-                                        <option value="Alto">Alto</option>                                       
-                                    </select>
-                               		</div>
-                                   
-                                </div>
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Repeticiones del Ejercicio:</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="number" name="ejercicio_repeticiones" class="form-control" placeholder="Estado de forma del usuario">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>   
-                                        
-                                <div class="row clearfix">
-                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label>Visibilidad:</label>
-                                    </div>
-                                <div class="col-sm-6">
-                                    <select name="ejercicio_Pub_Priv" class="form-control show-tick">
-                                        <option value="">-- Seleccione una Opcion --</option>
-                                        <option value="false">Privada  (Solo Podrá Consultar este Ejercicio su Propietario)</option>
-                                        <option value="true">Publica (El Resto de Usuarios podrán consultar este Ejercicio)</option>                                        
-                                    </select>
-                                </div>
-                            	</div>      
-                                                                                                    
-                                <div class="row clearfix">
-                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                        <button onclick="submitForm()" type="button" class="btn btn-primary m-t-15 waves-effect" style="float:left">Confirmar</button>
-                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" style="float:right"><a href="EjercicioMain.html"><font color="white">Cancelar</font></a></button>
-                                    </div>
-                                </div>
-                            </form>
+	<!-- En esta seccion añadimos las cosas de cada vista -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="block-header">
+				<!-- Input -->
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Horizontal Layout -->
-                            
-            </div>
-        </div>
-    </section>
+				<!-- Horizontal Layout -->
+				<div class="row clearfix">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="card">
+							<div class="header">
+								<h2>
+									Crear Nuevo Ejercicio <small>A continuación introduzca
+										los de un ejercicio que desea registrar. Recuerde que el hecho
+										de introducir ejercicios es completamente gratuito, por lo que
+										puede añadir todos los ejercicios que desee sin ningún coste.
+										Por otra parte, es obligatorio rellenar todos los campos de
+										manera correcta, si no, no se registrará el evento.</small>
+								</h2>
+
+							</div>
+
+							<div class="body">
+								<form id="ejercicio_form">
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Nombre del Ejercicio:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input type="text" name="ejercicio_nombre" size="40"
+														class="form-control"
+														placeholder="Nombre deseado para el ejercicio">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Titulo:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input type="text" name="ejercicio_titulo" size="40"
+														class="form-control"
+														placeholder="Nombre deseado para el ejercicio">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Subtitulo:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input type="text" name="ejercicio_subtitulo" size="40"
+														class="form-control"
+														placeholder="Nombre deseado para el ejercicio">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Descripción del Ejercicio</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<textarea rows="5" cols="10" style="resize: none"
+														placeholder="Escribe aquí la descripción del ejercicio"
+														name="ejercicio_descripcion" class="form-control"></textarea>
+													<br />
+													<br />
+													<br />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Estado de Forma:</label>
+										</div>
+										<div class="col-sm-6">
+											<select name="ejercicio_estadoforma"
+												class="form-control show-tick">
+												<option value="">-- Seleccione una Opcion --</option>
+												<option value="Bajo">Bajo</option>
+												<option value="Medio">Medio</option>
+												<option value="Alto">Alto</option>
+											</select>
+										</div>
+
+									</div>
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Repeticiones del Ejercicio:</label>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+											<div class="form-group">
+												<div class="form-line">
+													<input type="number" name="ejercicio_repeticiones"
+														class="form-control"
+														placeholder="Estado de forma del usuario">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row clearfix">
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+											<label>Visibilidad:</label>
+										</div>
+										<div class="col-sm-6">
+											<select name="ejercicio_Pub_Priv"
+												class="form-control show-tick">
+												<option value="">-- Seleccione una Opcion --</option>
+												<option value="false">Privada (Solo Podrá Consultar
+													este Ejercicio su Propietario)</option>
+												<option value="true">Publica (El Resto de Usuarios
+													podrán consultar este Ejercicio)</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="row clearfix">
+										<div
+											class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+											<button onclick="submitForm()" type="button"
+												class="btn btn-primary m-t-15 waves-effect"
+												style="float: left">Confirmar</button>
+											<button type="button"
+												class="btn btn-primary m-t-15 waves-effect"
+												style="float: right">
+												<a href="EjercicioMain.html?ejercicio_Pub_Priv=false"><font
+													color="white">Cancelar</font></a>
+											</button>
+										</div>
+									</div>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- #END# Horizontal Layout -->
+
+			</div>
+		</div>
+	</section>
 
 
-    
 
 
 
 
-    <!-- Bootstrap Core Js -->
-    <script src="plugins/bootstrap/js/bootstrap.js"></script>
 
-	 <!-- Select Plugin Js -->
-    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
-	
-	 <!-- Slimscroll Plugin Js -->
-    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+	<!-- Select Plugin Js -->
+	<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+	<!-- Slimscroll Plugin Js -->
+	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- Autosize Plugin Js -->
-    <script src="plugins/autosize/autosize.js"></script>
+	<script src="plugins/autosize/autosize.js"></script>
 
-    <!-- Moment Plugin Js -->
-    <script src="plugins/momentjs/moment.js"></script>
-    
-     <!-- Bootstrap Material Datetime Picker Plugin Js -->
-    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    
-    
-       <!-- Waves Effect Plugin Js -->
-    <script src="plugins/node-waves/waves.js"></script>
+	<!-- Moment Plugin Js -->
+	<script src="plugins/momentjs/moment.js"></script>
 
-    <!-- Custom Js -->
-    <script src="js/admin.js"></script>
+	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-    <!-- Demo Js -->
-    <script src="js/demo.js"></script>
 
-    
+	<!-- Waves Effect Plugin Js -->
+	<script src="plugins/node-waves/waves.js"></script>
+
+	<!-- Custom Js -->
+	<script src="js/admin.js"></script>
+
+	<!-- Demo Js -->
+	<script src="js/demo.js"></script>
+
+
 </body>
 
 </html>

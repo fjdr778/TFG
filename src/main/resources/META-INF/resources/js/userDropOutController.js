@@ -1,20 +1,19 @@
-
 /*
- * Controlador de la página ownerDropOut.html
+ * Controlador de la página UserDropOut.html
  * 
  * 
- * Diseño por Fco Jose Diaz Romero
- * Todos los derechos reservados.
- * Versión: 1.0
+ * Diseño: Francisco José Díaz Romero
+ * All rights reserved
+ * Version 2.0.0
  *
  */
 
 
 function deleteUserData() {
-	
+
 	// Obtenemos los datos de la cookie
 	var cookie = JSON.parse($.cookie('RutinaUsuario'));
-	
+
 	// Borramos los datos del usuario de la base de datos
 	$.ajax({
 		url : "/Rutina_app/" + cookie.userid,
